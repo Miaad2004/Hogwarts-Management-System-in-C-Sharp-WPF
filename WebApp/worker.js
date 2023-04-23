@@ -30,10 +30,11 @@ addEventListener('fetch', event => {
       // Respond
       if (templateType == 'hogwarts-letter') 
       {
-        const template = await htmlFile.text(hogwartsLetterTemplateURL)
+        const template = await fetch(hogwartsLetterTemplateURL)
+        const templateHTML = await template.text(template)
   
         // Modify the template
-        const modifiedTemplate = template
+        const modifiedTemplate = templateHTML
         .replace('{{name}}', name)
         .replace('{{lastName}}', lastName)
         .replace('{{age}}', age)
@@ -46,10 +47,11 @@ addEventListener('fetch', event => {
       else if (templateType == 'hogwarts-express-ticket') 
       {
         // Fetch the template
-        const template = await htmlFile.text(trainTicketTemplateURL)
+        const template = await fetch(trainTicketTemplateURL)
+        const templateHTML = await template.text(template)
   
         // Modify the template
-        const modifiedTemplate = template
+        const modifiedTemplate = templateHTML
         .replace('{{name}}', name)
         .replace('{{lastName}}', lastName)
         .replace('{{trainNumber}}', data.trainNumber)
