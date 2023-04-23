@@ -1,0 +1,25 @@
+﻿<Application x:Class="Hogwarts_Management_System.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Hogwarts_Management_System"
+             xmlns:views="clr-namespace:Hogwarts_Management_System.Views"
+             xmlns:viewmodels="clr-namespace:Hogwarts_Management_System.ViewModels"
+             StartupUri="Views/LoginView.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/BorderTheme.xaml"/>
+                <ResourceDictionary Source="Themes/TopBarTheme.xaml"/>
+                <ResourceDictionary Source="Themes/InputLabelTheme.xaml"/>
+                <ResourceDictionary Source="Themes/TextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SignUpViewModel}">
+                <views:SignUpView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
