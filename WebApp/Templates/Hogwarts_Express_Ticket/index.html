@@ -6,37 +6,35 @@
 	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
 	<style>
 		body {
-		font-family: Arial, sans-serif;
-		padding: 20px;
-		background-image: url('https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/bg.png');
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-		background-size: cover;
+			font-family: Arial, sans-serif;
+			padding: 20px;
+			background-image: url('https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/bg.png');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
 		}
 		.container {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		border-radius: 20px;
-		margin: auto;
-		padding: 30px;
-		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-		z-index:-2;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 20px;
+			margin: auto;
+			padding: 30px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+			z-index:-2;
 		}
-
 		.container::after {
-		content: "";
-		position: absolute; /* position the overlay element absolutely within the container */
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		border-radius: 25px;
-		background-color: rgba(78, 28, 217, 0.6); /* set the background color to white with 50% opacity */
-		z-index: -1; /* set the overlay element to be behind other content */
+			content: "";
+			position: absolute; 
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 25px;
+			background-color: rgba(78, 28, 217, 0.6); 
+			z-index: -1; 
 		}
-
 		.logo {
 			max-width: 200px;
 			margin: 0 auto;
@@ -65,6 +63,7 @@
 		.ticket-details span {
 			font-weight: bold;
 			font-size: 30px;
+			color: cadetblue;
 		}
 	</style>
 </head>
@@ -74,7 +73,9 @@
 		<img class="logo" src="https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/logo.png" alt="Hogwarts logo">
 		<h1>Hogwarts Express Ticket</h1>
 		<div class="ticket-details">
-			<p>Name: {{name}} {{lastName}}</p>
+			<p>Name: <span>{{name}} {{lastName}}</span></p>
+		</div>
+		<div class="ticket-details">
 			<p>Train Number: <span>{{trainNumber}}</span></p>
 		</div>
 		<div class="ticket-details">
@@ -87,6 +88,8 @@
 		</div>
 		<div class="ticket-details">
 			<p>Compartment: <span>{{compartment}}</span></p>
+		</div>
+		<div class="ticket-details">
 			<p>Seat: <span>{{seat}}</span></p>
 		</div>
 	</div>

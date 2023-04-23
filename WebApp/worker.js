@@ -20,12 +20,20 @@ addEventListener('fetch', event => {
       catch (err) 
       {
         return new Response('Invalid JSON data', { status: 400 })
+        Console.log(err)
       }
       
       const { name, lastName, age } = data
       
       // Check if Input params are valid
-      validateInput(templateType, data);
+      try 
+      {
+        validateInput(templateType, data);
+      }
+      catch (err) 
+      {
+        return new Response(err.message, { status: 400 })
+      }
       
       // Respond
       if (templateType == 'hogwarts-letter') 
@@ -39,7 +47,7 @@ addEventListener('fetch', event => {
         .replace('{{lastName}}', lastName)
         .replace('{{age}}', age)
         .replace('{{activationCode}}', data.activationCode)
-        .replace('{{headmasterName}}', data.headmasterNam)
+        .replace('{{headmasterName}}', data.headmasterName)
   
         // Respond
         return new Response(modifiedTemplate, { headers: { 'Content-Type': 'text/html' } })
@@ -76,23 +84,22 @@ addEventListener('fetch', event => {
     }
   }
   
-  function validateInput(templateType, data)
+function validateInput(templateType, data)
+{
+  const requiredFields =
   {
-    const requiredFields =
-    {
-      'hogwarts-letter': ['name', 'lastName', 'activationCode', 'headmasterName'],
-      'hogwarts-express-ticket': ['name', 'lastName', 'trainNumber', 'departure', 'destination', 'date', 'time', 'seat', 'compartment']
-    }
-  
-    const missingFields = requiredFields[templateType].filter(field => !data[field])
-  
-    if (missingFields.length > 0)
-    {
-      return new Response(`Missing required fields: ${missingFields.join(', ')}`, { status: 400 })
-    }
-  
-    return null
+    'hogwarts-letter': ['name', 'lastName', 'activationCode', 'headmasterName'],
+    'hogwarts-express-ticket': ['name', 'lastName', 'trainNumber', 'departure', 'destination', 'date', 'time', 'seat', 'compartment']
   }
+
+  const missingFields = requiredFields[templateType].filter(field => !data[field])
+
+  if (missingFields.length > 0)
+  {
+    throw new Error(`Missing required fields: ${missingFields.join(', ')}`)
+  }
+}
+
   
   
   
