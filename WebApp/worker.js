@@ -1,3 +1,6 @@
+var hogwartsLetterTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Letter/index.html";
+var trainTicketTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/index.html";
+
 addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request))
   })
@@ -27,9 +30,7 @@ addEventListener('fetch', event => {
       // Respond
       if (templateType == 'hogwarts-letter') 
       {
-        // Fetch the template
-        const templateURL = await fetch('https://example.com/letter.html')
-        const template = await htmlFile.text(templateURL)
+        const template = await htmlFile.text(hogwartsLetterTemplateURL)
   
         // Modify the template
         const modifiedTemplate = template
@@ -45,8 +46,7 @@ addEventListener('fetch', event => {
       else if (templateType == 'hogwarts-express-ticket') 
       {
         // Fetch the template
-        const templateURL = await fetch('https://example.com/train.html')
-        const template = await htmlFile.text(templateURL)
+        const template = await htmlFile.text(trainTicketTemplateURL)
   
         // Modify the template
         const modifiedTemplate = template
