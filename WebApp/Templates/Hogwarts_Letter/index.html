@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hogwarts Acceptance Letter</title>
+	<link rel="icon" href="favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+	<video autoplay muted loop id="bgVideo">
+	  <source src="bg.mp4" type="video/mp4">
+	</video>
+	
+	<div class="container">
+		<img class="logo" src="logo.png" alt="Hogwarts logo">
+		<h1>Hogwarts School of Witchcraft and Wizardry</h1>
+		<p>Dear {{name}} {{last-name}},</p>
+		<p>We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry. Please find enclosed a list of all necessary books and equipment.</p>
+		<p>Your activation code is <span class="activation-code">{{activation-code}}</span>.</p>
+		<p>Term begins on September 1. We await your owl by no later than July 31.</p>
+		<p>Yours sincerely,</p>
+		<p>{{headmaster-name}}</p>
+	</div>
+
+</body>
+</html>
