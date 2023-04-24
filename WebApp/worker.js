@@ -20,7 +20,6 @@ addEventListener('fetch', event => {
       catch (err) 
       {
         return new Response('Invalid JSON data', { status: 400 })
-        Console.log(err)
       }
       
       const { name, lastName, age } = data

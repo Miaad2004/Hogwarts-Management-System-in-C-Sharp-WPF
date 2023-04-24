@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Uni\Term_2\Advance_Programming\Hogwarts Management System_\Hogwarts Management System\obj\Debug\
+D:\Uni\Term_2\Advance_Programming\Hogwarts Management System\Hogwarts Management System\obj\Debug\
 Hogwarts_Management_System
 none
 false
 DEBUG;TRACE
-D:\Uni\Term_2\Advance_Programming\Hogwarts Management System_\Hogwarts Management System\App.xaml
+D:\Uni\Term_2\Advance_Programming\Hogwarts Management System\Hogwarts Management System\App.xaml
 71782903614
 1313201649
-24-832001328
-18-1267505511
+25497378970
+18297145248
 MainWindow.xaml;Themes\BorderTheme.xaml;Themes\InputLabelTheme.xaml;Themes\TextBoxTheme.xaml;Themes\TopBarTheme.xaml;Views\LoginView.xaml;Views\SignUpView.xaml;
 
-False
+True
 
