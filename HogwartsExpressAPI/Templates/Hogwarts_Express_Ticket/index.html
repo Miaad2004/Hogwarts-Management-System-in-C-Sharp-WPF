@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hogwarts Express Ticket</title>
+	<link rel="icon" href="https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			padding: 20px;
+			background-image: url('https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/bg.png');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 20px;
+			margin: auto;
+			padding: 30px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+			z-index:-2;
+		}
+		.container::after {
+			content: "";
+			position: absolute; 
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 25px;
+			background-color: rgba(78, 28, 217, 0.6); 
+			z-index: -1; 
+		}
+		.logo {
+			max-width: 200px;
+			margin: 0 auto;
+			display: block;
+			text-align: center;
+		}
+		h1 {
+			font-size: 36px;
+			margin-bottom: 20px;
+			text-align: center;
+			color: rgb(157, 212, 29);
+		}
+		p {
+			font-size: 18px;
+			line-height: 1.5;
+			margin-bottom: 10px;
+		}
+		.ticket-details {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 50px;
+		}
+		.ticket-details p {
+			font-size: 24px;
+			margin: 0;
+		}
+		.ticket-details span {
+			font-weight: bold;
+			font-size: 30px;
+			color: cadetblue;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<img class="logo" src="https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/logo.png" alt="Hogwarts logo">
+		<h1>Hogwarts Express Ticket</h1>
+		<div class="ticket-details">
+			<p>Name: <span>{{FirstName}} {{LastName}}</span></p>
+		</div>
+		<div class="ticket-details">
+			<p>Train Number: <span>{{TrainNumber}}</span></p>
+		</div>
+		<div class="ticket-details">
+			<p>From: <span>{{Departure}}</span></p>
+		</div>
+		<div class="ticket-details"> 
+			<p>Date: <span>{{Date}}</span></p>
+			<p>Time: <span>{{Time}}</span></p>
+		</div>
+		<div class="ticket-details">
+			<p>Compartment: <span>{{Compartment}}</span></p>
+		</div>
+		<div class="ticket-details">
+			<p>Seat: <span>{{Seat}}</span></p>
+		</div>
+	</div>
+</body>
+</html>
