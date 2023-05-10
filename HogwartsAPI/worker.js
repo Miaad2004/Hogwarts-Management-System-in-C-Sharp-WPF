@@ -1,5 +1,5 @@
-var hogwartsLetterTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Letter/index.html";
-var trainTicketTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/WebApp/Templates/Hogwarts_Express_Ticket/index.html";
+var hogwartsLetterTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/HogwartsAPI/Templates/Hogwarts_Letter/index.html";
+var trainTicketTemplateURL = "https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/HogwartsAPI/Templates/Hogwarts_Express_Ticket/index.html";
 
 addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request))
