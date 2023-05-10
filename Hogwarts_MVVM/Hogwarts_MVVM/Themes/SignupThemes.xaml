@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Date Picker -->
+    <Style x:Key="SignupDatePickerTheme" TargetType="{x:Type DatePicker}">
+        <Style.Resources>
+            <Style TargetType="DatePickerTextBox">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="DarkGray"/>
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="FontFamily" Value="Montserrat"/>
+            </Style>
+
+        </Style.Resources>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="33"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Input Box -->
+    <Style x:Key="SignupInputLabelTheme" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Password Box -->
+    <Style TargetType="PasswordBox" x:Key="SignupPasswordBoxTheme">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="CaretBrush" Value="LightGray"/>
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="33"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Text Label -->
+    <Style TargetType="TextBox" x:Key="SignupTextBoxTheme">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="CaretBrush" Value="LightGray"/>
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="33"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>
