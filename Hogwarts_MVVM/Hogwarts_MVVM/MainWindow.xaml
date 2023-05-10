@@ -1,0 +1,56 @@
+﻿<Window x:Class="Hogwarts_MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hogwarts_MVVM"
+        xmlns:viewmodeks="clr-namespace:Hogwarts.ViewModels;assembly=Hogwarts.ViewModels"
+        xmlns:views="clr-namespace:Hogwarts.Views"
+        mc:Ignorable="d"
+        Title="Hogwarts Management System" Height="740" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Style="{StaticResource BorderTheme}">
+
+    <Border CornerRadius="25">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- FRAME -->
+            <Grid Grid.Row="1"
+                  Margin="0, -30, 0, 0"
+                  Panel.ZIndex="0">
+                <views:LoginView DataContext="{Binding CurrentViewModel}"/>
+            </Grid>
+            
+            <!--<Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0, -30, 0, 0" Panel.ZIndex="0" DataContext="{Binding CurrentViewModel}"/>-->
+
+            <!-- TOP BAR -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnMinimize"
+                        Panel.ZIndex="2"
+                        Grid.Column="1"
+                        Style="{StaticResource MinimizeButtonStyle}"
+                        Click="BtnMinimize_Click" />
+
+                <Button x:Name="btnClose"
+                        Panel.ZIndex="2"
+                        Grid.Column="2"
+                        Style="{StaticResource CloseButtonStyle}"
+                        Click="BtnClose_Click" />
+            </Grid>
+
+
+        </Grid>
+    </Border>
+</Window>
