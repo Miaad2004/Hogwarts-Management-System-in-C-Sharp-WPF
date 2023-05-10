@@ -1,0 +1,333 @@
+﻿<Page x:Class="Hogwarts.Views.SignupView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hogwarts.Views"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="740" d:DesignWidth="1200"
+      Title="SignupView">
+
+    <Border CornerRadius="28">
+        <!--Background IMAGE-->
+        <Border.Background>
+            <ImageBrush ImageSource="/StaticResources/SignupWindow/bg.png"/>
+        </Border.Background>
+
+        <Border Opacity="0.75"
+                CornerRadius="27">
+            <!--Background Overlay-->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.RowSpan="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.36*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Left Section-->
+                    <Border Background="#07BF96" CornerRadius="25 0 0 25" ClipToBounds="True">
+                        <Grid>
+                            <!--Ellipses-->
+                            <Ellipse Width="500" Height="500" VerticalAlignment="Bottom" Fill="#5ec5cc" Margin="50 0 0 -200" Opacity="0.7"/>
+                            <Ellipse Width="300" Height="300" VerticalAlignment="Bottom" Fill="#6bdba0" Margin="-450 0 0 30" Opacity="0.45"/>
+                            <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#5eadcc" Margin="10,0,-143,-100" Opacity="0.45"/>
+                            <Ellipse Width="400" Height="400" VerticalAlignment="Bottom" Fill="#5ECCB4" Margin="280 0 0 -70" Opacity="0.9"/>
+
+                            <!--Title-->
+                            <StackPanel Margin="0 35 0 0" VerticalAlignment="Top">
+                                <Image Source="/StaticResources/SignupWindow/logo.png" Width="280" Height="280" />
+                                <TextBlock Text="Sign up" FontSize="55" FontWeight="Light" Foreground="#ffffff" TextAlignment="Center"/>
+                                <TextBlock Text="And become a sorcerer!" FontWeight="Light" FontSize="24" Foreground="#D1F2EB" TextAlignment="Center" Margin="0 15 0 3"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!--Right Section-->
+                    <Border Grid.Column="1" Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="75"/>
+                                <RowDefinition Height="70"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Left Section -->
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="0"
+                                        Width="auto"
+                                        Orientation="Vertical"
+                                        HorizontalAlignment="Center">
+                                
+                                <!-- Username -->
+                                <TextBlock Text="Username:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 35, 0, 0" />
+                                
+                                <TextBox x:Name="txtUsername"
+                                         Padding="15, 0, 0, 0"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0">
+                                    <TextBox.Background>
+                                         <ImageBrush ImageSource="/StaticResources/SignupWindow/user-icon.png"
+                                                     Stretch="None"
+                                                     AlignmentX="Left">
+                                         </ImageBrush>
+                                    </TextBox.Background>
+                                </TextBox>
+                                
+                                <!-- Password -->
+                                <TextBlock Text="Password:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 15, 0, 0" />
+                                
+                                <PasswordBox x:Name="txtPassword"
+                                             Padding="15, 0, 0, 0"
+                                             Style="{StaticResource SignupPasswordBoxTheme}"
+                                             Margin="0,5,0,0">
+                                    <PasswordBox.Background>
+                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
+                                                    Stretch="None"
+                                                    AlignmentX="Left">
+                                        </ImageBrush>
+                                    </PasswordBox.Background>
+                                </PasswordBox>
+
+                                <!-- Password Repeat -->
+                                <TextBlock Text="Renter Password:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0" />
+                                
+                                <PasswordBox x:Name="txtPasswordRepeat"
+                                             Padding="15, 0, 0, 0"
+                                             Style="{StaticResource SignupPasswordBoxTheme}"
+                                             Margin="0,5,0,0">
+                                    <PasswordBox.Background>
+                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
+                                                    Stretch="None"
+                                                    AlignmentX="Left">
+                                        </ImageBrush>
+                                    </PasswordBox.Background>
+                                </PasswordBox>
+
+                                <!-- First Name -->
+                                <TextBlock Text="First Name:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+                                
+                                <TextBox x:Name="txtFirstName"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+
+                                <!-- Last Name -->
+                                <TextBlock Text="Last Name:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtLastName"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+
+                                <!-- Email-->
+                                <TextBlock Text="Email:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtEmail"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+                                
+                                <!-- Activation Code -->
+                                <TextBlock Text="Activation Code:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtActivationCode"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+                            </StackPanel>
+                            
+                            <!-- Right Section -->
+                            <StackPanel Grid.Row="1"
+                                        Grid.Column="1"
+                                        Width="auto"
+                                        Orientation="Vertical"
+                                        HorizontalAlignment="Center">
+
+                                <!-- Birthday -->
+                                <TextBlock Text="Birthday:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 35, 0, 0" />
+                                <DatePicker Name="birthdayPicker"
+                                            DisplayDateEnd="{x:Static sys:DateTime.Now}"
+                                            Style="{StaticResource SignupDatePickerTheme}"
+                                            Margin="0,5,0,0"/>
+
+                                <!-- Password -->
+                                <TextBlock Text="Password:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0" />
+
+                                <PasswordBox x:Name="txtPsdassword"
+                                             Padding="15, 0, 0, 0"
+                                             Style="{StaticResource SignupPasswordBoxTheme}"
+                                             Margin="0,5,0,0">
+                                    <PasswordBox.Background>
+                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
+                                                    Stretch="None"
+                                                    AlignmentX="Left">
+                                        </ImageBrush>
+                                    </PasswordBox.Background>
+                                </PasswordBox>
+
+                                <!-- Password Repeat -->
+                                <TextBlock Text="Renter Password:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0" />
+
+                                <PasswordBox x:Name="txtPassdswordRepeat"
+                                             Padding="15, 0, 0, 0"
+                                             Style="{StaticResource SignupPasswordBoxTheme}"
+                                             Margin="0,5,0,0">
+                                    <PasswordBox.Background>
+                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
+                                                    Stretch="None"
+                                                    AlignmentX="Left">
+                                        </ImageBrush>
+                                    </PasswordBox.Background>
+                                </PasswordBox>
+
+                                <!-- First Name -->
+                                <TextBlock Text="First Name:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtFsdirstName"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+
+                                <!-- Last Name -->
+                                <TextBlock Text="Last Name:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtLadsdsstName"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+
+                                <!-- Email-->
+                                <TextBlock Text="Email:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtdsEmsdail"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+
+                                <!-- Activation Code -->
+                                <TextBlock Text="Activation Code:"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           Margin="0, 20, 0, 0"/>
+
+                                <TextBox x:Name="txtActivdsationCode"
+                                         Style="{StaticResource SignupTextBoxTheme}"
+                                         Margin="0,5,0,0"
+                                         Background="Transparent">
+                                </TextBox>
+                            </StackPanel>
+
+                            <!--Bottom Section -->
+                            <Button x:Name="btnSignUp"
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Content="Sign Up"
+                                    FontSize="15"
+                                    FontFamily="Montserrat"
+                                    Cursor="Hand"
+                                    Margin="0,0,0,0">
+
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#462ADB"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="#C62DAE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                    </Style>
+                                </Button.Style>
+
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Width="200" Height="60"
+                                                CornerRadius="30"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center" 
+                                                              HorizontalAlignment="Center"/>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+
+                            <StackPanel Grid.Row="3"
+                                        Grid.ColumnSpan="2"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,15,0,30">
+
+                                <TextBlock Text="Already have an acount?"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           FontSize="13" />
+
+                                <TextBlock Text="Login Instead"
+                                           Padding="5, 0, 0, 0"
+                                           Style="{StaticResource SignupInputLabelTheme}"
+                                           FontSize="13"
+                                           Cursor="Hand" />
+                            </StackPanel>
+                            
+                        </Grid>
+                    </Border>
+
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Page>
