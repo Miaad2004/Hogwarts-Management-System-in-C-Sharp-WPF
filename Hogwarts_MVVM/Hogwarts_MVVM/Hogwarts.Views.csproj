@@ -13,6 +13,8 @@
     <None Remove="StaticResources\LoginWindow\key-icon.png" />
     <None Remove="StaticResources\LoginWindow\logo.png" />
     <None Remove="StaticResources\LoginWindow\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\AddPlantPopup\bg.jpg" />
+    <None Remove="StaticResources\MainPanel\Admin\AddPlantPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
@@ -22,6 +24,7 @@
     <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
     <None Remove="StaticResources\Shared\icon.ico" />
+    <None Remove="StaticResources\Shared\StartupChime.mp3" />
     <None Remove="StaticResources\SignupWindow\bg.png" />
     <None Remove="StaticResources\SignupWindow\cat.jpg" />
     <None Remove="StaticResources\SignupWindow\key-icon.png" />
@@ -41,6 +44,8 @@
     <Resource Include="StaticResources\LoginWindow\key-icon.png" />
     <Resource Include="StaticResources\LoginWindow\logo.png" />
     <Resource Include="StaticResources\LoginWindow\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddPlantPopup\bg.jpg" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddPlantPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
@@ -50,6 +55,9 @@
     <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
     <Resource Include="StaticResources\Shared\icon.ico" />
+    <Content Include="StaticResources\Shared\StartupChime.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="StaticResources\SignupWindow\bg.png" />
     <Resource Include="StaticResources\SignupWindow\cat.jpg" />
     <Resource Include="StaticResources\SignupWindow\key-icon.png" />

@@ -28,6 +28,9 @@
     <Compile Update="AdminViews\Pages\StudentsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AdminViews\Popups\AddPlantPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AdminViews\Popups\AddTeacherPopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +73,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Pages\StudentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\AddPlantPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Popups\AddTeacherPopup.xaml">

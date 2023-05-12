@@ -9,5 +9,6 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("staticresources/shared/icon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("staticresources/shared/startupchime.mp3")]
 
 

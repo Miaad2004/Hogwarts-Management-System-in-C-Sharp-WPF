@@ -107,11 +107,6 @@ namespace Hogwarts.Core.Models.Authentication
             AccessLevel = accessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
 
-            if (!File.Exists(profileImagePath))
-            {
-                throw new ArgumentException("Invalid profile image path.");
-            }
-
             SetProfileImagePath(profileImagePath);
         }
 
@@ -125,10 +120,6 @@ namespace Hogwarts.Core.Models.Authentication
             BloodType = DTO.BloodType;
             AccessLevel = DTO.AccessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
-            if (!File.Exists(DTO.ProfileImagePath))
-            {
-                throw new ArgumentException("Invalid profile image path.");
-            }
 
             SetProfileImagePath(DTO.ProfileImagePath);
         }
@@ -137,8 +128,13 @@ namespace Hogwarts.Core.Models.Authentication
             return $"User {Username} - Full name: {FullName} - AccessLevel: {AccessLevel} - Email: {Email}";
         }
 
-        private void SetProfileImagePath(string profileImagePath)
+        private void SetProfileImagePath(string? profileImagePath)
         {
+            if (profileImagePath is null || !File.Exists(profileImagePath))
+            {
+                throw new ArgumentException("Invalid profile image path.");
+            }
+
             string subfolderName = "Hogwarts-Management-System";
             string subfolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
                                                 subfolderName, "ProfileImages");

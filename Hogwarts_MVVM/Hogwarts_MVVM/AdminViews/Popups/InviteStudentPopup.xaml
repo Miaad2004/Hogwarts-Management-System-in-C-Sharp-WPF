@@ -18,6 +18,17 @@
         
         <Border Opacity="0.75"
                 CornerRadius="25">
+            <!-- Load Animation -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            
             <!-- Background Overlay -->
             <Border.Background>
                 <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">

@@ -16,6 +16,18 @@
 
         <Border Opacity="0.75"
                 CornerRadius="25">
+            
+            <!-- Load Animation -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:4" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            
             <!--BACKGROUND OVERLAY-->
             <Border.Background>
                 <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
@@ -39,7 +51,8 @@
                             Margin="0,10,0,0">
 
                     <Image Source="/StaticResources/LoginWindow/logo.png"
-                           Width="220" Height="220" />
+                           Width="220" Height="220">
+                    </Image>
                     
                     <TextBlock Text="Hogwarts Mangement System"
                                Foreground="White"

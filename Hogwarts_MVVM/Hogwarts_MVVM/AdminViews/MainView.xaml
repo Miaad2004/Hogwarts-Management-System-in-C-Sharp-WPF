@@ -11,6 +11,18 @@
 
     <Grid>
         <Border CornerRadius="30" Background="#EFF2F7">
+
+            <!-- Load Animation -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.2" To="1" Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            
             <Grid>
                 <!-- 2 Columns for the left and right section -->
                 <Grid.ColumnDefinitions>

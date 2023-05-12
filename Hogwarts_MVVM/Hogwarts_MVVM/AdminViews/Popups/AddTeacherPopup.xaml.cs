@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using Hogwarts.Core.Models.Authentication.DTOs;
+using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.StudentManagement;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +14,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hogwarts.Core.Models.FacultyManagement;
+using Hogwarts.Core.SharedServices;
 
 namespace Hogwarts.Views.AdminViews.Popups
 {
@@ -51,6 +57,7 @@ namespace Hogwarts.Views.AdminViews.Popups
                 Filter = "Image Files(*.JPG; *.JPEG; *.PNG; *.GIF)| *.JPG; *.JPEG; *.PNG; *.GIF",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
             };
+
             _ = openFileDialog.ShowDialog();
             txtOpenFile.Text = openFileDialog.FileName;
             SelectedProfileImagePath = openFileDialog.FileName;
@@ -58,7 +65,32 @@ namespace Hogwarts.Views.AdminViews.Popups
 
         private void Signup_Click(object sender, RoutedEventArgs e)
         {
+            ProfessorRegistrationDTO DTO = new ()
+            {
+                Username = txtUsername.Text,
+                Password = txtPassword.Password,
+                PasswordRepeat = txtPasswordRepeat.Password,
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                Email = txtEmail.Text,
+                BirthDate = DateOnly.FromDateTime((DateTime)birthdayPicker.SelectedDate),
+                BloodType = (BloodType)comboBloodStatus.SelectedIndex,
+                AccessLevel = AccessLevels.Professor,
+                Major = (ProfessorMajors)comboMajor.SelectedIndex,
+                ProfileImagePath = SelectedProfileImagePath,
+                HasTimeTurner = (bool)radioTimeTurnerYes.IsChecked,
+            };
 
+            try
+            {
+                StaticServiceProvidor.authenticationService.SignUpProfessor(DTO);
+                MessageBox.Show("Professor registered successfully.", "Signup Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Signup error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

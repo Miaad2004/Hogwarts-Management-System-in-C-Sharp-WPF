@@ -9,6 +9,17 @@
       Title="Home">
 
     <Border CornerRadius="20">
+        <!-- Load Animation -->
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+        
         <!-- Background Image -->
         <Border.Background>
             <ImageBrush ImageSource="/StaticResources/MainPanel/Admin/HomeView/bg.jpg"/>

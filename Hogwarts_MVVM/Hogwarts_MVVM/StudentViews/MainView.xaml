@@ -68,7 +68,7 @@
                         <StackPanel DockPanel.Dock="Top">
                             <!-- Dashboard -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/Home.xaml"
+                                    Tag="/AdminViews/Pages/HomeView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -78,7 +78,7 @@
 
                             <!-- Staff -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/Staff.xaml"
+                                    Tag="/AdminViews/Pages/StaffView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -88,7 +88,7 @@
 
                             <!-- Students -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/Students.xaml"
+                                    Tag="/AdminViews/Pages/StudentsView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HumanQueue" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -98,7 +98,7 @@
 
                             <!-- Classes -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/Classes.xaml"
+                                    Tag="/AdminViews/Pages/ClassesView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="GoogleClassroom" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -108,7 +108,7 @@
 
                             <!-- Hogwarts Express -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/HogwartsExpress.xaml"
+                                    Tag="/AdminViews/Pages/HogwartsExpressView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Train" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -118,7 +118,7 @@
 
                             <!-- Forest -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/Forest.xaml"
+                                    Tag="/AdminViews/Pages/ForestView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Forest" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -152,7 +152,7 @@
 
                     <!-- Page Frame -->
                     <Grid Grid.Row="1">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="pageFrame" Margin="15,10,33,10" Source="/AdminViews/Pages/Home.xaml"/>
+                        <Frame NavigationUIVisibility="Hidden" x:Name="pageFrame" Margin="15,10,33,10" Source="/AdminViews/Pages/HomeView.xaml"/>
                     </Grid>
                 </Grid>
 

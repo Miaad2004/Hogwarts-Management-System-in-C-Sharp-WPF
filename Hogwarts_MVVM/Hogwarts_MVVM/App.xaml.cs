@@ -2,13 +2,18 @@
 using Hogwarts.Core.Models.Authentication.Exceptions;
 using Hogwarts.Core.SharedServices;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Hogwarts_MVVM
 {
     public partial class App : Application
     {
+        private bool isFirstLoad = true;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -30,6 +35,21 @@ namespace Hogwarts_MVVM
             catch (UserExistsException)
             {
                 // Admin already exists
+            }
+        }
+
+        protected override void OnLoadCompleted(NavigationEventArgs e)
+        {
+            base.OnLoadCompleted(e);
+
+            if (isFirstLoad)
+            {
+                string startupSoundFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StaticResources/Shared/StartupChime.mp3");
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(startupSoundFilePath));
+                player.Play();
+
+                isFirstLoad = false;
             }
         }
 
