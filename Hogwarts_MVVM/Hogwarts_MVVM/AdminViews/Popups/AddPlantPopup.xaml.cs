@@ -23,7 +23,7 @@ namespace Hogwarts.Views.AdminViews.Popups
     /// </summary>
     public partial class AddPlantPopup : Window
     {
-        private string SelectedPlantImagePath;
+        private string SelectedImagePath;
         public AddPlantPopup()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace Hogwarts.Views.AdminViews.Popups
             };
             _ = openFileDialog.ShowDialog();
             txtOpenFile.Text = openFileDialog.FileName;
-            SelectedPlantImagePath = openFileDialog.FileName;
+            SelectedImagePath = openFileDialog.FileName;
         }
 
         private void AddPlant_Click(object sender, RoutedEventArgs e)
@@ -67,7 +67,7 @@ namespace Hogwarts.Views.AdminViews.Popups
                 Description = txtDescription.Text,
                 Quantity = int.Parse(txtQuantity.Text),
                 GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1)
-
+                ImagePath = 
             };
 
             try
