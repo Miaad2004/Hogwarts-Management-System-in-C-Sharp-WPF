@@ -7,12 +7,10 @@ using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Configuration;
 
 namespace Hogwarts.Core.Data
 {
-    public class HogwartsDbContext: DbContext
+    public class HogwartsDbContext : DbContext
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Professor> Professors { get; set; }
@@ -27,7 +25,7 @@ namespace Hogwarts.Core.Data
 
         private static string GetConnectionString()
         {
-            var config = new ConfigurationBuilder()
+            IConfigurationRoot config = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
@@ -35,7 +33,7 @@ namespace Hogwarts.Core.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(GetConnectionString());
+            _ = optionsBuilder.UseSqlite(GetConnectionString());
         }
     }
 }
