@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\App.xaml
-182086002187
+19-472247250
 11587586143
-16-1038056663
+17-2116629980
 225142486354
-AdminViews\MainView.xaml;AdminViews\Pages\Classes.xaml;AdminViews\Pages\Forest.xaml;AdminViews\Pages\HogwartsExpress.xaml;AdminViews\Pages\Home.xaml;AdminViews\Pages\Staff.xaml;AdminViews\Pages\Students.xaml;AdminViews\Popups\AddTrainPopup.xaml;AdminViews\Popups\InviteStudentPopup.xaml;LoginView.xaml;MainWindow.xaml;ProfessorViews\MainView.xaml;SignupView.xaml;StudentViews\MainView.xaml;Themes\LoginThemes.xaml;Themes\MainWindowThemes.xaml;Themes\PanelThemes.xaml;Themes\SignupThemes.xaml;
+AdminViews\MainView.xaml;AdminViews\Pages\ClassesView.xaml;AdminViews\Pages\ForestView.xaml;AdminViews\Pages\HogwartsExpressView.xaml;AdminViews\Pages\HomeView.xaml;AdminViews\Pages\StaffView.xaml;AdminViews\Pages\StudentsView.xaml;AdminViews\Popups\AddTeacherPopup.xaml;AdminViews\Popups\AddTrainPopup.xaml;AdminViews\Popups\InviteStudentPopup.xaml;LoginView.xaml;MainWindow.xaml;ProfessorViews\MainView.xaml;SignupView.xaml;StudentViews\MainView.xaml;Themes\LoginThemes.xaml;Themes\MainWindowThemes.xaml;Themes\PanelThemes.xaml;Themes\SignupThemes.xaml;
 
 False
 

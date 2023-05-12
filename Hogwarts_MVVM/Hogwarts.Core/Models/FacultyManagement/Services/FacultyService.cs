@@ -24,7 +24,5 @@ namespace Hogwarts.Core.Models.FacultyManagement.Services
 
             return new ObservableCollection<T>(list);
         }
-
-
     }
 }

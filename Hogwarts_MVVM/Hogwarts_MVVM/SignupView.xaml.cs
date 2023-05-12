@@ -27,7 +27,7 @@ namespace Hogwarts.Views
             _authenticationService = StaticServiceProvidor.authenticationService;
         }
 
-        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new()
             {

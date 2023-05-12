@@ -201,7 +201,7 @@
                                 </ComboBox>
 
                                 <!-- Pet -->
-                                <TextBlock Text="Select your Pet:"
+                                <TextBlock Text="Select Your Pet:"
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            Margin="0, 20, 0, 10" />
                                 <ComboBox x:Name="comboPet">
@@ -239,8 +239,8 @@
                                              MaxWidth="300"
                                              Padding="2"/>
                                     
-                                    <Button Name="btnOpenFile"
-                                            Click="btnOpenFile_Click"
+                                    <Button Name="OpenFile"
+                                            Click="OpenFile_Click"
                                             Padding="3">
                                         Select
                                     </Button>

@@ -10,22 +10,25 @@
     <Compile Update="AdminViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\Classes.xaml.cs">
+    <Compile Update="AdminViews\Pages\ClassesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\Forest.xaml.cs">
+    <Compile Update="AdminViews\Pages\ForestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\HogwartsExpress.xaml.cs">
+    <Compile Update="AdminViews\Pages\HogwartsExpressView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\Home.xaml.cs">
+    <Compile Update="AdminViews\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\Staff.xaml.cs">
+    <Compile Update="AdminViews\Pages\StaffView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\Students.xaml.cs">
+    <Compile Update="AdminViews\Pages\StudentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Popups\AddTeacherPopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminViews\Popups\AddTrainPopup.xaml.cs">
@@ -51,22 +54,25 @@
     <Page Update="AdminViews\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\Classes.xaml">
+    <Page Update="AdminViews\Pages\ClassesView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\Forest.xaml">
+    <Page Update="AdminViews\Pages\ForestView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\HogwartsExpress.xaml">
+    <Page Update="AdminViews\Pages\HogwartsExpressView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\Home.xaml">
+    <Page Update="AdminViews\Pages\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\Staff.xaml">
+    <Page Update="AdminViews\Pages\StaffView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminViews\Pages\Students.xaml">
+    <Page Update="AdminViews\Pages\StudentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\AddTeacherPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Popups\AddTrainPopup.xaml">

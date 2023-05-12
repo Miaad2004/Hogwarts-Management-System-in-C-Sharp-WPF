@@ -13,6 +13,7 @@
     <None Remove="StaticResources\LoginWindow\key-icon.png" />
     <None Remove="StaticResources\LoginWindow\logo.png" />
     <None Remove="StaticResources\LoginWindow\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
@@ -40,6 +41,7 @@
     <Resource Include="StaticResources\LoginWindow\key-icon.png" />
     <Resource Include="StaticResources\LoginWindow\logo.png" />
     <Resource Include="StaticResources\LoginWindow\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
