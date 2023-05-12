@@ -25,6 +25,19 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
+    <!-- Combo Box -->
+    <Style x:Key="SignupComboBoxTheme" TargetType="{x:Type ComboBox}">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="33"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
     <!-- Input Box -->
     <Style x:Key="SignupInputLabelTheme" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="DarkGray"/>
