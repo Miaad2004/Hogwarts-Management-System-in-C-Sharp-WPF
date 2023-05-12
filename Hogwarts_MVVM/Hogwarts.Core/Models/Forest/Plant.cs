@@ -67,6 +67,12 @@ namespace Hogwarts.Core.Models.Forest
         public bool IsCollectable => HarvestTime > DateTime.Now;
         public string FullImagePath { get; private set; }
 
+        public Plant()
+            : base()
+        {
+
+        }
+
         public Plant(string name, TimeSpan growthTimeSpan, int quantity, string imagePath, string description = "")
             : base()
         {

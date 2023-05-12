@@ -66,8 +66,8 @@ namespace Hogwarts.Views.AdminViews.Popups
                 Name = txtName.Text,
                 Description = txtDescription.Text,
                 Quantity = int.Parse(txtQuantity.Text),
-                GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1)
-                ImagePath = 
+                GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1),
+                ImagePath = SelectedImagePath
             };
 
             try
