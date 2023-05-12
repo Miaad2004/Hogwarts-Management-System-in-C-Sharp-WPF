@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AdminViews\MainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\Classes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\Forest.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\HogwartsExpress.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\Staff.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Pages\Students.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Popups\AddTrainPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Popups\InviteStudentPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\MainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SignupView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StudentViews\MainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AdminViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\Classes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\Forest.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\HogwartsExpress.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\Staff.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\Students.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\AddTrainPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\InviteStudentPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SignupView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\LoginThemes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\MainWindowThemes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\PanelThemes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\SignupThemes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

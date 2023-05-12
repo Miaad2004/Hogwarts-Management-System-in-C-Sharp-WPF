@@ -1,34 +1,38 @@
 ﻿using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Xaml;
 
 namespace Hogwarts.Core.Models.Authentication
 {
-    public abstract class User: Entity
+    public abstract class User : Entity
     {
         private string _username;
         public string Username
         {
-            get { return _username; }
+            get => _username;
             protected set
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 5)
-                    throw new ArgumentException("Username must be at least 5 characters.");
+                {
+                    throw new ArgumentException("Username must be at least 5 characters.(Not Case Sensitive)");
+                }
 
-                _username = value;
+                _username = value.ToLower();
             }
         }
 
         private string _firstName;
         public string FirstName
         {
-            get { return _firstName; }
+            get => _firstName;
             protected set
             {
                 if (string.IsNullOrEmpty(value))
+                {
                     throw new ArgumentException("First name can not be null.");
+                }
 
                 _firstName = value;
             }
@@ -37,25 +41,24 @@ namespace Hogwarts.Core.Models.Authentication
         private string _lastName;
         public string LastName
         {
-            get { return _lastName; }
+            get => _lastName;
             protected set
             {
                 if (string.IsNullOrEmpty(value))
+                {
                     throw new ArgumentException("Last name can not be null.");
+                }
 
                 _lastName = value;
             }
         }
 
-        public string FullName
-        {
-            get { return $"{FirstName}, {LastName}"; }
-        }
+        public string FullName => $"{FirstName}, {LastName}";
 
         private string _email;
         public string Email
         {
-            get { return _email; }
+            get => _email;
             protected set
             {
                 if (!Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))      // <username>@<HOGWARTS_API_DOMAIN>.<tld>
@@ -69,27 +72,31 @@ namespace Hogwarts.Core.Models.Authentication
         private DateOnly _birthDate;
         public DateOnly BirthDate
         {
-            get { return _birthDate; }
+            get => _birthDate;
             protected set
             {
                 if (value > DateOnly.FromDateTime(DateTime.Now))
+                {
                     throw new ArgumentException("BirthDay can not be in the future.");
+                }
+
                 _birthDate = value;
             }
         }
 
 
-        public int Age => (int)(DateTime.Now.Year - BirthDate.Year);
+        public int Age => DateTime.Now.Year - BirthDate.Year;
         public BloodType BloodType { get; protected set; }
-        public AccessLevel AccessLevel { get; protected set; }
+        public AccessLevels AccessLevel { get; protected set; }
         public string PasswordHash { get; protected set; }
+        public string FullProfileImagePath { get; private set; }
 
         protected User()
         {
 
         }
         protected User(string username, string firstName, string lastName, string email, DateOnly birthDay,
-                       BloodType bloodType, AccessLevel accessLevel, string passwordHash)
+                       BloodType bloodType, AccessLevels accessLevel, string passwordHash, string profileImagePath)
         {
             Username = username ?? throw new ArgumentNullException(nameof(username));
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
@@ -99,6 +106,13 @@ namespace Hogwarts.Core.Models.Authentication
             BloodType = bloodType;
             AccessLevel = accessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
+
+            if (!File.Exists(profileImagePath))
+            {
+                throw new ArgumentException("Invalid profile image path.");
+            }
+
+            SetProfileImagePath(profileImagePath);
         }
 
         protected User(BaseRegistrationDTO DTO, string passwordHash)
@@ -111,10 +125,34 @@ namespace Hogwarts.Core.Models.Authentication
             BloodType = DTO.BloodType;
             AccessLevel = DTO.AccessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
+            if (!File.Exists(DTO.ProfileImagePath))
+            {
+                throw new ArgumentException("Invalid profile image path.");
+            }
+
+            SetProfileImagePath(DTO.ProfileImagePath);
         }
         public override string ToString()
         {
             return $"User {Username} - Full name: {FullName} - AccessLevel: {AccessLevel} - Email: {Email}";
+        }
+
+        private void SetProfileImagePath(string profileImagePath)
+        {
+            string subfolderName = "Hogwarts-Management-System";
+            string subfolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+                                                subfolderName, "ProfileImages");
+
+            if (!Directory.Exists(subfolderPath))
+            {
+                Directory.CreateDirectory(subfolderPath);
+            }
+
+            string fullImagePath = Path.Combine(subfolderPath, this.Id.ToString() + Path.GetExtension(profileImagePath));
+
+            File.Copy(profileImagePath, fullImagePath, overwrite:true);
+
+            this.FullProfileImagePath = fullImagePath;
         }
     }
 }

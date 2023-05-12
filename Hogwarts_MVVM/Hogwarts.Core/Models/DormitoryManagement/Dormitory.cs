@@ -1,7 +1,4 @@
 ﻿using Hogwarts.Core.Models.StudentManagement;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Windows.Input;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
@@ -15,15 +12,9 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
         public ICollection<Room> Rooms { get; private set; }
 
-        public int FloorCapacity
-        {
-            get { return NRoomsPerFloor * NBedsPerRoom; }
-        }
+        public int FloorCapacity => NRoomsPerFloor * NBedsPerRoom;
 
-        public int TotalCapacity
-        {
-            get { return NFloors * NRoomsPerFloor * NBedsPerRoom; }
-        }
+        public int TotalCapacity => NFloors * NRoomsPerFloor * NBedsPerRoom;
 
         public Dormitory(HouseType house, int nFloors, int nRoomsPerFloor, int nBedsPerRoom)
             : base()

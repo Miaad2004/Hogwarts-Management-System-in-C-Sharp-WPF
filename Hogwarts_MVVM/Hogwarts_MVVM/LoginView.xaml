@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hogwarts.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="740" d:DesignWidth="1200"
+      d:DesignHeight="740" d:DesignWidth="1000"
       Title="LoginView">
 
     <Border CornerRadius="28">
@@ -69,7 +69,7 @@
                         <TextBox x:Name="txtUsername"
                                  Style="{StaticResource LoginTextBoxTheme}"
                                  Padding="20,0,0,0"
-                                 Margin="0,5,0,0"
+                                 Margin="0,5,0,20"
                                  Text="{Binding Username}">
                             <TextBox.Background>
                                 <ImageBrush ImageSource="/StaticResources/LoginWindow/user-icon.png"
@@ -80,23 +80,23 @@
 
                         <!--Password-->
                         <TextBlock Text="Password:"
-                                   Style="{StaticResource LoginInputLabelTheme}"
-                                   Margin="0, 35, 0, 0"/>
+                                   Style="{StaticResource SignupInputLabelTheme}"
+                                   Margin="0, 15, 0, 0" />
 
-                        <TextBox x:Name="txtPassword"
-                                 Style="{StaticResource LoginTextBoxTheme}"
-                                 Padding="20,0,0,0"
-                                 Margin="0,5,0,0"
-                                 Text="{Binding Password}">
-                            <TextBox.Background>
-                                <ImageBrush ImageSource="/StaticResources/LoginWindow/key-icon.png"
+                        <PasswordBox x:Name="txtPassword"
+                                     Padding="20, 0, 0, 0"
+                                     Style="{StaticResource SignupPasswordBoxTheme}"
+                                     Margin="0,5,0,0">
+                            <PasswordBox.Background>
+                                <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
                                             Stretch="None"
-                                            AlignmentX="Left"/>
-                            </TextBox.Background>
-                        </TextBox>
+                                            AlignmentX="Left">
+                                </ImageBrush>
+                            </PasswordBox.Background>
+                        </PasswordBox>
 
                         <!--Login Button-->
-                        <Button x:Name="btnLogin"
+                        <Button x:Name="Login"
                                 Foreground="White"
                                 BorderThickness="0"
                                 Content="Log In"
@@ -104,7 +104,8 @@
                                 FontFamily="Montserrat"
                                 Cursor="Hand"
                                 Grid.Column="2"
-                                Margin="0,50,0,0">
+                                Margin="0,50,0,0"
+                                Click="Login_Click">
 
                             <Button.Style>
                                 <Style TargetType="Button">
@@ -135,11 +136,13 @@
                                     HorizontalAlignment="Center"
                                     Margin="0,15,0,0">
                             <TextBlock Text="New Student?"
-                                    Style="{StaticResource LoginInputLabelTheme}"/>
-                            <TextBlock Text="Sign Up"
-                                   Padding="5, 0, 0, 0"
-                                   Style="{StaticResource LoginInputLabelTheme}"
-                                   Cursor="Hand"/>
+                                       Style="{StaticResource LoginInputLabelTheme}"/>
+                            <TextBlock x:Name="Signup"
+                                       Text="Sign Up"
+                                       Padding="5, 0, 0, 0"
+                                       Style="{StaticResource LoginInputLabelTheme}"
+                                       Cursor="Hand"
+                                       PreviewMouseDown="Signup_PreviewMouseDown"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

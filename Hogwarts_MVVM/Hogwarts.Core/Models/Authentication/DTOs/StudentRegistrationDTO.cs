@@ -2,10 +2,10 @@
 
 namespace Hogwarts.Core.Models.Authentication.DTOs
 {
-    public class StudentRegistrationDTO: BaseRegistrationDTO
+    public class StudentRegistrationDTO : BaseRegistrationDTO
     {
         public bool HasLuggage { get; set; }
-        public Pet Pet { get; set; }
-        public string EnteredActivationCode { get; set; }
+        public PetType Pet { get; set; }
+        public string? EnteredActivationCode { get; set; }
     }
 }

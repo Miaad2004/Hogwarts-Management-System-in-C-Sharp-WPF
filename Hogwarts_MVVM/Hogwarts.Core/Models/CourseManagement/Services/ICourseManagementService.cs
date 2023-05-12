@@ -1,8 +1,4 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.Collections.Generic;
-
-namespace Hogwarts.Core.Models.CourseManagement.Services
+﻿namespace Hogwarts.Core.Models.CourseManagement.Services
 {
     public interface ICourseManagementService
     {

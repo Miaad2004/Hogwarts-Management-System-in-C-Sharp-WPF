@@ -1,5 +1,4 @@
 ﻿using Hogwarts.Core.Models.Authentication;
-using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.TrainManagement;
 
 namespace Hogwarts.Core.SharedServices
@@ -8,9 +7,9 @@ namespace Hogwarts.Core.SharedServices
     {
         string GenerateTrainTicketLink(string firstName, string lastName, TrainTicket trainTicket);
         string GenerateAcceptLetterLink(string firstName, string lastName, string headmasterName,
-            ActivationCode activationCode);
+                                        ActivationCode activationCode);
 
-        void SendInvitationMail(Admin sender, string firstName, string lastName, string emailAddress,
-            ActivationCode activationCode);
+        void SendInvitationMail(User sender, string firstName, string lastName, string emailAddress,
+                                ActivationCode activationCode);
     }
 }

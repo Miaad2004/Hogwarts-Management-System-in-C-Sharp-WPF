@@ -1,7 +1,4 @@
 ﻿using Hogwarts.Core.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Hogwarts.Core.Models.CourseManagement.Services
 {
@@ -26,20 +23,20 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
 
         public void AddCourse(Course course)
         {
-            _dbContext.Courses.Add(course);
-            _dbContext.SaveChanges();
+            _ = _dbContext.Courses.Add(course);
+            _ = _dbContext.SaveChanges();
         }
 
         public void RemoveCourse(Course course)
         {
-            _dbContext.Courses.Remove(course);
-            _dbContext.SaveChanges();
+            _ = _dbContext.Courses.Remove(course);
+            _ = _dbContext.SaveChanges();
         }
 
         public void EnrollStudentInCourse(Guid studentId, Guid courseId)
         {
-            var student = _dbContext.Students.FirstOrDefault(s => s.Id == studentId);
-            var course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+            StudentManagement.Student? student = _dbContext.Students.FirstOrDefault(s => s.Id == studentId);
+            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
 
             if (student == null || course == null)
             {
@@ -56,13 +53,13 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
                 throw new ArgumentException("Course is already full");
             }
 
-            var studentCourses = _dbContext.Courses.Where(c => c.Students.Contains(student)).ToList();
+            List<Course> studentCourses = _dbContext.Courses.Where(c => c.Students.Contains(student)).ToList();
             if (studentCourses.Count >= student.MaxAllowedCourses)
             {
                 throw new ArgumentException("Student has already enrolled in the maximum number of courses");
             }
 
-            foreach (var enrolledCourse in studentCourses)
+            foreach (Course? enrolledCourse in studentCourses)
             {
                 if (enrolledCourse.StartDate <= course.EndDate && course.StartDate <= enrolledCourse.EndDate)
                 {
@@ -71,20 +68,20 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             }
 
             course.Students.Add(student);
-            _dbContext.SaveChanges();
+            _ = _dbContext.SaveChanges();
         }
 
 
         public void AddGradeToStudentInCourse(Guid studentId, Guid courseId, Grade grade)
         {
-            var course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
 
             if (course == null)
             {
                 throw new ArgumentException("Invalid course id");
             }
 
-            var gradeEntry = course.Grades.FirstOrDefault(g => g.Id == studentId);
+            Grade? gradeEntry = course.Grades.FirstOrDefault(g => g.Id == studentId);
 
             if (gradeEntry == null)
             {
@@ -92,11 +89,11 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             }
 
             //course.Grades[gradeEntry.Item1] = (int)grade;
-            _dbContext.SaveChanges();
+            _ = _dbContext.SaveChanges();
         }
         public void AddAssignmentToCourse(Guid courseId, Assignment assignment)
         {
-            var course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
 
             if (course == null)
             {
@@ -104,23 +101,18 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             }
 
             course.Assignments.Add(assignment);
-            _dbContext.SaveChanges();
+            _ = _dbContext.SaveChanges();
         }
 
         public List<Assignment> GetAllAssignmentsForCourse(Guid courseId)
         {
-            var course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
 
-            if (course == null)
-            {
-                throw new ArgumentException("Invalid course id");
-            }
-
-            return course.Assignments.ToList();
+            return course == null ? throw new ArgumentException("Invalid course id") : course.Assignments.ToList();
         }
         public void SubmitAssignment(Guid assignmentId, string answer)
         {
-            var assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
+            Assignment? assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
 
             if (assignment == null)
             {
@@ -133,12 +125,12 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             }
 
             assignment.Answer = answer;
-            _dbContext.SaveChanges();
+            _ = _dbContext.SaveChanges();
         }
 
         public void CheckAssignment(Guid assignmentId, Grade grade)
         {
-            var assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
+            Assignment? assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
 
             if (assignment == null)
             {
@@ -156,7 +148,7 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             }
 
             assignment.Grade = grade;
-            _dbContext.SaveChanges();
+            _ = _dbContext.SaveChanges();
         }
     }
 }

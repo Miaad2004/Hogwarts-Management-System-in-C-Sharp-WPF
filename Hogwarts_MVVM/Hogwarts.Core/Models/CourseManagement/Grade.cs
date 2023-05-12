@@ -1,14 +1,13 @@
 ﻿using Hogwarts.Core.Models.StudentManagement;
-using System;
 
 namespace Hogwarts.Core.Models.CourseManagement
 {
-    public class Grade: Entity
+    public class Grade : Entity
     {
         public GradeType Value { get; set; }
         public Student Student { get; set; }
         public Course Course { get; set; }
-        public Grade() 
+        public Grade()
         {
 
         }

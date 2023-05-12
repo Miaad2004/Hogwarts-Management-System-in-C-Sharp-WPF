@@ -1,9 +1,8 @@
 ﻿using Hogwarts.Core.Models.Authentication;
-using System;
 
 namespace Hogwarts.Core.Models.TrainManagement
 {
-    public class TrainTicket: Entity
+    public class TrainTicket : Entity
     {
         public readonly Guid trainId;
         public readonly Guid ownerId;

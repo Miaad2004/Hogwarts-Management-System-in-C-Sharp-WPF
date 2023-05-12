@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hogwarts.Core.Models.FacultyManagement
+﻿namespace Hogwarts.Core.Models.FacultyManagement
 {
     public class Classroom : Entity
     {
@@ -10,33 +8,42 @@ namespace Hogwarts.Core.Models.FacultyManagement
 
         public int FloorNumber
         {
-            get { return _floorNumber; }
+            get => _floorNumber;
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("Floor number must be a positive integer");
+                }
+
                 _floorNumber = value;
             }
         }
 
         public int ClassNumber
         {
-            get { return _classNumber; }
+            get => _classNumber;
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("Class number must be a positive integer");
+                }
+
                 _classNumber = value;
             }
         }
 
         public int Capacity
         {
-            get { return _capacity; }
+            get => _capacity;
             set
             {
                 if (value <= 0)
+                {
                     throw new ArgumentException("Capacity must be a positive integer");
+                }
+
                 _capacity = value;
             }
         }

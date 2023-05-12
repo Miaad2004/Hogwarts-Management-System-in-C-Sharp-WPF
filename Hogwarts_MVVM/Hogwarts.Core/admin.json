@@ -1,0 +1,12 @@
+{
+  "Username": "admin",
+  "Password": "123456789aA",
+  "PasswordRepeat": "123456789aA",
+  "FirstName": "Albus",
+  "LastName": "Dumbeldore",
+  "Email": "AlbusDumbeldore@Hogwarts.magic",
+  "BirthDate": "1881-07-31",
+  "BloodType": "PureBlood",
+  "AccessLevel": "Admin",
+  "ProfileImagePath": "C:\\Users\\Miaad\\Pictures\\p1.jpg"
+}

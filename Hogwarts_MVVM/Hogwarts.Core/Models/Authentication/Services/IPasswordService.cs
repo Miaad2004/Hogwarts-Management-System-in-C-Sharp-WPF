@@ -1,4 +1,4 @@
-﻿namespace Hogwarts.Core.Models.Authentication
+﻿namespace Hogwarts.Core.Models.Authentication.Services
 {
     public interface IPasswordService
     {

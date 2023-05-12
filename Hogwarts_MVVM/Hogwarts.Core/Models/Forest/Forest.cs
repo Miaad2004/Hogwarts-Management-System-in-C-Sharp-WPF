@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Hogwarts.Core.Data;
+﻿using Hogwarts.Core.Data;
 
 namespace Hogwarts.Core.Models.Forest
 {
@@ -25,7 +22,7 @@ namespace Hogwarts.Core.Models.Forest
                 throw new ArgumentException("Quantity must be a positive integer greater than zero.", nameof(addQuantity));
             }
 
-            var existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
+            Plant? existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
             if (existingPlant != null)
             {
                 existingPlant.Quantity += addQuantity;
@@ -33,10 +30,10 @@ namespace Hogwarts.Core.Models.Forest
             else
             {
                 plant.Quantity = addQuantity;
-                _context.Plants.Add(plant);
+                _ = _context.Plants.Add(plant);
             }
 
-            _context.SaveChanges();
+            _ = _context.SaveChanges();
         }
 
         public void UpdatePlant(Plant plant, int newQuantity)
@@ -50,7 +47,7 @@ namespace Hogwarts.Core.Models.Forest
                 throw new ArgumentException("Quantity must be a positive integer greater than zero.", nameof(newQuantity));
             }
 
-            var existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
+            Plant? existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
             if (existingPlant == null)
             {
                 throw new KeyNotFoundException($"The plant {plant.Name} is not in the forest.");
@@ -58,7 +55,7 @@ namespace Hogwarts.Core.Models.Forest
 
             existingPlant.Quantity = newQuantity;
 
-            _context.SaveChanges();
+            _ = _context.SaveChanges();
         }
 
         public void RemovePlant(Plant plant)
@@ -68,15 +65,15 @@ namespace Hogwarts.Core.Models.Forest
                 throw new ArgumentNullException(nameof(plant));
             }
 
-            var existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
+            Plant? existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
             if (existingPlant == null)
             {
                 throw new KeyNotFoundException($"The plant {plant.Name} is not in the forest.");
             }
 
-            _context.Plants.Remove(existingPlant);
+            _ = _context.Plants.Remove(existingPlant);
 
-            _context.SaveChanges();
+            _ = _context.SaveChanges();
         }
 
         public int GetPlantQuantity(Plant plant)
@@ -86,13 +83,10 @@ namespace Hogwarts.Core.Models.Forest
                 throw new ArgumentNullException(nameof(plant));
             }
 
-            var existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
-            if (existingPlant == null)
-            {
-                throw new KeyNotFoundException($"The plant {plant.Name} is not in the forest.");
-            }
-
-            return existingPlant.Quantity;
+            Plant? existingPlant = _context.Plants.FirstOrDefault(p => p.Name == plant.Name);
+            return existingPlant == null
+                ? throw new KeyNotFoundException($"The plant {plant.Name} is not in the forest.")
+                : existingPlant.Quantity;
         }
 
         public List<Plant> GetAllPlants()

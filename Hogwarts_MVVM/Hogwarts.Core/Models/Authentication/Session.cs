@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Hogwarts.Core.Models.Authentication
+﻿namespace Hogwarts.Core.Models.Authentication
 {
     public sealed class Session
     {
-        private readonly static TimeSpan EXPIRE_TIME_SPAN = TimeSpan.FromMinutes(60);
+        private static readonly TimeSpan EXPIRE_TIME_SPAN = TimeSpan.FromMinutes(60);
         private readonly DateTime _loginTime;
 
         public readonly int Id;
@@ -12,7 +10,7 @@ namespace Hogwarts.Core.Models.Authentication
         public DateTime ExpireDate => _loginTime + EXPIRE_TIME_SPAN;
 
         private bool _hasBeenRevoked = false;
-        public bool HasExpired => DateTime.UtcNow >= ExpireDate && _hasBeenRevoked;
+        public bool HasExpired => DateTime.UtcNow >= ExpireDate || _hasBeenRevoked;
 
         public Session(User user)
         {

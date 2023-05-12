@@ -1,0 +1,162 @@
+﻿<Page x:Class="Hogwarts.Views.ProfessorViews.MainView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hogwarts.Views.ProfessorViews"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1200"
+      Title="Admin's Panel">
+
+    <Grid>
+        <Border CornerRadius="30" Background="#EFF2F7">
+            <Grid>
+                <!-- 2 Columns for the left and right section -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Section -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="1" 
+                        Background="#623ED0"
+                        CornerRadius="28 50 0 28">
+
+                    <DockPanel>
+                        <!--Profile Image-->
+                        <Border Width="150" Height="150"
+                                Padding="3" CornerRadius="100"
+                                DockPanel.Dock="Top" HorizontalAlignment="Left"
+                                Margin="20 30 0 0">
+
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#03fccf" Offset="0"/>
+                                    <GradientStop Color="#FFC8DC2E" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush x:Name="brushProfileImage"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                        </Border>
+
+                        <!--Menu Titles-->
+                        <TextBlock Text="Hogwarts" Foreground="White"
+                                   FontSize="22" FontWeight="SemiBold"
+                                   DockPanel.Dock="Top" Margin="5 25 0 10"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock Text="Management System" Foreground="#D0BFFF" 
+                                   FontSize="14" FontWeight="SemiBold" 
+                                   DockPanel.Dock="Top" TextAlignment="Center"/>
+
+                        <!--Menu Seprator-->
+                        <Separator Margin="25" Background="#7E5FDC"
+                                   DockPanel.Dock="Top" Height="0.8"/>
+
+                        <!--Menu Buttons-->
+                        <StackPanel DockPanel.Dock="Top">
+                            <!-- Dashboard -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/Home.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Dashboard"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Staff -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/Staff.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Staff"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Students -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/Students.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HumanQueue" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Students"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Classes -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/Classes.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="GoogleClassroom" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Classes"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Hogwarts Express -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/HogwartsExpress.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Train" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Hogwarts Express"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Forest -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/Forest.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Forest" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Forest"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!-- Logout -->
+                        <Button Style="{StaticResource PanelNavButton}"
+                                x:Name="Logout"
+                                VerticalAlignment="Bottom"
+                                DockPanel.Dock="Bottom"
+                                Margin="15 0 15 20"
+                                Click="Logout_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource PanelNavButtonIcon}"/>
+                                <TextBlock Text="Logout"/>
+                            </StackPanel>
+                        </Button>
+
+                    </DockPanel>
+                </Border>
+
+                <!-- Right Section -->
+                <Grid Grid.Column="1" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Page Frame -->
+                    <Grid Grid.Row="1">
+                        <Frame NavigationUIVisibility="Hidden" x:Name="pageFrame" Margin="15,10,33,10" Source="/AdminViews/Pages/Home.xaml"/>
+                    </Grid>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

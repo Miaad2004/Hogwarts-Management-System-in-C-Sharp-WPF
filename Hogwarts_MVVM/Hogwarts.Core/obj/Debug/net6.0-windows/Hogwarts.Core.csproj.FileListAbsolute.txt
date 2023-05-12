@@ -1,0 +1,15 @@
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\bin\Debug\net6.0-windows\Hogwarts.Core.dll.config
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\bin\Debug\net6.0-windows\Hogwarts.Core.deps.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\bin\Debug\net6.0-windows\Hogwarts.Core.runtimeconfig.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\bin\Debug\net6.0-windows\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\bin\Debug\net6.0-windows\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.csproj.AssemblyReference.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.AssemblyInfoInputs.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.AssemblyInfo.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.csproj.CoreCompileInputs.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\refint\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\Hogwarts.Core.genruntimeconfig.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts.Core\obj\Debug\net6.0-windows\ref\Hogwarts.Core.dll

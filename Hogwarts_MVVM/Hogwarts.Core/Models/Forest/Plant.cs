@@ -1,12 +1,11 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Hogwarts.Core.Models.Forest
 {
     public class Plant
     {
         [Key]
-        public string Name {  get; private set; }
+        public string Name { get; private set; }
         public string? Description { get; private set; }
         public DateTime PlantingTime { get; private set; }
         public TimeSpan GrowthTimeSpan { get; private set; }
@@ -16,14 +15,14 @@ namespace Hogwarts.Core.Models.Forest
         private int _quantity;
         public int Quantity
         {
-            get { return _quantity; }
+            get => _quantity;
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Quantity must be positive", nameof(value));
                 }
-                _quantity = value; 
+                _quantity = value;
             }
         }
 

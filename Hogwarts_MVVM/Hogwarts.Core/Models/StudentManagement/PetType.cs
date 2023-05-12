@@ -1,10 +1,10 @@
 ﻿namespace Hogwarts.Core.Models.StudentManagement
 {
-    public enum Pet
+    public enum PetType
     {
-        None,
-        Rat,
-        Cat,
-        Owl
+        None = 0,
+        Cat = 1,
+        Owl = 2,
+        Rat = 3
     }
 }

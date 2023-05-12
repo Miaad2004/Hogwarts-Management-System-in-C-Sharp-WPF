@@ -1,7 +1,5 @@
 ﻿using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.Collections.Generic;
 
 namespace Hogwarts.Core.Models.CourseManagement
 {
@@ -23,22 +21,28 @@ namespace Hogwarts.Core.Models.CourseManagement
 
         public DateTime StartDate
         {
-            get { return startDate; }
+            get => startDate;
             set
             {
                 if (value < DateTime.Today)
+                {
                     throw new ArgumentException("Start date must be on or after today");
+                }
+
                 startDate = value;
             }
         }
 
         public TimeSpan Duration
         {
-            get { return duration; }
+            get => duration;
             set
             {
                 if (value <= TimeSpan.Zero)
+                {
                     throw new ArgumentException("Duration must be a positive timespan");
+                }
+
                 duration = value;
             }
         }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Hogwarts.Core.Models.TrainManagement.Exceptions
 {
-    public class NoTrainAvailableException : Exception
+    public class NoTrainAvailableException : TrainException
     {
         public NoTrainAvailableException()
         {

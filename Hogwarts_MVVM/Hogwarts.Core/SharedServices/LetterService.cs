@@ -1,23 +1,31 @@
 ﻿using Hogwarts.Core.Models.Authentication;
-using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.Models.TrainManagement.Services;
 using Hogwarts.Core.SharedServices.Exceptions;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
 using System.Configuration;
 using System.Text;
 
 namespace Hogwarts.Core.SharedServices
 {
-    public class LetterService: ILetterService
+    public class LetterService : ILetterService
     {
-        static readonly string HOGWARTS_API_DOMAIN = ConfigurationManager.AppSettings["LetterServiceDomain"] ?? throw new ConfigurationErrorsException("Invalid Configuration");
-        private readonly TrainService _trainService;
+        private static readonly string HOGWARTS_API_DOMAIN = GetAPIDomain();
+        private readonly ITrainService _trainService;
 
-        public LetterService(TrainService trainService)
+        public LetterService(ITrainService trainService)
         {
             _trainService = trainService;
+        }
+
+        private static string GetAPIDomain()
+        {
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            return configuration["appSettings:LetterServiceDomain"] ?? throw new ConfigurationErrorsException("Invalid Configuration");
         }
         public string GenerateTrainTicketLink(string firstName, string lastName, TrainTicket trainTicket)
         {
@@ -25,7 +33,7 @@ namespace Hogwarts.Core.SharedServices
             {
                 FirstName = firstName,
                 LastName = lastName,
-                Platform = trainTicket.platform,
+                TrainNumber = $"Platform {trainTicket.platform}",
                 Departure = trainTicket.origin,
                 Date = trainTicket.departureTime.ToShortDateString(),
                 Time = trainTicket.departureTime.ToShortTimeString(),
@@ -47,7 +55,7 @@ namespace Hogwarts.Core.SharedServices
         {
             var letterInfo = new
             {
-                Name = firstName,
+                FirstName = firstName,
                 LastName = lastName,
                 ActivationCode = activationCode.Code,
                 HeadmasterName = headmasterName
@@ -62,28 +70,28 @@ namespace Hogwarts.Core.SharedServices
             return html;
         }
 
-        public void SendInvitationMail(Admin sender, string firstName, string lastName, string emailAddress,
-            ActivationCode activationCode)
+        public void SendInvitationMail(User sender, string firstName, string lastName, string emailAddress,
+                                       ActivationCode activationCode)
         {
             string acceptLetterLink = GenerateAcceptLetterLink(firstName, lastName, sender.FullName, activationCode);
             TrainTicket trainTicket = _trainService.GetTicketForNewStudent(activationCode);
-            string trainTicketLink = GenerateTrainTicketLink(firstName, lastName, trainTicket);  
+            string trainTicketLink = GenerateTrainTicketLink(firstName, lastName, trainTicket);
 
-            string emailSubject = $"Hogwarts Acceptance Letter for Mr/Miss {firstName} {lastName}";
-            string emailBody = "Dear " + firstName + ",\n\n" +
+            string emailSubject = $"Hogwarts Acceptance Letter for {firstName} {lastName}";
+            string emailBody = "Dear " + firstName + ",<br><br>" +
                     "We are pleased to inform you that you have been accepted into Hogwarts School of Witchcraft and Wizardry! " +
-                    "You have demonstrated exceptional magical ability and we are excited to welcome you as a new student.\n\n" +
+                    "You have demonstrated exceptional magical ability and we are excited to welcome you as a new student.<br><br>" +
                     "We look forward to meeting you and helping you develop your magical talents. " +
-                    "If you have any questions or concerns, please do not hesitate to contact us.\n\n";
-            
-            string emailFooter = "Congratulations once again on your acceptance to Hogwarts!\n\n" +
-                    "Sincerely,\n\n" +
-                     sender.FullName + "\n" +
+                    "If you have any questions or concerns, please do not hesitate to contact us.<br><br>";
+
+            string emailFooter = "Congratulations once again on your acceptance to Hogwarts!<br><br>" +
+                    "Sincerely,<br><br>" +
+                     sender.FullName + "<br>" +
                     "Headmaster/Headmistress";
 
             string email =
                 "<html><body>" +
-                emailBody + "\n" +
+                emailBody + "<br>" +
                 acceptLetterLink +
                 trainTicketLink +
                 emailFooter +
@@ -92,7 +100,7 @@ namespace Hogwarts.Core.SharedServices
 
             try
             {
-                StaticMailService.SendEmail(recipient: email, subject: emailSubject, body: emailBody);
+                StaticMailService.SendEmail(recipient: emailAddress, subject: emailSubject, body: email);
             }
             catch (NetworkConnectionException ex)
             {

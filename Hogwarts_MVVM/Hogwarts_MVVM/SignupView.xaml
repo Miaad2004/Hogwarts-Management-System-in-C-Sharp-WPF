@@ -99,7 +99,7 @@
                                            Margin="0, 15, 0, 0" />
                                 
                                 <PasswordBox x:Name="txtPassword"
-                                             Padding="15, 0, 0, 0"
+                                             Padding="20, 0, 0, 0"
                                              Style="{StaticResource SignupPasswordBoxTheme}"
                                              Margin="0,5,0,0">
                                     <PasswordBox.Background>
@@ -116,7 +116,7 @@
                                            Margin="0, 20, 0, 0" />
                                 
                                 <PasswordBox x:Name="txtPasswordRepeat"
-                                             Padding="15, 0, 0, 0"
+                                             Padding="20, 0, 0, 0"
                                              Style="{StaticResource SignupPasswordBoxTheme}"
                                              Margin="0,5,0,0">
                                     <PasswordBox.Background>
@@ -184,91 +184,89 @@
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            Margin="0, 35, 0, 0" />
                                 <DatePicker Name="birthdayPicker"
+                                            SelectedDate="{x:Static sys:DateTime.Now}"
                                             DisplayDateEnd="{x:Static sys:DateTime.Now}"
                                             Style="{StaticResource SignupDatePickerTheme}"
                                             Margin="0,5,0,0"/>
 
-                                <!-- Password -->
-                                <TextBlock Text="Password:"
+                                <!-- Blood Status -->
+                                <TextBlock Text="Blood Status:"
                                            Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0" />
+                                           Margin="0, 35, 0, 10" />
+                                <ComboBox x:Name="comboBloodStatus"
+                                          Style="{StaticResource SignupComboBoxTheme}">
+                                    <ComboBoxItem>Muggle-born</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">Half-blood</ComboBoxItem>
+                                    <ComboBoxItem>Pure-blood</ComboBoxItem>
+                                </ComboBox>
 
-                                <PasswordBox x:Name="txtPsdassword"
-                                             Padding="15, 0, 0, 0"
-                                             Style="{StaticResource SignupPasswordBoxTheme}"
-                                             Margin="0,5,0,0">
-                                    <PasswordBox.Background>
-                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
-                                                    Stretch="None"
-                                                    AlignmentX="Left">
-                                        </ImageBrush>
-                                    </PasswordBox.Background>
-                                </PasswordBox>
-
-                                <!-- Password Repeat -->
-                                <TextBlock Text="Renter Password:"
+                                <!-- Pet -->
+                                <TextBlock Text="Select your Pet:"
                                            Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0" />
+                                           Margin="0, 20, 0, 10" />
+                                <ComboBox x:Name="comboPet">
+                                    <ComboBoxItem FontWeight="Bold" FontSize="20">I Don't have a pet.</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/StaticResources/SignupWindow/cat.jpg"
+                                                   Width="125" Height="125"
+                                                   HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/StaticResources/SignupWindow/owl.jpg"
+                                                   Width="125" Height="125"
+                                                   HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/StaticResources/SignupWindow/rat.jpg"
+                                                   Width="125" Height="125"
+                                                   HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </ComboBoxItem>
+                                </ComboBox>
+                                
+                                <!-- Profile Image -->
+                                <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
+                                    <TextBox Name="txtOpenFile"
+                                             Text="Select Your Profile Picture"
+                                             IsReadOnly="True"
+                                             IsEnabled="False"
+                                             Margin="0, 0, 35, 0"
+                                             MaxWidth="300"
+                                             Padding="2"/>
+                                    
+                                    <Button Name="btnOpenFile"
+                                            Click="btnOpenFile_Click"
+                                            Padding="3">
+                                        Select
+                                    </Button>
+                                </StackPanel>
 
-                                <PasswordBox x:Name="txtPassdswordRepeat"
-                                             Padding="15, 0, 0, 0"
-                                             Style="{StaticResource SignupPasswordBoxTheme}"
-                                             Margin="0,5,0,0">
-                                    <PasswordBox.Background>
-                                        <ImageBrush ImageSource="/StaticResources/SignupWindow/key-icon.png"
-                                                    Stretch="None"
-                                                    AlignmentX="Left">
-                                        </ImageBrush>
-                                    </PasswordBox.Background>
-                                </PasswordBox>
+                                <!-- Luggage -->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Do you have any luggage?"
+                                               Style="{StaticResource SignupInputLabelTheme}"
+                                               Margin="0, 20, 5, 0"/>
+                                    <RadioButton x:Name="radioLuggageYes" Margin="10, 20, 25, 0">
+                                        <WrapPanel>
+                                            <TextBlock Text="Yes" Foreground="Green" />
+                                        </WrapPanel>
+                                    </RadioButton>
+                                    <RadioButton Margin="0, 20, 0, 0" IsChecked="True">
+                                        <WrapPanel>
+                                            <TextBlock Text="No" Foreground="Red" />
+                                        </WrapPanel>
+                                    </RadioButton>
+                                </StackPanel>
 
-                                <!-- First Name -->
-                                <TextBlock Text="First Name:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0"/>
-
-                                <TextBox x:Name="txtFsdirstName"
-                                         Style="{StaticResource SignupTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
-
-                                <!-- Last Name -->
-                                <TextBlock Text="Last Name:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0"/>
-
-                                <TextBox x:Name="txtLadsdsstName"
-                                         Style="{StaticResource SignupTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
-
-                                <!-- Email-->
-                                <TextBlock Text="Email:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0"/>
-
-                                <TextBox x:Name="txtdsEmsdail"
-                                         Style="{StaticResource SignupTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
-
-                                <!-- Activation Code -->
-                                <TextBlock Text="Activation Code:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 20, 0, 0"/>
-
-                                <TextBox x:Name="txtActivdsationCode"
-                                         Style="{StaticResource SignupTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
                             </StackPanel>
 
                             <!--Bottom Section -->
-                            <Button x:Name="btnSignUp"
+                            <Button x:Name="btnSignup"
                                     Grid.Row="2"
                                     Grid.ColumnSpan="2"
                                     Foreground="White"
@@ -277,7 +275,8 @@
                                     FontSize="15"
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
-                                    Margin="0,0,0,0">
+                                    Margin="0,0,0,0"
+                                    Click="btnSignup_Click">
 
                                 <Button.Style>
                                     <Style TargetType="Button">
@@ -315,11 +314,13 @@
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            FontSize="13" />
 
-                                <TextBlock Text="Login Instead"
+                                <TextBlock x:Name="LoginInstead"
+                                           Text="Login Instead"
                                            Padding="5, 0, 0, 0"
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            FontSize="13"
-                                           Cursor="Hand" />
+                                           Cursor="Hand"
+                                           PreviewMouseDown="LoginInstead_PreviewMouseDown"/>
                             </StackPanel>
                             
                         </Grid>

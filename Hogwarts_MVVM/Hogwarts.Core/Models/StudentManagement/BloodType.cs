@@ -2,8 +2,8 @@
 {
     public enum BloodType
     {
-        HalfBlood,
-        PureBlood,
-        MuggleBorn
+        MuggleBorn = 0,
+        HalfBlood = 1,
+        PureBlood = 2
     }
 }

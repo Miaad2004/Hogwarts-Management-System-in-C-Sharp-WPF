@@ -1,11 +1,10 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.StudentManagement;
-using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
-    public class Room: Entity
+    public class Room : Entity
     {
         [ForeignKey(nameof(House))]
         public HouseType House { get; private set; }
@@ -31,7 +30,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
         public override string ToString()
         {
-            return $"{House.ToString()}-Floor{FloorNumber}-Room{RoomNumber}-Bed{BedNumber}";
+            return $"{House}-Floor{FloorNumber}-Room{RoomNumber}-Bed{BedNumber}";
         }
         public override int GetHashCode()
         {

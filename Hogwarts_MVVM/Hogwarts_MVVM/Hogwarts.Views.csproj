@@ -1,0 +1,77 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+	<TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>StaticResources\Shared\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StaticResources\LoginWindow\bg.jpg" />
+    <None Remove="StaticResources\LoginWindow\key-icon.png" />
+    <None Remove="StaticResources\LoginWindow\logo.png" />
+    <None Remove="StaticResources\LoginWindow\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
+    <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
+    <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\bg.jpg" />
+    <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
+    <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
+    <None Remove="StaticResources\Shared\icon.ico" />
+    <None Remove="StaticResources\SignupWindow\bg.png" />
+    <None Remove="StaticResources\SignupWindow\cat.jpg" />
+    <None Remove="StaticResources\SignupWindow\key-icon.png" />
+    <None Remove="StaticResources\SignupWindow\logo.png" />
+    <None Remove="StaticResources\SignupWindow\owl.jpg" />
+    <None Remove="StaticResources\SignupWindow\rat.jpg" />
+    <None Remove="StaticResources\SignupWindow\user-icon.png" />
+    <None Remove="StaticResources\Temp\p1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="StaticResources\Shared\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="StaticResources\LoginWindow\bg.jpg" />
+    <Resource Include="StaticResources\LoginWindow\key-icon.png" />
+    <Resource Include="StaticResources\LoginWindow\logo.png" />
+    <Resource Include="StaticResources\LoginWindow\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\bg.jpg" />
+    <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
+    <Resource Include="StaticResources\Shared\icon.ico" />
+    <Resource Include="StaticResources\SignupWindow\bg.png" />
+    <Resource Include="StaticResources\SignupWindow\cat.jpg" />
+    <Resource Include="StaticResources\SignupWindow\key-icon.png" />
+    <Resource Include="StaticResources\SignupWindow\logo.png" />
+    <Resource Include="StaticResources\SignupWindow\owl.jpg" />
+    <Resource Include="StaticResources\SignupWindow\rat.jpg" />
+    <Resource Include="StaticResources\SignupWindow\user-icon.png" />
+    <Resource Include="StaticResources\Temp\p1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ProfessorViews\Popups\" />
+    <Folder Include="ProfessorViews\Pages\" />
+    <Folder Include="StaticResources\MainPanel\Professor\" />
+    <Folder Include="StaticResources\MainPanel\Student\" />
+    <Folder Include="StudentViews\Popups\" />
+    <Folder Include="StudentViews\Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hogwarts.Core\Hogwarts.Core.csproj" />
+  </ItemGroup>
+
+</Project>

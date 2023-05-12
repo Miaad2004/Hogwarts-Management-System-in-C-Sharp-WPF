@@ -1,11 +1,6 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogwarts.Core.Models.FacultyManagement
 {
@@ -19,9 +14,10 @@ namespace Hogwarts.Core.Models.FacultyManagement
 
         }
         public Professor(string username, string firstName, string lastName, string email, DateOnly birthDay,
-                     BloodType bloodType, AccessLevel accessLeve, string passwordHash, Major major, bool hasTimeTurner)
+                     BloodType bloodType, AccessLevels accessLeve, string passwordHash, string profileImagePath,
+                     Major major, bool hasTimeTurner)
             : base(username, firstName, lastName, email, birthDay,
-                  bloodType, accessLeve, passwordHash)
+                  bloodType, accessLeve, passwordHash, profileImagePath)
         {
             Major = major;
             HasTimeTurner = hasTimeTurner;

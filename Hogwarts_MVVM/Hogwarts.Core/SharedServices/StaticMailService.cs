@@ -1,8 +1,6 @@
 ﻿using Hogwarts.Core.SharedServices.Exceptions;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Configuration;
-using System.IO;
 using System.Net;
 using System.Net.Mail;
 
@@ -14,8 +12,8 @@ namespace Hogwarts.Core.SharedServices
         {
             try
             {
-                using var client = new WebClient();
-                using var stream = client.OpenRead("http://google.com/generate_204");
+                using WebClient client = new();
+                using Stream stream = client.OpenRead("http://google.com/generate_204");
                 return true;
             }
             catch
@@ -31,7 +29,7 @@ namespace Hogwarts.Core.SharedServices
                 throw new NetworkConnectionException("No internet connection available.");
             }
 
-            var configuration = new ConfigurationBuilder()
+            IConfigurationRoot configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build();
 
@@ -39,17 +37,17 @@ namespace Hogwarts.Core.SharedServices
             string smtpUsername = configuration["appSettings:SmtpUsername"] ?? throw new ConfigurationErrorsException("Invalid Configuration");
             int smtpPort = int.Parse(configuration["appSettings:SmtpPort"] ?? "587");
             string smtpPassword;
-            #if DEBUG
+#if DEBUG
             smtpPassword = File.ReadAllText(@"D:\smtp_password.txt");
-            #else
+#else
             smtpPassword = configuration["appSettings:SmtpPassword"] ?? throw new ConfigurationErrorsException("Invalid Configuration");
-            #endif
+#endif
 
-            using var client = new SmtpClient(smtpServer, smtpPort);
+            using SmtpClient client = new(smtpServer, smtpPort);
             client.Credentials = new NetworkCredential(smtpUsername, smtpPassword);
             client.EnableSsl = true;
 
-            var message = new MailMessage
+            MailMessage message = new()
             {
                 From = new MailAddress(smtpUsername),
                 Subject = subject,

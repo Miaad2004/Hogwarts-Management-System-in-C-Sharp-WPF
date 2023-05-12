@@ -1,12 +1,9 @@
 ﻿using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Hogwarts.Core.Models.CourseManagement
 {
-    public class Assignment: Entity
+    public class Assignment : Entity
     {
         public DateTime SartDate { get; private set; }
         public DateTime EndDate { get; private set; }

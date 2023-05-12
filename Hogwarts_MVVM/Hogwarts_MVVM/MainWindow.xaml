@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hogwarts_MVVM"
-        xmlns:viewmodeks="clr-namespace:Hogwarts.ViewModels;assembly=Hogwarts.ViewModels"
         xmlns:views="clr-namespace:Hogwarts.Views"
         mc:Ignorable="d"
         Title="Hogwarts Management System" Height="740" Width="1200"
@@ -20,13 +19,7 @@
             </Grid.RowDefinitions>
 
             <!-- FRAME -->
-            <Grid Grid.Row="1"
-                  Margin="0, -30, 0, 0"
-                  Panel.ZIndex="0">
-                <views:LoginView DataContext="{Binding CurrentViewModel}"/>
-            </Grid>
-            
-            <!--<Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0, -30, 0, 0" Panel.ZIndex="0" DataContext="{Binding CurrentViewModel}"/>-->
+            <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0, -30, 0, 0" Panel.ZIndex="0"/>
 
             <!-- TOP BAR -->
             <Grid Grid.Row="0">
@@ -37,17 +30,17 @@
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnMinimize"
+                <Button x:Name="Minimize"
                         Panel.ZIndex="2"
                         Grid.Column="1"
                         Style="{StaticResource MinimizeButtonStyle}"
-                        Click="BtnMinimize_Click" />
+                        Click="Minimize_Click" />
 
-                <Button x:Name="btnClose"
+                <Button x:Name="Close"
                         Panel.ZIndex="2"
                         Grid.Column="2"
                         Style="{StaticResource CloseButtonStyle}"
-                        Click="BtnClose_Click" />
+                        Click="Close_Click" />
             </Grid>
 
 

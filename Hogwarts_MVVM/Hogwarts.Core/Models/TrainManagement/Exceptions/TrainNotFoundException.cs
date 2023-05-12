@@ -1,10 +1,9 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace Hogwarts.Core.Models.TrainManagement.Exceptions
 {
     [Serializable]
-    internal class TrainNotFoundException : Exception
+    internal class TrainNotFoundException : TrainException
     {
         public TrainNotFoundException()
         {
