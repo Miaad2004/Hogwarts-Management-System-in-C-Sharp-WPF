@@ -67,7 +67,7 @@
                         </TextBlock.Effect>
                     </TextBlock>
                     
-                    <TextBlock x:Name="txtFullName" Foreground="#FF43F6AE" FontSize="48" FontWeight="SemiBold" VerticalAlignment="Top" Margin="294,64,-1,0" Height="136">
+                    <TextBlock Text="Full Name" x:Name="txtFullName" Foreground="#FF43F6AE" FontSize="48" FontWeight="SemiBold" VerticalAlignment="Top" Margin="320,100,-1,0" Height="136">
                         <TextBlock.Effect>
                             <DropShadowEffect ShadowDepth="2"/>
                         </TextBlock.Effect>
@@ -89,7 +89,7 @@
                         </Border.Background>
 
                         <Border.Clip>
-                            <RectangleGeometry Rect="0,0,850,360" RadiusX="30" RadiusY="30"/>
+                            <RectangleGeometry Rect="0,0,860,370" RadiusX="30" RadiusY="30"/>
                         </Border.Clip>
 
                     </Border>
