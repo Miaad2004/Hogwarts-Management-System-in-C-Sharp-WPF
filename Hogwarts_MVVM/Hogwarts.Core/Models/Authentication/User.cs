@@ -151,7 +151,7 @@ namespace Hogwarts.Core.Models.Authentication
             string fullImagePath = Path.Combine(subfolderPath, this.Id.ToString() + Path.GetExtension(profileImagePath));
 
             File.Copy(profileImagePath, fullImagePath, overwrite:true);
-
+            File.SetAttributes(fullImagePath, FileAttributes.ReadOnly);
             this.FullProfileImagePath = fullImagePath;
         }
     }

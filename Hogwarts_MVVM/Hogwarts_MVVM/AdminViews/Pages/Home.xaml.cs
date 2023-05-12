@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Hogwarts.Core.Models.Authentication;
+using System.Windows.Controls;
 
 namespace Hogwarts.Views.AdminViews.Pages
 {
@@ -7,9 +8,11 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class Home : Page
     {
+        private string FullName => SessionManager.CurrentSession.User.FullName;
         public Home()
         {
             InitializeComponent();
+            txtFullName.Text = FullName;
         }
     }
 }

@@ -16,6 +16,7 @@
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\HomeView\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
@@ -42,6 +43,7 @@
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\AddTrainPopup\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\HomeView\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\InviteStudentPopup\user-icon.png" />
