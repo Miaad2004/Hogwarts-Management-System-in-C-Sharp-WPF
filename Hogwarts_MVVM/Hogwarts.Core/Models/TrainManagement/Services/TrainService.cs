@@ -36,6 +36,23 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
             }
 
             TrainTicket ticket = train.ReserveSeat(owner);
+
+            _dbContext.Tickets.Add(ticket);
+            _dbContext.SaveChanges();
+            return ticket;
+        }
+
+        public TrainTicket GetTrainTicket(Guid trainId, User owner)
+        {
+            if (owner is null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
+            TrainTicket ticket = _dbContext.Trains.Where(t => t.Id == trainId).First().ReserveSeat(owner);
+
+            _dbContext.Tickets.Add(ticket);
+            _dbContext.SaveChanges();
             return ticket;
         }
 
@@ -69,6 +86,10 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
             }
 
             TrainTicket ticket = train.ReserveSeat(owner);
+
+            _dbContext.Tickets.Add(ticket);
+            _dbContext.SaveChanges();
+
             return ticket;
         }
 
@@ -102,6 +123,9 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
             }
 
             TrainTicket ticket = train.ReserveSeat(activationCode);
+
+            _dbContext.Tickets.Add(ticket);
+            _dbContext.SaveChanges();
             return ticket;
         }
 

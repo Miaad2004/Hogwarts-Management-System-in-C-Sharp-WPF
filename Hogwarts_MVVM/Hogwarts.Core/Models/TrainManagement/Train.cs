@@ -1,5 +1,6 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement.Exceptions;
+using Hogwarts.Core.SharedServices;
 
 namespace Hogwarts.Core.Models.TrainManagement
 {
@@ -157,8 +158,8 @@ namespace Hogwarts.Core.Models.TrainManagement
 
             NOccupiedSeats += 1;
 
-            TrainTicket ticket = new(this, owner, DepartureTime, Origin, Destination, compartmentNumber, seatNumber);
-            Tickets.Add(ticket);
+            TrainTicket ticket = new(train: this, owner, DepartureTime, Origin, Destination, Platform, compartmentNumber,
+                                     seatNumber);
             return ticket;
         }
 
@@ -176,7 +177,7 @@ namespace Hogwarts.Core.Models.TrainManagement
 
             TrainTicket ticket = new(this, activationCode, DepartureTime, Origin, Destination, Platform,
                                          compartmentNumber, seatNumber);
-            Tickets.Add(ticket);
+           
             return ticket;
         }
 

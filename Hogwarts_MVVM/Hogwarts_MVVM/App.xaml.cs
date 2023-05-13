@@ -1,9 +1,12 @@
-﻿using Hogwarts.Core.Models.Authentication.DTOs;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.Authentication.Exceptions;
+using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.SharedServices;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -17,7 +20,7 @@ namespace Hogwarts_MVVM
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            _ = StaticServiceProvidor.DbContext.Database.EnsureCreated();
+            StaticServiceProvidor.DbContext.Database.EnsureCreated();
 
             // Register the first admin
             const string ADMIN_DTO_PATH = "admin.json";

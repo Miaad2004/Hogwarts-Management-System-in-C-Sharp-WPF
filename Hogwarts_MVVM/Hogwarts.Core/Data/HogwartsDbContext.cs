@@ -22,6 +22,8 @@ namespace Hogwarts.Core.Data
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Train> Trains { get; set; }
 
+        public DbSet<TrainTicket> Tickets { get; set; } 
+
 
         private static string GetConnectionString()
         {
@@ -34,6 +36,14 @@ namespace Hogwarts.Core.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             _ = optionsBuilder.UseSqlite(GetConnectionString());
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Train>()
+                .HasMany(t => t.Tickets)
+                .WithOne(tt => tt.Train)
+                .HasForeignKey(tt => tt.TrainId);
         }
     }
 }

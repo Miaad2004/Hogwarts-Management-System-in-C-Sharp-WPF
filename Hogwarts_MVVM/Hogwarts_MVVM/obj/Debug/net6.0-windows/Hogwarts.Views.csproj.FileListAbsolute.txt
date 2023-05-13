@@ -236,3 +236,5 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ref\Hogwarts.Views.dll
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HomeView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HomeView.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HogwartsExpressView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HogwartsExpressView.baml

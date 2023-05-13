@@ -49,6 +49,9 @@
     <Compile Update="StudentViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StudentViews\Pages\HogwartsExpressView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="StudentViews\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Pages\HogwartsExpressView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\Pages\HomeView.xaml">

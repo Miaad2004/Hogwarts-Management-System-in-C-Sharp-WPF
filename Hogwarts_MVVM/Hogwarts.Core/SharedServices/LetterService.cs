@@ -5,6 +5,7 @@ using Hogwarts.Core.SharedServices.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Configuration;
+using System.Net.Mail;
 using System.Text;
 
 namespace Hogwarts.Core.SharedServices
@@ -33,12 +34,12 @@ namespace Hogwarts.Core.SharedServices
             {
                 FirstName = firstName,
                 LastName = lastName,
-                TrainNumber = $"Platform {trainTicket.platform}",
-                Departure = trainTicket.origin,
-                Date = trainTicket.departureTime.ToShortDateString(),
-                Time = trainTicket.departureTime.ToShortTimeString(),
-                Seat = trainTicket.seatNumber,
-                Compartment = trainTicket.compartmentNumber
+                Platform = trainTicket.Platform,
+                Departure = trainTicket.Origin,
+                Date = trainTicket.DepartureTime.ToShortDateString(),
+                Time = trainTicket.DepartureTime.ToShortTimeString(),
+                Seat = trainTicket.SeatNumber,
+                Compartment = trainTicket.CompartmentNumber
             };
 
             string json = JsonConvert.SerializeObject(ticketInfo);
@@ -77,7 +78,7 @@ namespace Hogwarts.Core.SharedServices
             TrainTicket trainTicket = _trainService.GetTicketForNewStudent(activationCode);
             string trainTicketLink = GenerateTrainTicketLink(firstName, lastName, trainTicket);
 
-            string emailSubject = $"Hogwarts Acceptance Letter for {firstName} {lastName}";
+            string emailSubject = $"<b>Hogwarts Acceptance Letter for {firstName} {lastName}</b>";
             string emailBody = "Dear " + firstName + ",<br><br>" +
                     "We are pleased to inform you that you have been accepted into Hogwarts School of Witchcraft and Wizardry! " +
                     "You have demonstrated exceptional magical ability and we are excited to welcome you as a new student.<br><br>" +
@@ -89,7 +90,7 @@ namespace Hogwarts.Core.SharedServices
                      sender.FullName + "<br>" +
                     "Headmaster/Headmistress";
 
-            string email =
+            string fullEmail =
                 "<html><body>" +
                 emailBody + "<br>" +
                 acceptLetterLink +
@@ -100,7 +101,7 @@ namespace Hogwarts.Core.SharedServices
 
             try
             {
-                StaticMailService.SendEmail(recipient: emailAddress, subject: emailSubject, body: email);
+                StaticMailService.SendEmail(recipient: emailAddress, subject: emailSubject, body: fullEmail);
             }
             catch (NetworkConnectionException ex)
             {
@@ -108,5 +109,20 @@ namespace Hogwarts.Core.SharedServices
             }
 
         }
+
+        public void SendTrainTicket(TrainTicket trainTicket, User owner)
+        {
+            string emailSubject = $"<b>Hogwarts Express Ticket for {owner.FirstName} {owner.LastName}</b>";
+            string emailBody = GenerateTrainTicketLink(owner.FirstName, owner.LastName, trainTicket);
+
+            try
+            {
+                StaticMailService.SendEmail(recipient: owner.Email, subject: emailSubject, body: emailBody);
+            }
+            catch (NetworkConnectionException ex)
+            {
+                throw ex;
+            }
+        }   
     }
 }
