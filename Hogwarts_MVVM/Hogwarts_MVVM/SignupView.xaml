@@ -248,7 +248,7 @@
                                              IsReadOnly="True"
                                              IsEnabled="False"
                                              Margin="0, 0, 35, 0"
-                                             MaxWidth="300"
+                                             MaxWidth="175"
                                              Padding="2"/>
                                     
                                     <Button Name="OpenFile"

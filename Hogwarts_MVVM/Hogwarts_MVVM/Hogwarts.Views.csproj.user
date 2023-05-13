@@ -10,9 +10,6 @@
     <Compile Update="AdminViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminViews\Pages\ClassesView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="AdminViews\Pages\ForestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,12 +49,12 @@
     <Compile Update="StudentViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StudentViews\Pages\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AdminViews\MainView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="AdminViews\Pages\ClassesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Pages\ForestView.xaml">
@@ -100,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Pages\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\LoginThemes.xaml">

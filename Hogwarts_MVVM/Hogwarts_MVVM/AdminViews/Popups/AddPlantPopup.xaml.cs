@@ -23,7 +23,7 @@ namespace Hogwarts.Views.AdminViews.Popups
     /// </summary>
     public partial class AddPlantPopup : Window
     {
-        private string SelectedImagePath;
+        private string SelectedImagePath = "";
         public AddPlantPopup()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace Hogwarts.Views.AdminViews.Popups
             {
                 Name = txtName.Text,
                 Description = txtDescription.Text,
-                Quantity = int.Parse(txtQuantity.Text),
+                Quantity = txtQuantity.Text,
                 GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1),
                 ImagePath = SelectedImagePath
             };

@@ -236,12 +236,13 @@
                                           ScrollViewer.CanContentScroll="True"
                                           MaxDropDownHeight="150">
 
-                                    <ComboBoxItem IsSelected="True">Astronomy</ComboBoxItem>
+                                    <ComboBoxItem>Astronomy</ComboBoxItem>
                                     <ComboBoxItem>Care Of Magical Creatures</ComboBoxItem>
+                                    <ComboBoxItem>Charms</ComboBoxItem>
                                     <ComboBoxItem>Defense Against The Dark Arts</ComboBoxItem>
                                     <ComboBoxItem>Divination</ComboBoxItem>
                                     <ComboBoxItem>Herbology</ComboBoxItem>
-                                    <ComboBoxItem>History Of Magic</ComboBoxItem>
+                                    <ComboBoxItem IsSelected="True">History Of Magic</ComboBoxItem>
                                     <ComboBoxItem>Muggle Studies</ComboBoxItem>
                                     <ComboBoxItem>Potions</ComboBoxItem>
                                     <ComboBoxItem>Transfiguration</ComboBoxItem>

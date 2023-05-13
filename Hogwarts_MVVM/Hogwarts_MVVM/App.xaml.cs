@@ -45,7 +45,7 @@ namespace Hogwarts_MVVM
             if (isFirstLoad)
             {
                 string startupSoundFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StaticResources/Shared/StartupChime.mp3");
-                MediaPlayer player = new MediaPlayer();
+                MediaPlayer player = new ();
                 player.Open(new Uri(startupSoundFilePath));
                 player.Play();
 

@@ -134,21 +134,8 @@
                                          Width="250"/>
                             </StackPanel>
 
-                            <!-- Planting Date -->
-                            <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
-                                <TextBlock Text="Planting Date:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="0, 0, 10, 0" />
-
-                                <DatePicker Name="plantingTimeDatePicker"
-                                            SelectedDate="{x:Static sys:DateTime.Now}"
-                                            DisplayDateStart="{x:Static sys:DateTime.Now}"
-                                            Style="{StaticResource SignupDatePickerTheme}"
-                                            Width="250"/>
-                            </StackPanel>
-
                             <!-- Quantity -->
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 0">
                                 <TextBlock Text="Quantity:"
                                         Style="{StaticResource SignupInputLabelTheme}"
                                         Margin="0, 25, 0, 0" />
@@ -161,7 +148,7 @@
                             </StackPanel>
 
                             <!-- Growth Rate -->
-                            <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
+                            <StackPanel Orientation="Horizontal" Margin="0, 30, 0, 0">
                                 <TextBlock Text="Growth Rate:"
                                            Style="{StaticResource LoginInputLabelTheme}"
                                            Margin="0, 0, 20, 0"/>
@@ -200,18 +187,18 @@
                             </StackPanel>
 
                             <!-- Profile Image -->
-                            <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
+                            <StackPanel Orientation="Horizontal" Margin="0, 30, 0, 0">
                                 <TextBox Name="txtOpenFile"
-                                             Text="Select the Plant's Picture"
-                                             IsReadOnly="True"
-                                             IsEnabled="False"
-                                             Margin="0, 0, 35, 0"
-                                             MaxWidth="300"
-                                             Padding="2"/>
+                                         Text="Select the Plant's Picture"
+                                         IsReadOnly="True"
+                                         IsEnabled="False"
+                                         Margin="0, 0, 35, 0"
+                                         MaxWidth="300"
+                                         Padding="2"/>
 
                                 <Button Name="OpenFile"
-                                            Click="OpenFile_Click"
-                                            Padding="3">
+                                        Click="OpenFile_Click"
+                                        Padding="3">
                                     Select
                                 </Button>
                             </StackPanel>
@@ -219,7 +206,7 @@
                             <!-- Add Button -->
                             <Button x:Name="AddPlant" Foreground="White" BorderThickness="0"
                                     Content="Add Plant" FontSize="12" FontFamily="Montserrat"
-                                    Cursor="Hand" Grid.Column="2" Margin="0,55,0,0"
+                                    Cursor="Hand" Grid.Column="2" Margin="0,95,0,0"
                                     Click="AddPlant_Click" >
 
                                 <Button.Style>

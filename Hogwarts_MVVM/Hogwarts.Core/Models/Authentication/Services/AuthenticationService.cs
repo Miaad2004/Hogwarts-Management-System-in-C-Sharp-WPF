@@ -24,6 +24,7 @@ namespace Hogwarts.Core.Models.Authentication.Services
 
         private bool IsUsernameTaken(string username)
         {
+            username = username.ToLower();
             return _dbContext.Students.Any(u => u.Username == username) ||
                    _dbContext.Professors.Any(u => u.Username == username) ||
                    _dbContext.Admins.Any(u => u.Username == username);
@@ -31,6 +32,7 @@ namespace Hogwarts.Core.Models.Authentication.Services
 
         private bool IsActivationCodeVaild(string username, string enteredCode)
         {
+            username = username.ToLower();
             return _dbContext.ActivationCodes.Any(ac => ac.Username == username && ac.Code == enteredCode);
         }
 

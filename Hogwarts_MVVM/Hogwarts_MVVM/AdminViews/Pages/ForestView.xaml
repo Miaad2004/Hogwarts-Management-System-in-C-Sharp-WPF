@@ -74,7 +74,7 @@
                                     Binding="{Binding SequentialIndex}"/>
 
                 <!-- Name and profile picture -->
-                <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="225">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
@@ -91,17 +91,13 @@
 
                                 </Border>
 
-                                <TextBlock Text="{Binding FullName}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
 
                             </StackPanel>
 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-                <!-- Description -->
-                <DataGridTextColumn Header="Description"
-                                    Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
 
                 <!-- Planting Time -->
                 <DataGridTextColumn Header="Planting Time"
@@ -115,7 +111,9 @@
                 <DataGridTextColumn Header="Is Collectable" Binding="{Binding IsCollectable}"
                                     IsReadOnly="True" Width="*"/>
 
-
+                <!-- Quantity -->
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"
+                                    IsReadOnly="True" Width="*"/>
 
             </DataGrid.Columns>
 

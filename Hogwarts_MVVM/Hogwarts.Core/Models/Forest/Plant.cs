@@ -17,7 +17,7 @@ namespace Hogwarts.Core.Models.Forest
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException($"{nameof(Name)} Can not be null.");
+                    throw new ArgumentNullException(nameof(Name));
                 }
                 _name = value;
             }
@@ -30,7 +30,7 @@ namespace Hogwarts.Core.Models.Forest
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException($"{nameof(Description)} Can not be null.");
+                    throw new ArgumentNullException(nameof(Description));
                 }
                 _description = value;
             }
@@ -57,14 +57,14 @@ namespace Hogwarts.Core.Models.Forest
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("Quantity must be positive", nameof(value));
+                    throw new ArgumentOutOfRangeException(nameof(value));
                 }
                 _quantity = value;
             }
         }
 
         public DateTime HarvestTime => PlantingTime + GrowthTimeSpan;
-        public bool IsCollectable => HarvestTime > DateTime.Now;
+        public bool IsCollectable => DateTime.Now >= HarvestTime;
         public string FullImagePath { get; private set; }
 
         public Plant()
@@ -73,12 +73,17 @@ namespace Hogwarts.Core.Models.Forest
 
         }
 
-        public Plant(string name, TimeSpan growthTimeSpan, int quantity, string imagePath, string description = "")
+        public Plant(string name, TimeSpan growthTimeSpan, string quantity, string imagePath, string description = "")
             : base()
         {
+            if (!int.TryParse(quantity, out _quantity))
+            {
+                throw new ArgumentException("Quantity must ne an integer.");
+            }
+
             Name = name;
             GrowthTimeSpan = growthTimeSpan;
-            Quantity = quantity;
+            Quantity = int.Parse(quantity);
             Description = description;
             PlantingTime = DateTime.Now;
 
@@ -88,9 +93,14 @@ namespace Hogwarts.Core.Models.Forest
         public Plant(PlantDTO DTO)
             : base()
         {
+            if (!int.TryParse(DTO.Quantity, out _quantity))
+            {
+                throw new ArgumentException("Quantity must ne an integer.");
+            }
+
             Name = DTO.Name;
             GrowthTimeSpan = DTO.GrowthTimeSpan;
-            Quantity = DTO.Quantity;
+            Quantity = int.Parse(DTO.Quantity);
             Description = DTO.Description;
             PlantingTime = DateTime.Now;
 

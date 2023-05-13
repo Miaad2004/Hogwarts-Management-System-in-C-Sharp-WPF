@@ -12,7 +12,7 @@
             IEnumerable<char> codeChars = Enumerable.Repeat(chars, 6)
                                       .Select(s => s[random.Next(s.Length)]);
             Code = new string(codeChars.ToArray());
-            Username = username;
+            Username = username.ToLower();
         }
 
     }

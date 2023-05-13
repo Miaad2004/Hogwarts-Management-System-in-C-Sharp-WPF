@@ -28,7 +28,7 @@ namespace Hogwarts.Views.AdminViews.Pages
             txtStudentsCount.Text = StaticServiceProvidor.DbContext.Students.Count().ToString();
             txtTrainsCount.Text = StaticServiceProvidor.DbContext.Trains.Count().ToString();
             txtProfessorsCount.Text = StaticServiceProvidor.DbContext.Professors.Count().ToString();
-            txtForestCollectablePlants.Text = StaticServiceProvidor.DbContext.Plants.Count().ToString();
+            txtForestPlantsCount.Text = StaticServiceProvidor.DbContext.Plants.Count().ToString();
         }
     }
 }

@@ -107,17 +107,7 @@
                                     <TextBlock Text="Students"/>
                                 </StackPanel>
                             </Button>
-                            
-                            <!-- Classes -->
-                            <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/AdminViews/Pages/ClassesView.xaml"
-                                    Click="NavigationBar_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="GoogleClassroom" Style="{StaticResource PanelNavButtonIcon}"/>
-                                    <TextBlock Text="Classes"/>
-                                </StackPanel>
-                            </Button>
-                            
+
                             <!-- Hogwarts Express -->
                             <Button Style="{StaticResource PanelNavButton}"
                                     Tag="/AdminViews/Pages/HogwartsExpressView.xaml"

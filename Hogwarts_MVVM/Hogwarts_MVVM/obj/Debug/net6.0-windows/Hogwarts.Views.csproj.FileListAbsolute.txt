@@ -189,7 +189,6 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Themes\PanelThemes.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Themes\SignupThemes.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\MainView.g.cs
-D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ClassesView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ForestView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HogwartsExpressView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HomeView.g.cs
@@ -210,7 +209,6 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Hogwarts.Views_MarkupCompile.lref
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\App.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\MainView.baml
-D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ClassesView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ForestView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HogwartsExpressView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HomeView.baml
@@ -236,3 +234,5 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Hogwarts.Views.pdb
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Hogwarts.Views.genruntimeconfig.cache
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ref\Hogwarts.Views.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HomeView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\HomeView.baml
