@@ -58,7 +58,7 @@ addEventListener('fetch', event => {
         const modifiedTemplate = templateHTML
         .replace('{{FirstName}}', data.FirstName)
         .replace('{{LastName}}', data.LastName)
-        .replace('{{TrainNumber}}', data.TrainNumber)
+        .replace('{{Platform}}', data.Platform)
         .replace('{{Departure}}', data.Departure)
         .replace('{{Date}}', data.Date)
         .replace('{{Time}}', data.Time)
@@ -84,7 +84,7 @@ function validateInput(templateType, data)
   const requiredFields =
   {
     'hogwarts-letter': ['FirstName', 'LastName', 'ActivationCode', 'HeadmasterName'],
-    'hogwarts-express-ticket': ['FirstName', 'LastName', 'TrainNumber', 'Departure', 'Date', 'Time', 'Seat', 'Compartment']
+    'hogwarts-express-ticket': ['FirstName', 'LastName', 'Platform', 'Departure', 'Date', 'Time', 'Seat', 'Compartment']
   }
 
   const missingFields = requiredFields[templateType].filter(field => !data[field])
