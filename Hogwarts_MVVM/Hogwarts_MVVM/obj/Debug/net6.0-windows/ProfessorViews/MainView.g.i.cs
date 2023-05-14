@@ -79,7 +79,7 @@ namespace Hogwarts.Views.ProfessorViews {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;component/professorviews/mainview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;V1.0.0.0;component/professorviews/mainview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ProfessorViews\MainView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

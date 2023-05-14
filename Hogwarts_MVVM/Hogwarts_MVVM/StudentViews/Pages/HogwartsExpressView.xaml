@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      xmlns:local="clr-namespace:Hogwarts.Views.AdminViews.Pages"
+      xmlns:local="clr-namespace:Hogwarts.Views.StudentViews.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="850"
       Title="Students">
@@ -84,12 +84,15 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
+                                <!-- Reserve Seat -->
                                 <Button x:Name="ReserveSeat"
+                                        ToolTip="Get a ticket"
                                         Click="ReserveSeat_Click"
                                         Margin="5 0 0 0"
                                         Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="CartPlus" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
+                                
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

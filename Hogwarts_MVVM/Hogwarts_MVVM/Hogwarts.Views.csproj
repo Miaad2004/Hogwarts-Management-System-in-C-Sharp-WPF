@@ -70,7 +70,6 @@
 
   <ItemGroup>
     <Folder Include="ProfessorViews\Popups\" />
-    <Folder Include="ProfessorViews\Pages\" />
     <Folder Include="StaticResources\MainPanel\Professor\" />
     <Folder Include="StaticResources\MainPanel\Student\" />
     <Folder Include="StudentViews\Popups\" />

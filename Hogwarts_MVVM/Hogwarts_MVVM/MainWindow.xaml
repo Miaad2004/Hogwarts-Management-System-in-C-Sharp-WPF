@@ -9,7 +9,8 @@
         Title="Hogwarts Management System" Height="740" Width="1200"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
-        Style="{StaticResource BorderTheme}">
+        Style="{StaticResource BorderTheme}"
+        AllowsTransparency="False">
 
     <Border CornerRadius="25">
         <Grid>

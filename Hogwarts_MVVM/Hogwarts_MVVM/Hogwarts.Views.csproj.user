@@ -10,6 +10,9 @@
     <Compile Update="AdminViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AdminViews\Pages\DormitoryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AdminViews\Pages\ForestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminViews\Pages\StudentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Popups\AddDormitoryPopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminViews\Popups\AddPlantPopup.xaml.cs">
@@ -43,10 +49,25 @@
     <Compile Update="ProfessorViews\MainView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProfessorViews\Pages\AssignmentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Pages\CoursesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SignupView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StudentViews\MainView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StudentViews\Pages\AssignmentsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StudentViews\Pages\CourseCatalogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StudentViews\Pages\ForestView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StudentViews\Pages\HogwartsExpressView.xaml.cs">
@@ -55,9 +76,15 @@
     <Compile Update="StudentViews\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StudentViews\Pages\MyCoursesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AdminViews\MainView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Pages\DormitoryView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Pages\ForestView.xaml">
@@ -73,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Pages\StudentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\AddDormitoryPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Popups\AddPlantPopup.xaml">
@@ -96,16 +126,34 @@
     <Page Update="ProfessorViews\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ProfessorViews\Pages\AssignmentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Pages\CoursesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SignupView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="StudentViews\Pages\AssignmentsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Pages\CourseCatalogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Pages\ForestView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="StudentViews\Pages\HogwartsExpressView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\Pages\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Pages\MyCoursesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\LoginThemes.xaml">

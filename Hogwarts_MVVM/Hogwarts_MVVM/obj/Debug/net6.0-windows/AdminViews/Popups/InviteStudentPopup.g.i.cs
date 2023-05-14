@@ -109,7 +109,7 @@ namespace Hogwarts.Views.AdminViews.Popups {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;component/adminviews/popups/invitestudentpopup.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;V1.0.0.0;component/adminviews/popups/invitestudentpopup.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\AdminViews\Popups\InviteStudentPopup.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

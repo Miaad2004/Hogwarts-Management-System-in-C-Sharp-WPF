@@ -68,7 +68,7 @@
                         <StackPanel DockPanel.Dock="Top">
                             <!-- Dashboard -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/HomeView.xaml"
+                                    Tag="/StudentViews/Pages/HomeViewView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -76,19 +76,19 @@
                                 </StackPanel>
                             </Button>
 
-                            <!-- Courses -->
+                            <!-- My Courses -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/Courses.xaml"
+                                    Tag="/StudentViews/Pages/MyCoursesView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="GoogleClassroom" Style="{StaticResource PanelNavButtonIcon}"/>
-                                    <TextBlock Text="Courses"/>
+                                    <TextBlock Text="My Courses"/>
                                 </StackPanel>
                             </Button>
 
                             <!-- Assignments -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/Courses.xaml"
+                                    Tag="/StudentViews/Pages/CoursesView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ClipboardText" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -96,9 +96,19 @@
                                 </StackPanel>
                             </Button>
 
+                            <!-- Course Catalog -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/StudentViews/Pages/MyCourseCatalogView.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="ClipboardList" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Course Catalog"/>
+                                </StackPanel>
+                            </Button>
+
                             <!-- Hogwarts Express -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/HogwartsExpressView.xaml"
+                                    Tag="/StudentViews/Pages/HogwartsExpressViewView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Train" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -108,7 +118,7 @@
 
                             <!-- Forest -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/ForestView.xaml"
+                                    Tag="/StudentViews/Pages/ForestViewView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Forest" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -142,7 +152,7 @@
 
                     <!-- Page Frame -->
                     <Grid Grid.Row="1">
-                        <Frame NavigationUIVisibility="Hidden" x:Name="pageFrame" Margin="15,10,33,10" Source="/StudentViews/Pages/HomeView.xaml"/>
+                        <Frame NavigationUIVisibility="Hidden" x:Name="pageFrame" Margin="15,10,33,10" Source="/StudentViews/Pages/HomeViewView.xaml"/>
                     </Grid>
                 </Grid>
 
