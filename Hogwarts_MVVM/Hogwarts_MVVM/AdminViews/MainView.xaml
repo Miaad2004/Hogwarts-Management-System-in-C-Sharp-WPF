@@ -117,7 +117,17 @@
                                     <TextBlock Text="Hogwarts Express"/>
                                 </StackPanel>
                             </Button>
-                            
+
+                            <!-- Dormitory -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/DormitoryView.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="BunkBed" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Dormitory"/>
+                                </StackPanel>
+                            </Button>
+
                             <!-- Forest -->
                             <Button Style="{StaticResource PanelNavButton}"
                                     Tag="/AdminViews/Pages/ForestView.xaml"
