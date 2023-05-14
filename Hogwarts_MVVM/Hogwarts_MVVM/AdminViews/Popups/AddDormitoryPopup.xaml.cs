@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hogwarts.Core.Models.StudentManagement;
+using Hogwarts.Core.SharedServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +25,42 @@ namespace Hogwarts.Views.AdminViews.Popups
         {
             InitializeComponent();
         }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
         private void AddDormitory_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                StaticServiceProvidor.dormitoryService.AddDormitory(title: txtTitle.Text,
+                                                                    house: (HouseType)houseCombo.SelectedIndex,
+                                                                    floorsCount: floorsCountCombo.SelectedIndex + 1,
+                                                                    roomsPerFloor: roomsPerFloorCombo.SelectedIndex + 1,
+                                                                    bedsPerRoom: bedsPerRoomCombo.SelectedIndex + 1);
 
+                MessageBox.Show("Dormitory Added.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+
+            catch (ArgumentException ex)
+            {
+                _ = MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

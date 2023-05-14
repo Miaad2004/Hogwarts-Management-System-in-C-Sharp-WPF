@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:Hogwarts.Views.AdminViews.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="630" d:DesignWidth="850"
-      Title="Students">
+      Title="Dormitories">
 
     <Grid>
         <!-- Load Animation -->
@@ -38,10 +38,11 @@
         <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
         <!--Add Button-->
-        <Button Style="{StaticResource addButton}"
+        <Button x:Name="AddDormitory"
+                Style="{StaticResource addButton}"
                 Grid.Row="4"
                 VerticalAlignment="Center"
-                Click="AddTrain_Click">
+                Click="AddDormitory_Click">
 
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center"
@@ -58,7 +59,7 @@
                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!--Data Grid-->
-        <DataGrid x:Name="trainsDataGrid"
+        <DataGrid x:Name="dormitoriesDataGrid"
                   RowStyle="{DynamicResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                   CellStyle="{DynamicResource DataGridCellStyle1}"
@@ -81,13 +82,13 @@
                 <DataGridTextColumn Header="House"
                                     Binding="{Binding House}" IsReadOnly="True" Width="*"/>
 
-                <!-- Floors Count -->
-                <DataGridTextColumn Header="Floors Count"
-                                    Binding="{Binding FloorsCount}" IsReadOnly="True" Width="*"/>
+                <!-- Floor Count -->
+                <DataGridTextColumn Header="Floor Count"
+                                    Binding="{Binding FloorCount}" IsReadOnly="True" Width="*"/>
 
-                <!-- Floors Count -->
-                <DataGridTextColumn Header="Rooms Count"
-                                    Binding="{Binding RoomsCount}" IsReadOnly="True" Width="*"/>
+                <!-- Room Count -->
+                <DataGridTextColumn Header="Room Count"
+                                    Binding="{Binding RoomCount}" IsReadO"True" Width="*"/>
 
                 <!-- Remainig Capacity -->
                 <DataGridTextColumn Header="Remainig Capacity"

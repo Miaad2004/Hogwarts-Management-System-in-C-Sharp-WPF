@@ -1,30 +1,120 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
+using Hogwarts.Core.Models.StudentManagement;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
     public class Dormitory : Entity
     {
+        private string _title;
+        private int _floorCount;
+        private int _roomsPerFloor;
+        private int _bedsPerRoom;
+
+        public string Title
+        {
+            get => _title;
+            private set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("Title can not be empty.");
+                }
+                _title = value;
+            }
+        }
+
         public HouseType House { get; private set; }
-        public int NFloors { get; private set; }
-        public int NRoomsPerFloor { get; private set; }
-        public int NBedsPerRoom { get; private set; }
-        public int NOccupiedBeds { get; set; }
+        public int FloorCount
+        {
+            get => _floorCount;
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Floor Count must be positive.");
+                }
+                _floorCount = value;
+            }
+        }
 
-        public ICollection<Room> Rooms { get; private set; }
+        public int RoomsPerFloor
+        {
+            get => _roomsPerFloor;
+            private set
+            {
+                if (_roomsPerFloor <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Rooms per floor must be positive");
+                }
+                _roomsPerFloor = value;
+            }
+        }
+        public int BedsPerRoom
+        {
+            get => _bedsPerRoom;
+            private set
+            {
+                if (_bedsPerRoom <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Rooms per floor must be positive");
+                }
+                _bedsPerRoom = value;
+            }
+        }
+        public int OccupiedBedsCount { get; private set; }
 
-        public int FloorCapacity => NRoomsPerFloor * NBedsPerRoom;
+        public ICollection<DormitoryRoom> Rooms { get; private set; }
 
-        public int TotalCapacity => NFloors * NRoomsPerFloor * NBedsPerRoom;
+        public int FloorCapacity => RoomsPerFloor * BedsPerRoom;
 
-        public Dormitory(HouseType house, int nFloors, int nRoomsPerFloor, int nBedsPerRoom)
+        public int TotalCapacity => FloorCount * RoomsPerFloor * BedsPerRoom;
+
+        public int RoomsCount => RoomsPerFloor * FloorCount;
+
+        public int RemainingCapacity => TotalCapacity - OccupiedBedsCount;
+
+        public Dormitory(): base()
+        {
+            Rooms = new List<DormitoryRoom>();
+        }
+
+        public Dormitory(string title, HouseType house, int FloorsCount, int RoomsPerFloor, int BedsPerRoom)
             : base()
         {
+            Title = title;
             House = house;
-            NFloors = nFloors;
-            NRoomsPerFloor = nRoomsPerFloor;
-            NBedsPerRoom = nBedsPerRoom;
-            NOccupiedBeds = 0;
-            Rooms = new List<Room>();
+            FloorCount = FloorsCount;
+            this.RoomsPerFloor = RoomsPerFloor;
+            this.BedsPerRoom = BedsPerRoom;
+            OccupiedBedsCount = 0;
+            Rooms = new List<DormitoryRoom>();
+        }
+
+        public DormitoryRoom ReserveRoom(Student owner)
+        {
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
+            if (OccupiedBedsCount == TotalCapacity)
+            {
+                throw new DormitoryFullException($"[{House}-{Title}] dormitory is full.");
+            }
+
+            int floorNumber = (OccupiedBedsCount / FloorCapacity) + 1;
+            int studentsInFloor = OccupiedBedsCount % FloorCapacity;
+            int roomNumber = (studentsInFloor / BedsPerRoom) + 1;
+            int bedNumber = (studentsInFloor % BedsPerRoom) + 1;
+
+            OccupiedBedsCount += 1;
+
+            DormitoryRoom room = new(dormitory: this, owner, floorNumber, roomNumber, bedNumber);
+
+            return room;
         }
     }
 }

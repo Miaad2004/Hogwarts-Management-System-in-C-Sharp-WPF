@@ -2,7 +2,7 @@
 
 namespace Hogwarts.Core.Models.DormitoryManagement.Exceptions
 {
-    public class DormitoryFullException : Exception
+    public class DormitoryFullException : DormitoryException
     {
         public DormitoryFullException()
         {

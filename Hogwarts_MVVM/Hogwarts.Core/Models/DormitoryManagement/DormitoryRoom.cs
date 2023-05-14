@@ -4,25 +4,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
-    public class Room : Entity
+    public class DormitoryRoom : Entity
     {
-        [ForeignKey(nameof(House))]
         public HouseType House { get; private set; }
+        public Dormitory Dormitory { get; private set; }
+        public Guid DormitoryId { get; private set; } 
         public Guid OwnerId { get; private set; }
         public int FloorNumber { get; private set; }
         public int RoomNumber { get; private set; }
         public int BedNumber { get; private set; }
 
-        public Room()
+        public DormitoryRoom()
             : base()
         {
 
         }
-        public Room(User owner, HouseType house, int floorNumber, int roomNumber, int bedNumber)
+        public DormitoryRoom(Dormitory dormitory, Student owner, int floorNumber, int roomNumber, int bedNumber)
             : base()
         {
+            House = dormitory.House;
+            Dormitory = dormitory;
+            DormitoryId = dormitory.Id;
             OwnerId = owner.Id;
-            House = house;
             FloorNumber = floorNumber;
             RoomNumber = roomNumber;
             BedNumber = bedNumber;
@@ -31,10 +34,6 @@ namespace Hogwarts.Core.Models.DormitoryManagement
         public override string ToString()
         {
             return $"{House}-Floor{FloorNumber}-Room{RoomNumber}-Bed{BedNumber}";
-        }
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(House, OwnerId, FloorNumber, RoomNumber, BedNumber);
         }
     }
 }

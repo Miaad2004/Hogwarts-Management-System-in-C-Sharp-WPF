@@ -1,5 +1,6 @@
 ﻿using Hogwarts.Core.Data;
 using Hogwarts.Core.Models.Authentication.Services;
+using Hogwarts.Core.Models.DormitoryManagement.Services;
 using Hogwarts.Core.Models.FacultyManagement.Services;
 using Hogwarts.Core.Models.Forest.Services;
 using Hogwarts.Core.Models.TrainManagement.Services;
@@ -15,6 +16,7 @@ namespace Hogwarts.Core.SharedServices
         public static readonly IAuthenticationService authenticationService;
         public static readonly IFacultyService facultyService;
         public static readonly IForestService forestService;
+        public static readonly IDormitoryService dormitoryService;
         static StaticServiceProvidor()
         {
             DbContext = new HogwartsDbContext();
@@ -24,6 +26,7 @@ namespace Hogwarts.Core.SharedServices
             authenticationService = new AuthenticationService(DbContext, passwordService, letterService);
             facultyService = new FacultyService(DbContext);
             forestService = new ForestService(DbContext);
+            dormitoryService = new DormitoryService(DbContext); 
         }
     }
 

@@ -13,34 +13,63 @@ namespace Hogwarts.Core.Models.DormitoryManagement.Services
             _context = context;
         }
 
-        public Room ReserveRoom(Dormitory dorm, User owner)
+        public Dormitory AddDormitory(string title, HouseType house, int floorsCount, int roomsPerFloor, int bedsPerRoom)
         {
-            if (dorm.NOccupiedBeds == dorm.TotalCapacity)
+            Dormitory dorm = new(title, house, floorsCount, roomsPerFloor, bedsPerRoom);
+            _context.Dormitories.Add(dorm);
+            _context.SaveChanges();
+
+            return dorm;
+        }
+
+        public DormitoryRoom GetRoom(Dormitory dormitory, Student owner)
+        {
+            if (owner == null)
             {
-                throw new DormitoryFullException($"[{dorm.House}] dormitory is full.");
+                throw new ArgumentNullException(nameof(owner));
             }
 
-            int floorNumber = (dorm.NOccupiedBeds / dorm.FloorCapacity) + 1;
-            int nStudentsInFloor = dorm.NOccupiedBeds % dorm.FloorCapacity;
-            int roomNumber = (nStudentsInFloor / dorm.NBedsPerRoom) + 1;
-            int bedNumber = (nStudentsInFloor % dorm.NBedsPerRoom) + 1;
-
-            dorm.NOccupiedBeds += 1;
-
-            Room room = new(owner, dorm.House, floorNumber, roomNumber, bedNumber);
-            dorm.Rooms.Add(room);
-            _ = _context.SaveChanges();
+            var room = dormitory.ReserveRoom(owner);
+            _context.Rooms.Add(room);
+            _context.SaveChanges();
 
             return room;
         }
 
-        public Dormitory CreateDormitory(HouseType house, int nFloors, int nRoomsPerFloor, int nBedsPerRoom)
+        public DormitoryRoom GetRoom(Guid dormitoryId, Student owner)
         {
-            Dormitory dorm = new(house, nFloors, nRoomsPerFloor, nBedsPerRoom);
-            _ = _context.Dormitories.Add(dorm);
-            _ = _context.SaveChanges();
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
 
-            return dorm;
+            var dorm = _context.Dormitories.First(d => d.Id == dormitoryId);
+            var room = dorm.ReserveRoom(owner);
+
+            _context.Rooms.Add(room);
+            _context.SaveChanges();
+
+            return room;
+        }
+
+        public DormitoryRoom GetRoomForNewStudent(Student owner)
+        {
+            if (owner == null)
+            {
+                throw new ArgumentNullException(nameof(owner));
+            }
+
+            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderByDescending(d => d.RemainingCapacity).FirstOrDefault();
+            if (dorm is null)
+            {
+                throw new NoDormitoryFoundException($"No dormitories were found for hous {owner.HouseType}");
+            }
+
+            var room = dorm.ReserveRoom(owner);
+            _context.Rooms.Add(room);
+            _context.SaveChanges();
+
+            return room;
         }
     }
 }

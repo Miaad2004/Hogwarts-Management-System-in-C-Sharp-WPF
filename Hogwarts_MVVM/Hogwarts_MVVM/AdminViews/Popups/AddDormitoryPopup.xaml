@@ -73,7 +73,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
@@ -107,85 +107,56 @@
                                      Orientation="Vertical"
                                      HorizontalAlignment="Center">
 
-                            <!-- Train Title / Platform-->
                             <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
+                                
                                 <!-- Title -->
                                 <TextBlock Text="Title:"
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            Margin="0, 25, 0, 0" />
 
                                 <TextBox x:Name="txtTitle"
-                                         Width="75"
                                          Style="{StaticResource LoginTextBoxTheme}"
                                          Margin="22,5,0,0"
                                          Background="Transparent">
                                 </TextBox>
 
-                                <!-- Platform -->
-                                <TextBlock Text="Platform:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="20, 25, 26, 0" />
-
-                                <TextBox x:Name="txtPlatform"
-                                         Width ="75"
-                                         Style="{StaticResource LoginTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
-
                             </StackPanel>
 
-                            <!-- Origin/Destination -->
+
                             <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
-                                <!-- Origin -->
-                                <TextBlock Text="Origin:"
+
+                                <!-- House -->
+                                <TextBlock Text="House:"
                                            Style="{StaticResource SignupInputLabelTheme}"
                                            Margin="0, 25, 0, 0" />
 
-                                <TextBox x:Name="txtOrigin"
-                                         Width="75"
-                                         Style="{StaticResource LoginTextBoxTheme}"
-                                         Margin="10,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
+                                <ComboBox x:Name="houseCombo"
+                                          Width="100" Height="25"
+                                          Margin="10, 25, 0, 0"
+                                          SelectedIndex="0"
+                                          HorizontalContentAlignment="Center">
 
-                                <!-- Destination -->
-                                <TextBlock Text="Destination:"
-                                           Style="{StaticResource SignupInputLabelTheme}"
-                                           Margin="20, 25, 10, 0" />
+                                    <ComboBoxItem>Ravenclaw</ComboBoxItem>
+                                    <ComboBoxItem>Slytherin</ComboBoxItem>
+                                    <ComboBoxItem>Hufflepuff</ComboBoxItem>
+                                    <ComboBoxItem>Gryffindor</ComboBoxItem>
 
-                                <TextBox x:Name="txtDestination"
-                                         Width ="75"
-                                         Style="{StaticResource LoginTextBoxTheme}"
-                                         Margin="0,5,0,0"
-                                         Background="Transparent">
-                                </TextBox>
-
-                            </StackPanel>
-
-                            <!-- Depaurture Date -->
-                            <TextBlock Text="Depaurture Date:"
-                                       Style="{StaticResource SignupInputLabelTheme}"
-                                       Margin="0, 30, 0, 0" />
-
-                            <DatePicker Name="depaurtureDatePicker"
-                                        SelectedDate="{x:Static sys:DateTime.Now}"
-                                        DisplayDateStart="{x:Static sys:DateTime.Now}"
-                                        Style="{StaticResource SignupDatePickerTheme}"
-                                        Margin="0,5,0,0"/>
-
-                            <!-- Depaurture Time -->
-                            <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
-                                <TextBlock Text="Depaurture Time:"
+                                </ComboBox>
+                                
+                                <!-- Floors Count -->
+                                <TextBlock Text="Floors Count:"
                                            Style="{StaticResource LoginInputLabelTheme}"
-                                           Margin="0, 0, 20, 0"/>
+                                           Margin="50, 25, 0, 0" />
 
-                                <ComboBox x:Name="hourComboBox"
+                                <ComboBox x:Name="floorsCountCombo"
+                                          Width="40" Height="25"
+                                          Margin="27, 25, 0, 0"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                                           ScrollViewer.CanContentScroll="True"
                                           MaxDropDownHeight="150"
-                                          Width="50" SelectedIndex="10" Margin="0, 0, 10, 0"
+                                          SelectedIndex="3"
                                           HorizontalContentAlignment="Center">
+                                    
                                     <ComboBoxItem>1</ComboBoxItem>
                                     <ComboBoxItem>2</ComboBoxItem>
                                     <ComboBoxItem>3</ComboBoxItem>
@@ -196,31 +167,27 @@
                                     <ComboBoxItem>8</ComboBoxItem>
                                     <ComboBoxItem>9</ComboBoxItem>
                                     <ComboBoxItem>10</ComboBoxItem>
-                                    <ComboBoxItem>11</ComboBoxItem>
-                                    <ComboBoxItem>12</ComboBoxItem>
+                                  
                                 </ComboBox>
 
-                                <ComboBox x:Name="amPmComboBox"
-                                          Width="50" SelectedIndex="0"
-                                          HorizontalContentAlignment="Center">
-                                    <ComboBoxItem>AM</ComboBoxItem>
-                                    <ComboBoxItem>PM</ComboBoxItem>
-                                </ComboBox>
                             </StackPanel>
 
-                            <!-- Compartment Count -->
                             <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
 
-                                <TextBlock Text="Compartment Count:"
+                                <!-- Rooms Per Floor -->
+                                <TextBlock Text="Rooms Per Floor:"
                                            Style="{StaticResource LoginInputLabelTheme}"
-                                           Margin="0, 0, 58, 0"/>
+                                           Margin="0, 25, 0, 0"/>
 
-                                <ComboBox x:Name="compartmentCountCombo"
+                                <ComboBox x:Name="roomsPerFloorCombo"
+                                          Width="40" Height="25"
+                                          Margin="10, 25, 0, 0"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                                           ScrollViewer.CanContentScroll="True"
                                           MaxDropDownHeight="150"
-                                          Width="50" SelectedIndex="9"
+                                          SelectedIndex="6"
                                           HorizontalContentAlignment="Center">
+
                                     <ComboBoxItem>1</ComboBoxItem>
                                     <ComboBoxItem>2</ComboBoxItem>
                                     <ComboBoxItem>3</ComboBoxItem>
@@ -231,38 +198,23 @@
                                     <ComboBoxItem>8</ComboBoxItem>
                                     <ComboBoxItem>9</ComboBoxItem>
                                     <ComboBoxItem>10</ComboBoxItem>
-                                    <ComboBoxItem>11</ComboBoxItem>
-                                    <ComboBoxItem>12</ComboBoxItem>
-                                    <ComboBoxItem>13</ComboBoxItem>
-                                    <ComboBoxItem>14</ComboBoxItem>
-                                    <ComboBoxItem>15</ComboBoxItem>
-                                    <ComboBoxItem>16</ComboBoxItem>
-                                    <ComboBoxItem>17</ComboBoxItem>
-                                    <ComboBoxItem>18</ComboBoxItem>
-                                    <ComboBoxItem>19</ComboBoxItem>
-                                    <ComboBoxItem>20</ComboBoxItem>
-                                    <ComboBoxItem>21</ComboBoxItem>
-                                    <ComboBoxItem>22</ComboBoxItem>
-                                    <ComboBoxItem>23</ComboBoxItem>
-                                    <ComboBoxItem>24</ComboBoxItem>
-                                    <ComboBoxItem>25</ComboBoxItem>
+
                                 </ComboBox>
-
-                            </StackPanel>
-
-                            <!-- Seats Per Compartmen -->
-                            <StackPanel Orientation="Horizontal" Margin="0, 25, 0, 0">
-
-                                <TextBlock Text="Seats Per Compartment: "
+                                
+                                <!-- Beds Per Room -->
+                                <TextBlock Text="Beds Per Room:"
                                            Style="{StaticResource LoginInputLabelTheme}"
-                                           Margin="0, 0, 35, 0"/>
+                                           Margin="49, 25, 0, 0"/>
 
-                                <ComboBox x:Name="seatsPerCompartmentCombo"
+                                <ComboBox x:Name="bedsPerRoomCombo"
+                                          Width="40" Height="25"
+                                          Margin="10, 25, 0, 0"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                                           ScrollViewer.CanContentScroll="True"
                                           MaxDropDownHeight="150"
-                                          Width="50" SelectedIndex="5" Margin="0, 0, 10, 0"
+                                          SelectedIndex="3"
                                           HorizontalContentAlignment="Center">
+
                                     <ComboBoxItem>1</ComboBoxItem>
                                     <ComboBoxItem>2</ComboBoxItem>
                                     <ComboBoxItem>3</ComboBoxItem>
@@ -270,15 +222,16 @@
                                     <ComboBoxItem>5</ComboBoxItem>
                                     <ComboBoxItem>6</ComboBoxItem>
                                     <ComboBoxItem>7</ComboBoxItem>
-                                    <ComboBoxItem>8</ComboBoxItem>
-                                </ComboBox>
 
+                                </ComboBox>
                             </StackPanel>
 
-                            <!-- Add Train Button -->
+
+
+                            <!-- Add Dorm Button -->
                             <Button x:Name="AddDormitory" Foreground="White" BorderThickness="0"
                                     Content="Add Dormitory" FontSize="12" FontFamily="Montserrat"
-                                    Cursor="Hand" Grid.Column="2" Margin="0,25,0,0"
+                                    Cursor="Hand" Grid.Column="2" Margin="0,150,0,0"
                                     Click="AddDormitory_Click" >
 
                                 <Button.Style>

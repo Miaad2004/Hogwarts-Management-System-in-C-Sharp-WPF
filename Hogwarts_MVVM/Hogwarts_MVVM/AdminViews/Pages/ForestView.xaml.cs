@@ -15,7 +15,7 @@ namespace Hogwarts.Views.AdminViews.Pages
     {
         private ObservableCollection<Plant> Plants
         {
-            get { return StaticServiceProvidor.facultyService.GetList<Plant>(p => p.HarvestTime); }
+            get { return StaticServiceProvidor.facultyService.GetList<Plant>(orderBy: p => p.HarvestTime); }
         }
         public ForestView()
         {

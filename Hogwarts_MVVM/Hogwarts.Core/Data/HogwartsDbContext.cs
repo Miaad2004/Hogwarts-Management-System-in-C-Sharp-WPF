@@ -18,6 +18,8 @@ namespace Hogwarts.Core.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Dormitory> Dormitories { get; set; }
+
+        public DbSet<DormitoryRoom> Rooms { get; set; }
         public DbSet<ActivationCode> ActivationCodes { get; set; }
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Train> Trains { get; set; }
@@ -44,6 +46,11 @@ namespace Hogwarts.Core.Data
                 .HasMany(t => t.Tickets)
                 .WithOne(tt => tt.Train)
                 .HasForeignKey(tt => tt.TrainId);
+
+            modelBuilder.Entity<Dormitory>()
+                .HasMany(d => d.Rooms)
+                .WithOne(dr => dr.Dormitory)
+                .HasForeignKey(dr => dr.DormitoryId);
         }
     }
 }
