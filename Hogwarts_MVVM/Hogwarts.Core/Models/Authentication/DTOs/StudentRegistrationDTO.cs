@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.Authentication.DTOs
 {

@@ -45,7 +45,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
             get => _roomsPerFloor;
             private set
             {
-                if (_roomsPerFloor <= 0)
+                if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Rooms per floor must be positive");
                 }
@@ -57,7 +57,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
             get => _bedsPerRoom;
             private set
             {
-                if (_bedsPerRoom <= 0)
+                if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException("Rooms per floor must be positive");
                 }
@@ -72,7 +72,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
         public int TotalCapacity => FloorCount * RoomsPerFloor * BedsPerRoom;
 
-        public int RoomsCount => RoomsPerFloor * FloorCount;
+        public int RoomCount => RoomsPerFloor * FloorCount;
 
         public int RemainingCapacity => TotalCapacity - OccupiedBedsCount;
 
@@ -81,14 +81,14 @@ namespace Hogwarts.Core.Models.DormitoryManagement
             Rooms = new List<DormitoryRoom>();
         }
 
-        public Dormitory(string title, HouseType house, int FloorsCount, int RoomsPerFloor, int BedsPerRoom)
+        public Dormitory(string title, HouseType house, int floorsCount, int roomsPerFloor, int bedsPerRoom)
             : base()
         {
             Title = title;
             House = house;
-            FloorCount = FloorsCount;
-            this.RoomsPerFloor = RoomsPerFloor;
-            this.BedsPerRoom = BedsPerRoom;
+            FloorCount = floorsCount;
+            RoomsPerFloor = roomsPerFloor;
+            BedsPerRoom = bedsPerRoom;
             OccupiedBedsCount = 0;
             Rooms = new List<DormitoryRoom>();
         }

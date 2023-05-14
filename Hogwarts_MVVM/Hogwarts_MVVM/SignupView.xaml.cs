@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.Authentication.Services;
+using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.SharedServices;
 using Microsoft.Win32;
@@ -62,18 +63,27 @@ namespace Hogwarts.Views
             try
             {
                 _authenticationService.SignUpStudent(DTO);
-                _ = MessageBox.Show("Welcome to Hogwarts, Please login.", "Signup Successful", MessageBoxButton.OK, MessageBoxImage.Information);
-                _ = NavigationService.Navigate(new Uri("/LoginView.xaml", UriKind.Relative));
+                MessageBox.Show("Welcome to Hogwarts, Please login.", "Signup Successful", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService.Navigate(new Uri("/LoginView.xaml", UriKind.Relative));
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                _ = MessageBox.Show(ex.Message, "Signup error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (ex is ArgumentException ||
+                    ex is DormitoryException)
+                {
+                    MessageBox.Show(ex.Message, "Signup error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                else
+                {
+                    throw ex;
+                }
             }
         }
 
         private void LoginInstead_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            _ = NavigationService.Navigate(new Uri("/LoginView.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/LoginView.xaml", UriKind.Relative));
         }
     }
 }

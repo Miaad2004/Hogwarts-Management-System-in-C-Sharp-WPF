@@ -23,10 +23,10 @@ namespace Hogwarts.Core.SharedServices
             passwordService = new PasswordService();
             trainService = new TrainService(DbContext);
             letterService = new LetterService(trainService);
-            authenticationService = new AuthenticationService(DbContext, passwordService, letterService);
+            dormitoryService = new DormitoryService(DbContext);
+            authenticationService = new AuthenticationService(DbContext, passwordService, letterService, dormitoryService);
             facultyService = new FacultyService(DbContext);
             forestService = new ForestService(DbContext);
-            dormitoryService = new DormitoryService(DbContext); 
         }
     }
 

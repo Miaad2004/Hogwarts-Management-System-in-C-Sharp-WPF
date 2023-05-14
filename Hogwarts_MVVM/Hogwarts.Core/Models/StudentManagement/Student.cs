@@ -1,5 +1,6 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.Authentication.DTOs;
+using Hogwarts.Core.Models.DormitoryManagement;
 
 namespace Hogwarts.Core.Models.StudentManagement
 {
@@ -9,7 +10,7 @@ namespace Hogwarts.Core.Models.StudentManagement
         public HouseType HouseType { get; private set; }
         public bool HasLuggage { get; private set; }
         public PetType Pet { get; private set; }
-
+        public DormitoryRoom DormitoryRoom { get; set; }    
         public Year Year { get; set; }
 
         public Student() { }

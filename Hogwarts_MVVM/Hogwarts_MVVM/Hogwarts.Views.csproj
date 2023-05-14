@@ -13,6 +13,8 @@
     <None Remove="StaticResources\LoginWindow\key-icon.png" />
     <None Remove="StaticResources\LoginWindow\logo.png" />
     <None Remove="StaticResources\LoginWindow\user-icon.png" />
+    <None Remove="StaticResources\MainPanel\Admin\AddDormitoryPopup\bg.jpg" />
+    <None Remove="StaticResources\MainPanel\Admin\AddDormitoryPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\AddPlantPopup\bg.jpg" />
     <None Remove="StaticResources\MainPanel\Admin\AddPlantPopup\logo.png" />
     <None Remove="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />
@@ -44,6 +46,8 @@
     <Resource Include="StaticResources\LoginWindow\key-icon.png" />
     <Resource Include="StaticResources\LoginWindow\logo.png" />
     <Resource Include="StaticResources\LoginWindow\user-icon.png" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddDormitoryPopup\bg.jpg" />
+    <Resource Include="StaticResources\MainPanel\Admin\AddDormitoryPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\AddPlantPopup\bg.jpg" />
     <Resource Include="StaticResources\MainPanel\Admin\AddPlantPopup\logo.png" />
     <Resource Include="StaticResources\MainPanel\Admin\AddProfessorPopup\bg.jpg" />

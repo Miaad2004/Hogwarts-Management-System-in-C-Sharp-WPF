@@ -59,7 +59,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement.Services
                 throw new ArgumentNullException(nameof(owner));
             }
 
-            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderByDescending(d => d.RemainingCapacity).FirstOrDefault();
+            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderBy(d => d.OccupiedBedsCount).FirstOrDefault();
             if (dorm is null)
             {
                 throw new NoDormitoryFoundException($"No dormitories were found for hous {owner.HouseType}");

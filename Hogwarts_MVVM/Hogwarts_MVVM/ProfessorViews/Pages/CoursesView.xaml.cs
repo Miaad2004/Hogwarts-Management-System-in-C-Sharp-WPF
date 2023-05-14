@@ -24,5 +24,20 @@ namespace Hogwarts.Views.ProfessorViews.Pages
         {
             InitializeComponent();
         }
+
+        private void AddCourse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitScores_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddAssignment_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

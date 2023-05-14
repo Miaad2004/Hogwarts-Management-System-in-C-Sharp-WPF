@@ -20,7 +20,7 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class CourseCatalogView : Page
     {
-        public CoursesView()
+        public CourseCatalogView()
         {
             InitializeComponent();
         }

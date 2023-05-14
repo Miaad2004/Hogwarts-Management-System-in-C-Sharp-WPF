@@ -47,7 +47,7 @@
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center"
                                        Margin="0 1 8 0" Width="13" Height="11"/>
-                <TextBlock Text="Add a New Dormitory"/>
+                <TextBlock Text="Add a Dormitory"/>
             </StackPanel>
 
         </Button>
@@ -88,11 +88,11 @@
 
                 <!-- Room Count -->
                 <DataGridTextColumn Header="Room Count"
-                                    Binding="{Binding RoomCount}" IsReadO"True" Width="*"/>
+                                    Binding="{Binding RoomCount}" IsReadOnly="True" Width="*"/>
 
                 <!-- Remainig Capacity -->
                 <DataGridTextColumn Header="Remainig Capacity"
-                                    Binding="{Binding RemainigCapacity}" IsReadOnly="True" Width="*"/>
+                                    Binding="{Binding RemainingCapacity}" IsReadOnly="True" Width="*"/>
                 
                 <!-- Total Capacity -->
                 <DataGridTextColumn Header="Total Capacity"

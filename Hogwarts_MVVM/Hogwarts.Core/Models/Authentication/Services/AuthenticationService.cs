@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.Data;
 using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.Authentication.Exceptions;
+using Hogwarts.Core.Models.DormitoryManagement.Services;
 using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.SharedServices;
@@ -14,12 +15,14 @@ namespace Hogwarts.Core.Models.Authentication.Services
         private readonly HogwartsDbContext _dbContext;
         private readonly IPasswordService _passwordService;
         private readonly ILetterService _letterService;
+        private readonly IDormitoryService _dormitoryService;
 
-        public AuthenticationService(HogwartsDbContext dbContext, IPasswordService passwordService, ILetterService letterService)
+        public AuthenticationService(HogwartsDbContext dbContext, IPasswordService passwordService, ILetterService letterService, IDormitoryService dormitoryService)
         {
             _dbContext = dbContext;
             _passwordService = passwordService;
             _letterService = letterService;
+            _dormitoryService = dormitoryService;
         }
 
         private bool IsUsernameTaken(string username)
@@ -61,9 +64,10 @@ namespace Hogwarts.Core.Models.Authentication.Services
             string passwordHash = _passwordService.GetHash(DTO.Password);
 
             Student student = new(DTO, passwordHash);
+            student.DormitoryRoom = _dormitoryService.GetRoomForNewStudent(student);
 
-            _ = _dbContext.Students.Add(student);
-            _ = _dbContext.SaveChanges();
+            _dbContext.Students.Add(student);
+            _dbContext.SaveChanges();
         }
 
         public void SignUpProfessor(ProfessorRegistrationDTO DTO)
@@ -86,8 +90,8 @@ namespace Hogwarts.Core.Models.Authentication.Services
             string passwordHash = _passwordService.GetHash(DTO.Password);
 
             Professor professor = new(DTO, passwordHash);
-            _ = _dbContext.Professors.Add(professor);
-            _ = _dbContext.SaveChanges();
+            _dbContext.Professors.Add(professor);
+            _dbContext.SaveChanges();
         }
 
         public void SignUpAdmin(AdminRegistrationDTO DTO)
@@ -110,8 +114,8 @@ namespace Hogwarts.Core.Models.Authentication.Services
             string passwordHash = _passwordService.GetHash(DTO.Password);
 
             Admin admin = new(DTO, passwordHash);
-            _ = _dbContext.Admins.Add(admin);
-            _ = _dbContext.SaveChanges();
+            _dbContext.Admins.Add(admin);
+            _dbContext.SaveChanges();
         }
 
         public void Login(string username, string password)
@@ -179,8 +183,8 @@ namespace Hogwarts.Core.Models.Authentication.Services
 
 
             ActivationCode activationCode = new(username);
-            _ = _dbContext.ActivationCodes.Add(activationCode);
-            _ = _dbContext.SaveChanges();
+            _dbContext.ActivationCodes.Add(activationCode);
+            _dbContext.SaveChanges();
 
             _letterService.SendInvitationMail(sender: SessionManager.CurrentSession.User, firstName, lastName,
                                               emailAddress, activationCode);

@@ -29,5 +29,10 @@ namespace Hogwarts.Views.ProfessorViews.Pages
         {
 
         }
+
+        private void SubmitScores_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
