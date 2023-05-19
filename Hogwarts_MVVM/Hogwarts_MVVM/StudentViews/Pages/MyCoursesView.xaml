@@ -6,7 +6,7 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:Hogwarts.Views.StudentViews.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="630" d:DesignWidth="850"
+      d:DesignHeight="630" d:DesignWidth="900"
       Title="My Courses">
 
     <Grid>
@@ -44,7 +44,7 @@
                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!--Data Grid-->
-        <DataGrid x:Name="teachersDataGrid"
+        <DataGrid x:Name="myCoursesDataGrid"
                   RowStyle="{DynamicResource DataGridRowStyle1}"
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                   CellStyle="{DynamicResource DataGridCellStyle1}"
@@ -60,32 +60,56 @@
                                     Binding="{Binding SequentialIndex}"/>
 
                 <!-- Title -->
-                <DataGridTextColumn Header="Name"
-                                    Binding="{Binding Title}" IsReadOnly="True" Width="*"/>
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Title}" IsReadOnly="True" Width="100"/>
 
                 <!-- Professor -->
                 <DataGridTextColumn Header="Professor"
-                                    Binding="{Binding ProfessorName}" IsReadOnly="True" Width="*"/>
+                                    Binding="{Binding Professor.FullName}" IsReadOnly="True" Width="150"/>
 
                 <!-- Classroom -->
                 <DataGridTextColumn Header="Classroom"
-                                    Binding="{Binding Classroom}" IsReadOnly="True" Width="*"/>
+                                    Binding="{Binding Classroom}" IsReadOnly="True" Width="105"/>
+
+                <!-- Class Start Time -->
+                <DataGridTextColumn Header="Start Time"
+                                    Binding="{Binding ClassStartTime}" IsReadOnly="True" Width="100"/>
+
+                <!-- Class End Time -->
+                <DataGridTextColumn Header="End Time"
+                                    Binding="{Binding ClassEndTime}" IsReadOnly="True" Width="95"/>
+
+                <!-- End Date -->
+                <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}"
+                                    IsReadOnly="True" Width="*"/>
 
                 <!-- Course Schedule -->
-                <DataGridTextColumn Header="Course Schedule" Binding="{Binding CourseSchedule}"
-                                    IsReadOnly="True" Width="170"/>
+                <DataGridTextColumn Header="Course Schedule" Binding="{Binding Schedule}"
+                                    IsReadOnly="True" Width="155"/>
 
                 <!-- Assignments Count -->
-                <DataGridTextColumn Header="Assignments Count" Binding="{Binding AssignmentsCount}"
-                                    IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn Header="Active Assignments" Binding="{Binding ActiveAssignmentsCount}"
+                                    IsReadOnly="True" Width="142"/>
 
-                <!-- GPA -->
-                <DataGridTextColumn Header="GPA" Binding="{Binding AverageGPA}"
-                                    IsReadOnly="True" Width="60"/>
+                <!-- Operations -->
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="107">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
 
-                <!-- Status -->
-                <DataGridTextColumn Header="Status" Binding="{Binding AverageGPA}"
-                                    IsReadOnly="True" Width="80"/>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- View Score -->
+                                <Button x:Name="ViewScore"
+                                        ToolTip="View Score"
+                                        Click="ViewScore_Click"
+                                        Margin="5 0 0 0"
+                                        Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="CardSearch" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
 
