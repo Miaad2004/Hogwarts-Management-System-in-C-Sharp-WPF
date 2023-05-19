@@ -1,5 +1,12 @@
-﻿using System;
+﻿using Hogwarts.Core.Models.CourseManagement;
+using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.FacultyManagement;
+using Hogwarts.Core.SharedServices;
+using Hogwarts.Views.AdminViews.Popups;
+using Hogwarts.Views.ProfessorViews.Popups;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +27,43 @@ namespace Hogwarts.Views.ProfessorViews.Pages
     /// </summary>
     public partial class CoursesView : Page
     {
+        private static ObservableCollection<Course> Courses
+        {
+            get
+            {
+                var courses = StaticServiceProvidor.dbContext.GetList<Course>(
+                    orderBy: c => c.Title,
+                    includeProperties: c => c.Professor
+                ).ToList().Where(c => !c.HasFinished);
+
+                return new ObservableCollection<Course>(courses);
+            }
+        }
+
         public CoursesView()
         {
             InitializeComponent();
+            Loaded += OnDataGridChanged;
+        }
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            coursessDataGrid.ItemsSource = Courses;
+            coursessDataGrid.Items.Refresh();
         }
 
         private void AddCourse_Click(object sender, RoutedEventArgs e)
         {
+            // Deactivate this window
+            IsEnabled = false;
 
+            AddCoursePopup popup = new();
+            _ = popup.ShowDialog();
+
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
+
+            // Reactivate this window
+            IsEnabled = true;
         }
 
         private void SubmitScores_Click(object sender, RoutedEventArgs e)
