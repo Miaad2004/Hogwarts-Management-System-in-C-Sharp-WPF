@@ -22,7 +22,7 @@
 
         <!-- Background Image -->
         <Border.Background>
-            <ImageBrush ImageSource="/StaticResources/MainPanel/Admin/HomeView/bg.jpg"/>
+            <ImageBrush ImageSource="/StaticResources/MainPanel/Student/HomeView/bg.jpg"/>
         </Border.Background>
 
         <Border Opacity="0.82"
@@ -50,41 +50,41 @@
 
                 <!-- Top Section -->
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <Border CornerRadius="30 30 30 30">
-                        <Canvas>
-                            <Ellipse Width="500" Height="500" VerticalAlignment="Bottom"
+                    <Viewbox Width="1500" Height="1000">
+                        <Border Width="1200" Height="200" CornerRadius="30,30,30,30"
+                                MaxWidth="1300" MaxHeight="1000">
+
+                            <Canvas>
+                                <Ellipse Width="500" Height="500" VerticalAlignment="Bottom"
                                      Fill="#FF4039B0" Opacity="0.6"
                                      Canvas.Left="-181" Canvas.Top="-300"/>
 
-                            <Ellipse Width="400" Height="400" VerticalAlignment="Bottom"
+                                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom"
                                      Fill="#FF5856DD" Opacity="0.5"
                                      Canvas.Left="31" Canvas.Top="-236"/>
 
-                            <Ellipse Width="400" Height="400" VerticalAlignment="Bottom"
+                                <Ellipse Width="400" Height="400" VerticalAlignment="Bottom"
                                      Fill="#FF2A5A80" Opacity="0.7"
                                      Canvas.Left="-146" Canvas.Top="-250"/>
 
-                            <Ellipse Width="400" Height="400" Fill="#FF362A80"
+                                <Ellipse Width="400" Height="400" Fill="#FF362A80"
                                      Opacity="0.7" Canvas.Left="-55" Canvas.Top="56"
                                      HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                            <Ellipse Width="400" Height="400" Fill="#FF4E419C"
+                                <Ellipse Width="400" Height="400" Fill="#FF4E419C"
                                      Opacity="0.7" Canvas.Left="105" Canvas.Top="131"
                                      HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        </Canvas>
+                            </Canvas>
 
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Offset="0" Color="#162447"/>
-                                <GradientStop Offset="1" Color="#1f4068"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Offset="0" Color="#162447"/>
+                                    <GradientStop Offset="1" Color="#1f4068"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
 
-                        <Border.Clip>
-                            <RectangleGeometry Rect="0,0,850,200" RadiusX="30" RadiusY="30"/>
-                        </Border.Clip>
-
-                    </Border>
+                        </Border>
+                    </Viewbox>
 
                     <TextBlock Text="Welcome Back!" FontSize="36" FontWeight="SemiBold"
                                VerticalAlignment="Top" Margin="25,26,472,0" Foreground="#FFE4E4FA">
@@ -97,7 +97,7 @@
 
                     <TextBlock Text="Full Name" x:Name="txtFullName" Foreground="#FF43F6AE"
                                FontSize="48" FontWeight="SemiBold" VerticalAlignment="Top"
-                               Margin="320,80,-1,0" Height="136">
+                               Margin="350,80,-1,0" Height="136">
 
                         <TextBlock.Effect>
                             <DropShadowEffect ShadowDepth="2"/>
@@ -108,6 +108,7 @@
 
                 <!-- Bottom Section -->
                 <Grid Grid.Row="2" Grid.Column="1"
+                      Height="350"
                       Margin="0, 25, 0, 0">
                     <Border CornerRadius="30 30 30 30">
 
@@ -118,10 +119,6 @@
                                 <GradientStop Offset="1" Color="#1f4068"/>
                             </LinearGradientBrush>
                         </Border.Background>
-
-                        <Border.Clip>
-                            <RectangleGeometry Rect="0,0,860,380" RadiusX="30" RadiusY="30"/>
-                        </Border.Clip>
 
                     </Border>
 
@@ -203,14 +200,14 @@
 
                         <!-- Right Section -->
 
-                        <!-- Enrolled Courses Count -->
+                        <!-- Courses Count -->
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="2" Grid.Row="1">
 
                             <TextBlock Style="{StaticResource LoginInputLabelTheme}"
-                                       Text="Enrolled Courses Count:" FontSize="18" />
+                                       Text="Active Course Count:" FontSize="18" />
 
-                            <TextBlock x:Name="txtEnrolledCoursesCount"
+                            <TextBlock x:Name="txtActiveCourses"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
                                        Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
@@ -221,35 +218,35 @@
                                     Grid.Column="2" Grid.Row="2">
 
                             <TextBlock Style="{StaticResource LoginInputLabelTheme}"
-                                       Text="Assignments Count:" FontSize="18" />
+                                       Text="Active Assignment Count:" FontSize="18" />
 
-                            <TextBlock x:Name="txtAssignmentsCount"
+                            <TextBlock x:Name="txtActiveAssignments"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
                                        Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
                         </StackPanel>
 
-                        <!-- Professors Count -->
+                        <!-- House -->
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="2" Grid.Row="3">
 
                             <TextBlock Style="{StaticResource LoginInputLabelTheme}"
-                                       Text="Active Professors Count:" FontSize="18" />
+                                       Text="House:" FontSize="18" />
 
-                            <TextBlock x:Name="txtProfessorsCount"
+                            <TextBlock x:Name="txtHouse"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
-                                       Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
+                                       Text="House" FontSize="20" Foreground="#FFF69C43"/>
                         </StackPanel>
 
-                        <!-- Forest Count -->
+                        <!-- House Points -->
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="2" Grid.Row="4">
 
                             <TextBlock Style="{StaticResource LoginInputLabelTheme}"
-                                       Text="Forest Plants Count:" FontSize="18" />
+                                       Text="House Points:" FontSize="18" />
 
-                            <TextBlock x:Name="txtForestPlantsCount"
+                            <TextBlock x:Name="txtHousePoints"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
                                        Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
