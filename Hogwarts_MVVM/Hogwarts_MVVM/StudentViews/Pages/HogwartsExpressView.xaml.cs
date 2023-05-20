@@ -26,15 +26,20 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class HogwartsExpressView : Page
     {
-        private ObservableCollection<Train> Trains
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Train>(t => t.DepartureTime); }
-        }
+        private static ObservableCollection<Train> Trains =>
+            StaticServiceProvidor.dbContext.GetList<Train>(orderBy:t => t.DepartureTime);
+
         public HogwartsExpressView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
         }
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            trainsDataGrid.ItemsSource = Trains;
+            trainsDataGrid.Items.Refresh();
+        }
+
         private void ReserveSeat_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -78,12 +83,8 @@ namespace Hogwarts.Views.StudentViews.Pages
                 }
             }
 
-            OnDataGridChanged();
-        }
-        private void OnDataGridChanged()
-        {
-            trainsDataGrid.ItemsSource = Trains;
-            trainsDataGrid.Items.Refresh();
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
         }
     }
 }

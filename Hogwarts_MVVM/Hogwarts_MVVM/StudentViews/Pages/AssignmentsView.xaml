@@ -3,12 +3,128 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:local="clr-namespace:Hogwarts.Views.StudentViews.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AssignmentsView">
+      d:DesignHeight="630" d:DesignWidth="850"
+      Title="Students">
 
     <Grid>
-        
+        <!-- Load Animation -->
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--Page Title-->
+        <TextBlock Text="Students' Assignments" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+
+        <!--Seprator-->
+        <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
+
+        <!--Title-->
+        <TextBlock Text="Assignments Are Sorted Based On Their Due Date." Grid.Row="4"
+                   FontSize="18" FontWeight="SemiBold"
+                   Foreground="#121518"
+                   HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <!--Data Grid-->
+        <DataGrid x:Name="assignmentsDataGrid"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  MaxHeight="510">
+
+            <DataGrid.Columns>
+                <!-- Index -->
+                <DataGridTextColumn Header="#" IsReadOnly="True"
+                                    CanUserResize="False" Width="auto"
+                                    Binding="{Binding SequentialIndex}"/>
+
+                <!-- Title -->
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Assignment.Title}" IsReadOnly="True" Width="*"/>
+
+                <!-- Professor -->
+                <DataGridTextColumn Header="Professor"
+                                    Binding="{Binding Assignment.Professor.FullName}" IsReadOnly="True" Width="*"/>
+
+                <!-- Course -->
+                <DataGridTextColumn Header="Course"
+                                    Binding="{Binding Assignment.Course.Title}" IsReadOnly="True" Width="*"/>
+
+                <!-- Start Date -->
+                <DataGridTextColumn Header="Start Date"
+                                    Binding="{Binding Assignment.StartDate}" IsReadOnly="True" Width="*"/>
+
+                <!-- Due Date -->
+                <DataGridTextColumn Header="Due Date" Binding="{Binding Assignment.DueDate}"
+                                    IsReadOnly="True" Width="*"/>
+
+                <!-- Has answered -->
+                <DataGridTextColumn Header="Has Answered" Binding="{Binding HasBeenAnswered}"
+                                    IsReadOnly="True" Width="*"/>
+
+                <!-- Operations -->
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Submit Answer -->
+                                <Button x:Name="SubmitAnswer"
+                                        ToolTip="Submit Answer"
+                                        Click="SubmitAnswer_Click"
+                                        Margin="5 0 0 0"
+                                        Style="{StaticResource gridRemoveButton}">
+                                    <Icon:PackIconMaterial Kind="CloudUpload" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+
+                                <!-- View Score -->
+                                <Button x:Name="ViewScore"
+                                        ToolTip="View Score"
+                                        Click="ViewScore_Click"
+                                        Margin="5 0 0 0"
+                                        Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="Counter" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                
+                                <!-- View Description -->
+                                <Button x:Name="ViewDescription"
+                                        ToolTip="View Assignment's Description"
+                                        Click="ViewDescription_Click"
+                                        Margin="5 0 0 0"
+                                        Style="{StaticResource gridEditButton}">
+                                    <Icon:PackIconMaterial Kind="ImageText" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </Page>

@@ -88,7 +88,7 @@
 
                             <!-- Assignments -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/CoursesView.xaml"
+                                    Tag="/StudentViews/Pages/AssignmentsView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ClipboardText" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -98,7 +98,7 @@
 
                             <!-- Course Catalog -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/MyCourseCatalogView.xaml"
+                                    Tag="/StudentViews/Pages/CourseCatalogView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ClipboardList" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -108,7 +108,7 @@
 
                             <!-- Hogwarts Express -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/HogwartsExpressViewView.xaml"
+                                    Tag="/StudentViews/Pages/HogwartsExpressView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Train" Style="{StaticResource PanelNavButtonIcon}"/>
@@ -118,7 +118,7 @@
 
                             <!-- Forest -->
                             <Button Style="{StaticResource PanelNavButton}"
-                                    Tag="/StudentViews/Pages/ForestViewView.xaml"
+                                    Tag="/StudentViews/Pages/ForestView.xaml"
                                     Click="NavigationBar_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Forest" Style="{StaticResource PanelNavButtonIcon}"/>
