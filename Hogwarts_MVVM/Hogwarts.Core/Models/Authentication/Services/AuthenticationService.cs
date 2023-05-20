@@ -3,6 +3,8 @@ using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.Authentication.Exceptions;
 using Hogwarts.Core.Models.DormitoryManagement.Services;
 using Hogwarts.Core.Models.FacultyManagement;
+using Hogwarts.Core.Models.HouseManagement;
+using Hogwarts.Core.Models.HouseManagement.Services;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.SharedServices;
 using System.Security.Authentication;
@@ -16,13 +18,19 @@ namespace Hogwarts.Core.Models.Authentication.Services
         private readonly IPasswordService _passwordService;
         private readonly ILetterService _letterService;
         private readonly IDormitoryService _dormitoryService;
+        private readonly IHouseService _houseService;
 
-        public AuthenticationService(HogwartsDbContext dbContext, IPasswordService passwordService, ILetterService letterService, IDormitoryService dormitoryService)
+        public AuthenticationService(HogwartsDbContext dbContext,
+                                     IPasswordService passwordService,
+                                     ILetterService letterService,
+                                     IDormitoryService dormitoryService,
+                                     IHouseService houseService)
         {
             _dbContext = dbContext;
             _passwordService = passwordService;
             _letterService = letterService;
             _dormitoryService = dormitoryService;
+            _houseService = houseService;
         }
 
         private bool IsUsernameTaken(string username)
@@ -62,8 +70,9 @@ namespace Hogwarts.Core.Models.Authentication.Services
             }
 
             string passwordHash = _passwordService.GetHash(DTO.Password);
+            House house = _houseService.Sort();
 
-            Student student = new(DTO, passwordHash);
+            Student student = new(DTO, passwordHash, house);
             student.DormitoryRoom = _dormitoryService.GetRoomForNewStudent(student);
 
             _dbContext.Students.Add(student);
@@ -130,8 +139,8 @@ namespace Hogwarts.Core.Models.Authentication.Services
                 throw new InvalidOperationException("There is an active session. Please logout first.");
             }
 
-            User? student = _dbContext.Students.FirstOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
-            User? professor = _dbContext.Professors.FirstOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
+            User? student = _dbContext.Students.SingleOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
+            User? professor = _dbContext.Professors.SingleOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
             User? admin = _dbContext.Admins.FirstOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
 
             User? loggedInUser = student ?? professor ?? admin;
