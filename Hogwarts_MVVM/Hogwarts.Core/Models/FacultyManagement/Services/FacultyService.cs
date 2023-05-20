@@ -11,18 +11,6 @@ namespace Hogwarts.Core.Models.FacultyManagement.Services
             _dbContext = dbContext;
         }
 
-        public ObservableCollection<T> GetList<T>(Func<T, object> orderBy)
-            where T : class
-        {
-            var list = _dbContext.Set<T>().OrderBy(orderBy).ToList();
-            for (int i = 0; i < list.Count; i++)
-            {
-                var item = list[i];
-                var prop = item.GetType().GetProperty("SequentialIndex");
-                prop?.SetValue(item, i + 1);
-            }
 
-            return new ObservableCollection<T>(list);
-        }
     }
 }
