@@ -5,14 +5,15 @@
 	<link rel="icon" href="https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/HogwartsAPI/Templates/Hogwarts_Express_Ticket/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
 	<style>
-		body {
+		body
+		{
 			font-family: Arial, sans-serif;
-			padding: 20px;
-			background-image: url('https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/HogwartsAPI/Templates/Hogwarts_Express_Ticket/bg.jpg');
-			background-repeat: no-repeat;
+			background: linear-gradient(rgba(20, 154, 147, 0.548), rgba(0, 0, 0, 0.7)),
+			url('https://raw.githubusercontent.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/main/HogwartsAPI/Templates/Hogwarts_Express_Ticket/bg.jpg') center/cover no-repeat;
 			background-attachment: fixed;
 			background-size: cover;
 		}
+
 		.container {
 			position: absolute;
 			top: 50%;
@@ -23,6 +24,7 @@
 			padding: 30px;
 			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 			z-index:-2;
+			backdrop-filter: blur(3px);
 		}
 		.container::after {
 			content: "";
