@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical" MembersFormat="FullSignature">
+  <Class Name="Hogwarts.Core.Models.Authentication.DTOs.AdminRegistrationDTO">
+    <Position X="2.25" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\DTOs\AdminRegistrationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.DTOs.BaseRegistrationDTO">
+    <Position X="5.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AJAAAEAAACAQAAAAAQAAQAQAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Authentication\DTOs\BaseRegistrationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.DTOs.ProfessorRegistrationDTO">
+    <Position X="5" Y="12" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\DTOs\ProfessorRegistrationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.DTOs.StudentRegistrationDTO">
+    <Position X="8.25" Y="12" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Authentication\DTOs\StudentRegistrationDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.Exceptions.UserExistsException" Collapsed="true">
+    <Position X="31.75" Y="8.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\Exceptions\UserExistsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.Services.AuthenticationService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAiAAAIAAAAAAIAIAAAAEAAAABAAQAFBAAAA=</HashCode>
+      <FileName>Models\Authentication\Services\AuthenticationService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.Services.PasswordService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAgAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\Services\PasswordService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.ActivationCode" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\ActivationCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.Session" Collapsed="true">
+    <Position X="40.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAnAAAAAAAAAAAEkAAAAAAAEAAAAIAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\Session.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.SessionManager" Collapsed="true">
+    <Position X="35" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\SessionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Authentication.User" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABGAAEAAACAIAIAEAUEAQAQAAAAAAAQAAQIAAAAAAAk=</HashCode>
+      <FileName>Models\Authentication\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.DTOs.CourseDTO" Collapsed="true">
+    <Position X="36.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAEAAAIAAAAgiAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseManagement\DTOs\CourseDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Exceptions.CourseConflictException" Collapsed="true">
+    <Position X="26" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseManagement\Exceptions\CourseConflictException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Exceptions.CourseException" Collapsed="true">
+    <Position X="24.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseManagement\Exceptions\CourseException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Exceptions.GradeNotRegisteredException" Collapsed="true">
+    <Position X="23" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseManagement\Exceptions\GradeNotRegisteredException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Services.CourseService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="38.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAQAAAAAAQBAIAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\CourseManagement\Services\CourseService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Assignment" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAgIAgIGAEAIAAAACAAAAAAAAAACAABEAIAAA=</HashCode>
+      <FileName>Models\CourseManagement\Assignment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Course" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEACQIAAAEIASIAAAAyiAUAAAAAACAAAAAEgAAA=</HashCode>
+      <FileName>Models\CourseManagement\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.CourseManagement.Grade" Collapsed="true">
+    <Position X="23.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAgAAACAAA=</HashCode>
+      <FileName>Models\CourseManagement\Grade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.Exceptions.DormitoryException" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Exceptions\DormitoryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.Exceptions.DormitoryFullException" Collapsed="true">
+    <Position X="6.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Exceptions\DormitoryFullException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.Exceptions.NoDormitoryFoundException" Collapsed="true">
+    <Position X="3.25" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Exceptions\NoDormitoryFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.Services.DormitoryService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABAAAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Services\DormitoryService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.Dormitory" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wgAAAAAAMIAAAEAAAAAAAAACKAAIQAAAAgICAAAAIAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Dormitory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.DormitoryManagement.DormitoryRoom" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAgAAAEAAAAIAAAAAAAAQAAAAIBAAAgAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\DormitoryRoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.FacultyManagement.Services.FacultyService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FacultyManagement\Services\FacultyService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.FacultyManagement.Admin" Collapsed="true">
+    <Position X="19" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FacultyManagement\Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.FacultyManagement.Professor" Collapsed="true">
+    <Position X="21.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\FacultyManagement\Professor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.DTOs.PlantDTO" Collapsed="true">
+    <Position X="38.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAgAAAAAAAAAIQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Models\ForestManagement\DTOs\PlantDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.Exceptions.PlantException" Collapsed="true">
+    <Position X="17.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ForestManagement\Exceptions\PlantException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.Exceptions.PlantNotCollectableException" Collapsed="true">
+    <Position X="17" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ForestManagement\Exceptions\PlantNotCollectableException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.Services.ForestService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="36.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAABAAAABAAAAAAAAAEAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\ForestManagement\Services\ForestService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.Plant" Collapsed="true">
+    <Position X="25.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAICABAAAgAAgFQBAAAARCAAAAAAAAAAACgAAAAgA=</HashCode>
+      <FileName>Models\ForestManagement\Plant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.ForestManagement.StudentPlant" Collapsed="true">
+    <Position X="30.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAQAAAAAABABAAAAAAAAAAAAAAAAABgAACAAA=</HashCode>
+      <FileName>Models\ForestManagement\StudentPlant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.HouseManagement.Exceptions.HouseAlreadyExistsException" Collapsed="true">
+    <Position X="20" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\Exceptions\HouseAlreadyExistsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.HouseManagement.Exceptions.HouseException" Collapsed="true">
+    <Position X="20.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\Exceptions\HouseException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.HouseManagement.Services.HouseService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAABAAABAAAAIAQAAAAAAACAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\Services\HouseService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.HouseManagement.House" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAAAAAAgAAAgIAAAAAAAAAEAAQAAACAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.StudentManagement.Student" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAAASAAAQAAAAAgAAAAkAAAAAAIAABEgAAA=</HashCode>
+      <FileName>Models\StudentManagement\Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Exceptions.NoTrainAvailableException" Collapsed="true">
+    <Position X="9" Y="7.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Members" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Exceptions\NoTrainAvailableException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Exceptions.TrainException" Collapsed="true">
+    <Position X="12" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Exceptions\TrainException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Exceptions.TrainFullException" Collapsed="true">
+    <Position X="12" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Exceptions\TrainFullException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Exceptions.TrainNotFoundException" Collapsed="true">
+    <Position X="14.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Exceptions\TrainNotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Services.TrainService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="40.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAgAAAAAAAAACQAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Services\TrainService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.Train" Collapsed="true">
+    <Position X="28" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAQAQAAIAAAGIECCDAAAIAQAAAAIAkCAAAAAgAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Train.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.TrainManagement.TrainTicket" Collapsed="true">
+    <Position X="32.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIAAAIAAIEAAAAAAAAAAIAAIAGCAAAAAiAAAA=</HashCode>
+      <FileName>Models\TrainManagement\TrainTicket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.Models.Entity" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.SharedServices.Exceptions.NetworkConnectionException" Collapsed="true">
+    <Position X="28.75" Y="5.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SharedServices\Exceptions\NetworkConnectionException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.SharedServices.LetterService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="35" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAQQAAAAAAAAAAAAAIAAAAQAACAAAACAAAAAAA=</HashCode>
+      <FileName>SharedServices\LetterService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Hogwarts.Core.SharedServices.StaticMailService" Collapsed="true">
+    <Position X="36.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SharedServices\StaticMailService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Hogwarts.Core.SharedServices.StaticServiceProvidor" Collapsed="true">
+    <Position X="38.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAgAAAAAAEQAIAEAQAAEAAIAACAAAAAAEAAA=</HashCode>
+      <FileName>SharedServices\StaticServiceProvidor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Exception" Collapsed="true">
+    <Position X="17.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.ArgumentException" Collapsed="true">
+    <Position X="31.75" Y="7.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.SystemException" Collapsed="true">
+    <Position X="32" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Hogwarts.Core.Data.HogwartsDbContext" Collapsed="true">
+    <Position X="38.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAY0AAAAAQAAAAAQQAAEAQgCEQAAAAAAAAIAABEAAAI=</HashCode>
+      <FileName>Data\HogwartsDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Hogwarts.Core.Models.Authentication.Services.IAuthenticationService" Collapsed="true">
+    <Position X="35" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAiAAAAAAAAAAAAIAAAAEAAAAAAAQAEAAAAA=</HashCode>
+      <FileName>Models\Authentication\Services\IAuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.Authentication.Services.IPasswordService" Collapsed="true">
+    <Position X="40.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAgAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\Services\IPasswordService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.CourseManagement.Services.ICourseService" Collapsed="true">
+    <Position X="36.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAQAAAAAAQBAIAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\CourseManagement\Services\ICourseService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.DormitoryManagement.Services.IDormitoryService" Collapsed="true">
+    <Position X="38.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAABAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DormitoryManagement\Services\IDormitoryService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.FacultyManagement.Services.IFacultyService" Collapsed="true">
+    <Position X="40.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FacultyManagement\Services\IFacultyService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.ForestManagement.Services.IForestService" Collapsed="true">
+    <Position X="35" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Models\ForestManagement\Services\IForestService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.HouseManagement.Services.IHouseService" Collapsed="true">
+    <Position X="36.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAABAAAAAAAAIAQAAAAAAACAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\Services\IHouseService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.Models.TrainManagement.Services.ITrainService" Collapsed="true">
+    <Position X="35" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAACQAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TrainManagement\Services\ITrainService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Hogwarts.Core.SharedServices.ILetterService" Collapsed="true">
+    <Position X="38.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAQAACAAAACAAAAAAA=</HashCode>
+      <FileName>SharedServices\ILetterService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Hogwarts.Core.Models.Authentication.AccessLevels" Collapsed="true">
+    <Position X="35" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAEAAQCAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Authentication\AccessLevels.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.CourseManagement.GradeType" Collapsed="true">
+    <Position X="38.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtgEAAAA=</HashCode>
+      <FileName>Models\CourseManagement\Grade.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.FacultyManagement.ProfessorMajors" Collapsed="true">
+    <Position X="36.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAQAAAAAgEAAAAAAAgAAAgAAEAAAEAAASAAAAA=</HashCode>
+      <FileName>Models\FacultyManagement\ProfessorMajors.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.HouseManagement.HouseType" Collapsed="true">
+    <Position X="40.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAQAAAAAABAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\HouseManagement\House.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.StudentManagement.BloodType" Collapsed="true">
+    <Position X="36.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAABAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\StudentManagement\BloodType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.StudentManagement.PetType" Collapsed="true">
+    <Position X="35" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQACAAAAAAAAAAAAAAAAAAAEAAAAAEAAAA=</HashCode>
+      <FileName>Models\StudentManagement\PetType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Hogwarts.Core.Models.StudentManagement.Year" Collapsed="true">
+    <Position X="38.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAgAAAAAAAQAAAAAAAAIAIAAAAAAAAAAAAAAAAYA=</HashCode>
+      <FileName>Models\StudentManagement\Year.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

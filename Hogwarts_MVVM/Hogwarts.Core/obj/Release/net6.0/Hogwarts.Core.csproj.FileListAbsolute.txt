@@ -1,0 +1,16 @@
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\appsettings.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\admin.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\Hogwarts.Core.deps.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\Hogwarts.Core.runtimeconfig.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\bin\Release\net6.0\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.csproj.AssemblyReference.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.AssemblyInfoInputs.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.AssemblyInfo.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.csproj.CoreCompileInputs.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\refint\Hogwarts.Core.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\Hogwarts.Core.genruntimeconfig.cache
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts.Core\obj\Release\net6.0\ref\Hogwarts.Core.dll
