@@ -1,5 +1,6 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
+using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;

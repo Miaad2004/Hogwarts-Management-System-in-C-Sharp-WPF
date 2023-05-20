@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.Data;
 using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
+using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.DormitoryManagement.Services
@@ -59,10 +60,10 @@ namespace Hogwarts.Core.Models.DormitoryManagement.Services
                 throw new ArgumentNullException(nameof(owner));
             }
 
-            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderBy(d => d.OccupiedBedsCount).FirstOrDefault();
+            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderBy(d => d.OccupiedBedsCount).SingleOrDefault();
             if (dorm is null)
             {
-                throw new NoDormitoryFoundException($"No dormitories were found for hous {owner.HouseType}");
+                throw new NoDormitoryFoundException($"No dormitories were found for the house {owner.HouseType}");
             }
 
             var room = dorm.ReserveRoom(owner);

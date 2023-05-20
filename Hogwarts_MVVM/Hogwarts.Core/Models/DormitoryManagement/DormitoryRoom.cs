@@ -1,4 +1,5 @@
 ﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
 using System.ComponentModel.DataAnnotations.Schema;
 
