@@ -1,73 +1,162 @@
-﻿using Hogwarts.Core.Models.FacultyManagement;
+﻿using Hogwarts.Core.Models.CourseManagement.DTOs;
+using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.CourseManagement
 {
     public class Course : Entity
     {
-        // to do: Add Year
-        public string Name { get; private set; }
+        private string _title;
+        private int _capacity;
+        private string _classroom;
+        private int _occupiedSeats;
+        private DateOnly _endDate;
 
-        private DateTime startDate;
-
-        private TimeSpan duration;
-        public Professor Owner { get; private set; }
-        public ICollection<Grade> Grades { get; set; }
-        public ICollection<Student> Students { get; set; }
-        public ICollection<Assignment> Assignments { get; set; }
-        public int Capacity { get; private set; }
-        public Classroom Classroom { get; set; }
-        public bool HasFinished { get; private set; }
-
-        public DateTime StartDate
+        public string Title
         {
-            get => startDate;
-            set
+            get => _title;
+            private set
             {
-                if (value < DateTime.Today)
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Start date must be on or after today");
+                    throw new ArgumentNullException("Title can't be empty.");
                 }
-
-                startDate = value;
+                _title = value;
             }
         }
-
-        public TimeSpan Duration
+        public DateOnly EndDate
         {
-            get => duration;
-            set
+            get => _endDate;
+            private set
             {
-                if (value <= TimeSpan.Zero)
+                if (value <= DateOnly.FromDateTime(DateTime.Now))
                 {
-                    throw new ArgumentException("Duration must be a positive timespan");
+                    throw new ArgumentException("End date can not be in the past.");
                 }
-
-                duration = value;
+                _endDate = value;
             }
         }
+        public DayOfWeek Schedule { get; private set; }
+        public TimeOnly ClassStartTime { get; private set; }
+        public TimeOnly ClassEndTime { get; private set; }
+        public Professor Professor { get; private set; }
+        public int Capacity
+        {
+            get => _capacity;
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Course capacity should be positive.");
+                }
+                _capacity = value;
+            }
+        }
+        public string Classroom
+        {
+            get => _classroom;
+            private set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentNullException("Classroom can't be empty.");
+                }
+                _classroom = value;
+            }
+        }
+        public int OccuipiedSeats
+        {
+            get => _occupiedSeats;
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(OccuipiedSeats));
+                }
+                _occupiedSeats = value;
+            }
+        }
+        
+        public ICollection<Grade> Grades { get; private set; } = new List<Grade>();
+        public ICollection<Student> Students { get; private set; } = new List<Student>();
+        public ICollection<Assignment> Assignments { get; private set; } = new List<Assignment>();
+        public bool HasFinished => DateOnly.FromDateTime(DateTime.Now) > EndDate;
+        public int SeatsLeft => Capacity - OccuipiedSeats;
 
-        public DateTime EndDate => StartDate + Duration;
+        public int ActiveAssignmentsCount => Assignments.Where(a => !a.HasEnded).ToList().Count;
 
         public Course()
             : base()
         {
-
         }
 
-        public Course(string name, DateTime startDate, TimeSpan duration, Professor owner, int capacity, Classroom classroom)
+        public Course(string title, DateOnly endDate, DayOfWeek schedule, TimeOnly classStartTime, TimeOnly classEndTime,
+                      Professor professor, string capacity, string classroom)
             : base()
         {
-            Name = name;
-            StartDate = startDate;
-            Duration = duration;
-            Owner = owner;
-            Capacity = capacity;
-            Grades = new List<Grade>();
-            Students = new List<Student>();
-            Assignments = new List<Assignment>();
-            HasFinished = false;
+            if (!int.TryParse(capacity, out var _))
+            {
+                throw new ArgumentException("Course capacity should be an integer.");
+            }
+            if (classStartTime >= classEndTime)
+            {
+                throw new ArgumentException("Class start time must be before its end time.");
+            }
+
+            Title = title;
+            EndDate = endDate;
+            Schedule = schedule;
+            ClassStartTime = classStartTime;
+            ClassEndTime = classEndTime;
+            Professor = professor;
+            Capacity = int.Parse(capacity);
             Classroom = classroom;
+            OccuipiedSeats = 0;
+        }
+
+        public Course(CourseDTO DTO, Professor professor)
+        {
+            if (!int.TryParse(DTO.Capacity, out var _))
+            {
+                throw new ArgumentException("Course capacity should be an integer.");
+            }
+            if (DTO.ClassStartTime >= DTO.ClassEndTime)
+            {
+                throw new ArgumentException("Class start time must be before its end time.");
+            }
+
+            Title = DTO.Title;
+            EndDate = DTO.EndDate;
+            Schedule = DTO.Schedule;
+            ClassStartTime = DTO.ClassStartTime;
+            ClassEndTime = DTO.ClassEndTime;
+            Professor = professor;
+            Capacity = int.Parse(DTO.Capacity);
+            Classroom = DTO.Classroom;
+            OccuipiedSeats = 0;
+        }
+        public bool ConflictsWith(Course otherCourse)
+        {
+            if ((ClassEndTime > otherCourse.ClassStartTime && ClassStartTime < otherCourse.ClassEndTime) ||
+                (ClassStartTime < otherCourse.ClassStartTime && ClassEndTime > otherCourse.ClassStartTime))
+            {
+                if (Classroom == otherCourse.Classroom)
+                {
+                    return true;
+                }
+
+                if (Professor.Id == otherCourse.Professor.Id && !Professor.HasTimeTurner)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public void OnSeatReserved()
+
+        {
+            OccuipiedSeats++;
         }
     }
 

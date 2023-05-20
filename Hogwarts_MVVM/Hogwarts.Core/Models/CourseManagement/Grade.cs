@@ -4,9 +4,11 @@ namespace Hogwarts.Core.Models.CourseManagement
 {
     public class Grade : Entity
     {
-        public GradeType Value { get; set; }
-        public Student Student { get; set; }
-        public Course Course { get; set; }
+        public Guid StudentId { get; private set; }
+        public Guid CourseId { get; private set; }
+        public GradeType Value { get; private set; }
+        public Student Student { get; private set; }
+        public Course Course { get; private set; }
         public Grade()
         {
 
@@ -16,6 +18,8 @@ namespace Hogwarts.Core.Models.CourseManagement
             Value = value;
             Student = student;
             Course = course;
+            StudentId = student.Id;
+            CourseId = course.Id;
         }
     }
 
@@ -25,6 +29,7 @@ namespace Hogwarts.Core.Models.CourseManagement
         B,
         C,
         D,
+        E,
         F
     }
 }
