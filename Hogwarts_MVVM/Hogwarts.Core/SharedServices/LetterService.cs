@@ -78,7 +78,7 @@ namespace Hogwarts.Core.SharedServices
             TrainTicket trainTicket = _trainService.GetTicketForNewStudent(activationCode);
             string trainTicketLink = GenerateTrainTicketLink(firstName, lastName, trainTicket);
 
-            string emailSubject = $"<strong>Hogwarts Acceptance Letter for {firstName} {lastName}</strong>";
+            string emailSubject = $"Hogwarts Acceptance Letter for {firstName} {lastName}";
             string emailBody = "Dear " + firstName + ",<br><br>" +
                     "We are pleased to inform you that you have been accepted into Hogwarts School of Witchcraft and Wizardry! " +
                     "You have demonstrated exceptional magical ability and we are excited to welcome you as a new student.<br><br>" +
@@ -112,7 +112,7 @@ namespace Hogwarts.Core.SharedServices
 
         public void SendTrainTicket(TrainTicket trainTicket, User owner)
         {
-            string emailSubject = $"<strong>Hogwarts Express Ticket for {owner.FirstName} {owner.LastName}</strong>";
+            string emailSubject = $"Hogwarts Express Ticket for {owner.FirstName} {owner.LastName}";
             string emailBody = GenerateTrainTicketLink(owner.FirstName, owner.LastName, trainTicket);
 
             try
