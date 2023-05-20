@@ -1,5 +1,6 @@
-﻿using Hogwarts.Core.Models.DormitoryManagement;
-using Hogwarts.Core.Models.Forest;
+﻿using Hogwarts.Core.Models.CourseManagement;
+using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.ForestManagement;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
 using System;
@@ -26,14 +27,18 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class DormitoryView : Page
     {
-        private ObservableCollection<Dormitory> Dormitories
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Dormitory>(orderBy: p => p.House); }
-        }
+        private static ObservableCollection<Dormitory> Dormitories =>
+            StaticServiceProvidor.dbContext.GetList<Dormitory>(orderBy: D => D.House);
+
         public DormitoryView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
+        }
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            dormitoriesDataGrid.ItemsSource = Dormitories;
+            dormitoriesDataGrid.Items.Refresh();
         }
 
         private void AddDormitory_Click(object sender, RoutedEventArgs e)
@@ -45,15 +50,10 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged();
+            OnDataGridChanged(this, new RoutedEventArgs());
 
             // Reactivate this window
             IsEnabled = true;
-        }
-        private void OnDataGridChanged()
-        {
-            dormitoriesDataGrid.ItemsSource = Dormitories;
-            dormitoriesDataGrid.Items.Refresh();
         }
     }
 }

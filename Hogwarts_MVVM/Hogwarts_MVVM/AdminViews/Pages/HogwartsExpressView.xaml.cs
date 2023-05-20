@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
@@ -15,14 +16,18 @@ namespace Hogwarts.Views.AdminViews.Pages
     public partial class HogwartsExpressView : Page
     {
 
-        private ObservableCollection<Train> Trains
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Train>(t => t.DepartureTime); }
-        }
+        private static ObservableCollection<Train> Trains =>
+            StaticServiceProvidor.dbContext.GetList<Train>(orderBy: t => t.DepartureTime);
+
         public HogwartsExpressView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
+        }
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            trainsDataGrid.ItemsSource = Trains;
+            trainsDataGrid.Items.Refresh();
         }
 
         private void AddTrain_Click(object sender, RoutedEventArgs e)
@@ -34,16 +39,10 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged();
+            OnDataGridChanged(this, new RoutedEventArgs());
 
             // Reactivate this window
             IsEnabled = true;
-        }
-
-        private void OnDataGridChanged()
-        {
-            trainsDataGrid.ItemsSource = Trains;
-            trainsDataGrid.Items.Refresh();
         }
     }
 }

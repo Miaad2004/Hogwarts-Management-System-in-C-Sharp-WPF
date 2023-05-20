@@ -118,6 +118,16 @@
                                 </StackPanel>
                             </Button>
 
+                            <!-- Houses -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/AdminViews/Pages/HousesView.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="TownHall" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="Houses"/>
+                                </StackPanel>
+                            </Button>
+
                             <!-- Dormitory -->
                             <Button Style="{StaticResource PanelNavButton}"
                                     Tag="/AdminViews/Pages/DormitoryView.xaml"

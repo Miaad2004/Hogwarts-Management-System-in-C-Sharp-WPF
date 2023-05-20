@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.SharedServices;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Hogwarts.Views.AdminViews.Popups
@@ -33,15 +34,20 @@ namespace Hogwarts.Views.AdminViews.Popups
             this.Close();
         }
 
-        private void AddTrain_Click(object sender, RoutedEventArgs e)
+        private static DateTime DateTimeCombo2DateTime(DatePicker datePicker, ComboBox hourCombo, ComboBox amPmCombo)
         {
-            int selectedHour = hourComboBox.SelectedIndex + 1;
-            string selectedAmPm = amPmComboBox.SelectedIndex == 0 ? "am" : "pm";
+            int selectedHour = hourCombo.SelectedIndex + 1;
+            string selectedAmPm = amPmCombo.SelectedIndex == 0 ? "am" : "pm";
 
-            string dateString = depaurtureDatePicker.SelectedDate.Value.ToString("MM/dd/yyyy");
+            string dateString = datePicker.SelectedDate.Value.ToString("MM/dd/yyyy");
             string timeString = $"{selectedHour} {selectedAmPm}";
             string dateTimeString = $"{dateString} {timeString}";
-            DateTime depaurtureTime = DateTime.Parse(dateTimeString);
+
+            return DateTime.Parse(dateTimeString);
+        }
+        private void AddTrain_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime depaurtureTime = DateTimeCombo2DateTime(depaurtureDatePicker, hourComboBox, amPmComboBox);
 
             try
             {

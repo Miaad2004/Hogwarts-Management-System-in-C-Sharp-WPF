@@ -1,5 +1,6 @@
-﻿using Hogwarts.Core.Models.ForestManagement;
-using Hogwarts.Core.Models.ForestManagement.DTOs;
+﻿using Hogwarts.Core.Models.ForestManagement.DTOs;
+using Hogwarts.Core.Models.HouseManagement;
+using Hogwarts.Core.Models.HouseManagement.Exceptions;
 using Hogwarts.Core.SharedServices;
 using Microsoft.Win32;
 using System;
@@ -19,12 +20,12 @@ using System.Windows.Shapes;
 namespace Hogwarts.Views.AdminViews.Popups
 {
     /// <summary>
-    /// Interaction logic for AddPlantPopup.xaml
+    /// Interaction logic for AddHousePopup.xaml
     /// </summary>
-    public partial class AddPlantPopup : Window
+    public partial class AddHousePopup : Window
     {
         private string SelectedImagePath = "";
-        public AddPlantPopup()
+        public AddHousePopup()
         {
             InitializeComponent();
         }
@@ -59,28 +60,32 @@ namespace Hogwarts.Views.AdminViews.Popups
             SelectedImagePath = openFileDialog.FileName;
         }
 
-        private void AddPlant_Click(object sender, RoutedEventArgs e)
+        private void AddHouse_Click(object sender, RoutedEventArgs e)
         {
-            PlantDTO DTO = new()
-            {
-                Name = txtName.Text,
-                Description = txtDescription.Text,
-                Quantity = txtQuantity.Text,
-                GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1),
-                ImagePath = SelectedImagePath
-            };
+            HouseType selectedHouseType = (HouseType)houseCombo.SelectedIndex;
 
             try
             {
-                StaticServiceProvidor.forestService.AddPlant(DTO);
+                StaticServiceProvidor.houseService.AddHouse(selectedHouseType, SelectedImagePath);
 
-                MessageBox.Show("Plant Added successfully.", "Operation Successful!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("House Addes Successfully.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
-            catch (ArgumentException ex)
+
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (ex is ArgumentException ||
+                    ex is HouseException)
+                {
+                    MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                else
+                {
+                    throw ex;
+                }
             }
+
         }
     }
 }

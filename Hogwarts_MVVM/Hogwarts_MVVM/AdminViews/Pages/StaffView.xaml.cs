@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.Models.FacultyManagement;
+﻿using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.FacultyManagement;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.SharedServices;
@@ -16,14 +17,18 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class StaffView : Page
     {
-        private ObservableCollection<Professor> teachers
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Professor>(p => p.FullName); }
-        }
+        private static ObservableCollection<Professor> Professors =>
+            StaticServiceProvidor.dbContext.GetList<Professor>(orderBy: p => p.FullName);
+
         public StaffView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
+        }
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            teachersDataGrid.ItemsSource = Professors;
+            teachersDataGrid.Items.Refresh();
         }
         private void AddProfessor_Click(object sender, RoutedEventArgs e)
         {
@@ -32,15 +37,12 @@ namespace Hogwarts.Views.AdminViews.Pages
 
             AddTeacherPopup popup = new();
             _ = popup.ShowDialog();
-            OnDataGridChanged();
+
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
 
             // Reactivate this window
             IsEnabled = true;
-        }
-        private void OnDataGridChanged()
-        {
-            teachersDataGrid.ItemsSource = teachers;
-            teachersDataGrid.Items.Refresh();
         }
     }
 }

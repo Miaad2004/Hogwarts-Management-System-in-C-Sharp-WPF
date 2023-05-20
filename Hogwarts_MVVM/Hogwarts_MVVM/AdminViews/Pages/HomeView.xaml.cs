@@ -25,10 +25,10 @@ namespace Hogwarts.Views.AdminViews.Pages
             txtBloodType.Text = BloodType;
             txtEmail.Text = Email;
 
-            txtStudentsCount.Text = StaticServiceProvidor.DbContext.Students.Count().ToString();
-            txtTrainsCount.Text = StaticServiceProvidor.DbContext.Trains.Count().ToString();
-            txtProfessorsCount.Text = StaticServiceProvidor.DbContext.Professors.Count().ToString();
-            txtForestPlantsCount.Text = StaticServiceProvidor.DbContext.Plants.Count().ToString();
+            txtStudentsCount.Text = StaticServiceProvidor.dbContext.Students.Count().ToString();
+            txtTrainsCount.Text = StaticServiceProvidor.dbContext.Trains.Count().ToString();
+            txtProfessorsCount.Text = StaticServiceProvidor.dbContext.Professors.Count().ToString();
+            txtForestPlantsCount.Text = StaticServiceProvidor.forestService.GetCollectablePlantCount().ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
@@ -14,15 +15,21 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class StudentsView : Page
     {
-        private ObservableCollection<Student> Students
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Student>(t => t.HouseType); }
-        }
+        private static ObservableCollection<Student> Students =>
+            StaticServiceProvidor.dbContext.GetList<Student>(orderBy: s => s.HouseType);
+
         public StudentsView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
         }
+
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            studentsDataGrid.ItemsSource = Students;
+            studentsDataGrid.Items.Refresh();
+        }
+
         private void InviteStudent_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
@@ -30,16 +37,12 @@ namespace Hogwarts.Views.AdminViews.Pages
 
             InviteStudentPopup popup = new();
             _ = popup.ShowDialog();
-            OnDataGridChanged();
+
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
 
             // Reactivate this window
             IsEnabled = true;
-        }
-
-        private void OnDataGridChanged()
-        {
-            studentsDataGrid.ItemsSource = Students;
-            studentsDataGrid.Items.Refresh();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.Models.Forest;
+﻿using Hogwarts.Core.Models.DormitoryManagement;
+using Hogwarts.Core.Models.ForestManagement;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
@@ -13,14 +14,19 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class ForestView : Page
     {
-        private ObservableCollection<Plant> Plants
-        {
-            get { return StaticServiceProvidor.facultyService.GetList<Plant>(orderBy: p => p.HarvestTime); }
-        }
+        private static ObservableCollection<Plant> Plants =>
+            StaticServiceProvidor.dbContext.GetList<Plant>(orderBy: p => p.HarvestTime);
+
         public ForestView()
         {
             InitializeComponent();
-            OnDataGridChanged();
+            Loaded += OnDataGridChanged;
+        }
+
+        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        {
+            plantsDataGrid.ItemsSource = Plants;
+            plantsDataGrid.Items.Refresh();
         }
 
         private void AddPlant_Click(object sender, RoutedEventArgs e)
@@ -32,15 +38,10 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged();
+            OnDataGridChanged(this, new RoutedEventArgs());
 
             // Reactivate this window
             IsEnabled = true;
-        }
-        private void OnDataGridChanged()
-        {
-            plantsDataGrid.ItemsSource = Plants;
-            plantsDataGrid.Items.Refresh();
         }
     }
 }

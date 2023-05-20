@@ -1,4 +1,4 @@
-﻿using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.SharedServices;
 using System;
 using System.Collections.Generic;

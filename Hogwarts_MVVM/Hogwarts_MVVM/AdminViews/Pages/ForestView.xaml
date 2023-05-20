@@ -91,7 +91,7 @@
 
                                 </Border>
 
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" ToolTip="{Binding Description}"/>
 
                             </StackPanel>
 
