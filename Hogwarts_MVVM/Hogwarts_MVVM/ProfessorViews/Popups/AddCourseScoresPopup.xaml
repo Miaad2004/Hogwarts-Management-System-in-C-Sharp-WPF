@@ -1,0 +1,179 @@
+﻿<Window x:Class="Hogwarts.Views.ProfessorViews.Popups.AddCourseScoresPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hogwarts.Views.ProfessorViews.Popups"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Add a Course" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Style="{StaticResource BorderTheme}">
+
+    <Border CornerRadius="28">
+        
+        <!-- Load Animation -->
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.92" Duration="0:0:0.5" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+
+        <!-- Background Overlay -->
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
+                <GradientStop Color="#060531" Offset="0"/>
+                <GradientStop Color="#1B1448" Offset="0.8"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Section -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Minimize"
+                        Grid.Column="1"
+                        Style="{StaticResource MinimizeButtonStyle}"
+                        Click="Minimize_Click" />
+
+                <Button x:Name="Close"
+                        Grid.Column="2"
+                        Style="{StaticResource CloseButtonStyle}"
+                        Click="Close_Click" />
+
+            </Grid>
+            
+            <!-- Bottom Section -->
+
+            <!--Data Grid-->
+            <DataGrid x:Name="scoresDataGrid"
+                      Grid.Row="1"
+                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      Style="{DynamicResource DataGridStyle1}"
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      MaxHeight="510">
+
+                <DataGrid.Columns>
+                    <!-- Index -->
+                    <DataGridTextColumn Header="#" IsReadOnly="True"
+                                        CanUserResize="False" Width="auto"
+                                        Binding="{Binding SequentialIndex}"/>
+
+                    <!-- Name and profile picture -->
+                    <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="65" Height="65" Background="White"
+                                            CornerRadius="100" VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" Margin="5 0 10 0">
+
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding FullProfileImagePath}"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+
+                                    </Border>
+
+                                    <TextBlock Text="{Binding FullName}" VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Username -->
+                    <DataGridTextColumn Header="Username"
+                                        Binding="{Binding Username}" IsReadOnly="True" Width="*"/>
+
+                    <!-- Email Address -->
+                    <DataGridTextColumn Header="Email Address"
+                                        Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
+
+                    <!-- House -->
+                    <DataGridTextColumn Header="House" Binding="{Binding HouseType}"
+                                        IsReadOnly="True" Width="*"/>
+                    
+                    <!-- Score -->
+                    <DataGridComboBoxColumn Header="Score" x:Name="scoreComboBox">
+                        <DataGridComboBoxColumn.ElementStyle>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="ItemsSource">
+                                    <Setter.Value>
+                                        <x:Array Type="{x:Type sys:String}">
+                                            <sys:String>A</sys:String>
+                                            <sys:String>B</sys:String>
+                                            <sys:String>C</sys:String>
+                                            <sys:String>D</sys:String>
+                                            <sys:String>E</sys:String>
+                                            <sys:String>F</sys:String>
+                                        </x:Array>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGridComboBoxColumn.ElementStyle>
+                    </DataGridComboBoxColumn>
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <!-- Submit Button -->
+            <Button x:Name="SubmitScores" Foreground="White" BorderThickness="0"
+                    Content="Submit" FontSize="12" FontFamily="Montserrat"
+                    Cursor="Hand" Grid.Row="2"
+                    Click="SubmitScores_Click" >
+
+                <Button.Style>
+                    <Style TargetType="Button">
+
+                        <Setter Property="Background" Value="#FF135B80"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF318CBB"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Width="150" Height="40"
+                                                CornerRadius="20"
+                                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"   HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            
+        </Grid>
+
+    </Border>
+</Window>

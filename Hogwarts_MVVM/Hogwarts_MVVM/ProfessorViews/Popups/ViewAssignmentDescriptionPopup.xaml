@@ -1,0 +1,81 @@
+﻿<Window x:Class="Hogwarts.Views.ProfessorViews.Popups.ViewAssignmentDescriptionPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hogwarts.Views.ProfessorViews.Popups"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Add a Course" Height="300" Width="300"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Style="{StaticResource BorderTheme}">
+
+    <Border CornerRadius="28">
+
+        <Border Opacity="0.73"
+                CornerRadius="25">
+
+            <!-- Load Animation -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:0.5" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <!-- Background Overlay -->
+            <Border.Background>
+                <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!-- Top Section -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="Minimize"
+                            Grid.Column="1"
+                            Style="{StaticResource MinimizeButtonStyle}"
+                            Click="Minimize_Click" />
+
+                    <Button x:Name="Close"
+                            Grid.Column="2"
+                            Style="{StaticResource CloseButtonStyle}"
+                            Click="Close_Click" />
+
+                </Grid>
+                
+                <!-- Bottom Section -->
+                <RichTextBox x:Name="txtDescription"
+                             IsReadOnly="True" Grid.Row="1"
+                             Width="300" Margin="0,0,0,24">
+                    
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0.1"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                    
+                </RichTextBox>
+
+            </Grid>
+        </Border>
+    </Border>
+</Window>

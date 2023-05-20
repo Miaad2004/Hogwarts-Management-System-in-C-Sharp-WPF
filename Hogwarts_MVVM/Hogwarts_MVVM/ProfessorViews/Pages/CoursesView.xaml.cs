@@ -1,6 +1,8 @@
 ﻿using Hogwarts.Core.Models.CourseManagement;
 using Hogwarts.Core.Models.DormitoryManagement;
 using Hogwarts.Core.Models.FacultyManagement;
+using Hogwarts.Core.Models.HouseManagement.Exceptions;
+using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
 using Hogwarts.Views.ProfessorViews.Popups;
@@ -68,12 +70,34 @@ namespace Hogwarts.Views.ProfessorViews.Pages
 
         private void SubmitScores_Click(object sender, RoutedEventArgs e)
         {
+            // Deactivate this window
+            IsEnabled = false;
 
+            AddCourseScoresPopup popup = new();
+            _ = popup.ShowDialog();
+
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
+
+            // Reactivate this window
+            IsEnabled = true;
         }
 
         private void AddAssignment_Click(object sender, RoutedEventArgs e)
         {
+            // Deactivate this window
+            IsEnabled = false;
 
+            Button? button = sender as Button;
+            Course? course = button.DataContext as Course;
+            AddAssignmentPopup popup = new(course);
+            _ = popup.ShowDialog();
+
+            // Refresh the page
+            OnDataGridChanged(this, new RoutedEventArgs());
+
+            // Reactivate this window
+            IsEnabled = true;
         }
     }
 }

@@ -95,6 +95,16 @@
                                     <TextBlock Text="Assignments"/>
                                 </StackPanel>
                             </Button>
+                            
+                            <!-- House Points -->
+                            <Button Style="{StaticResource PanelNavButton}"
+                                    Tag="/ProfessorViews/Pages/HousesView.xaml"
+                                    Click="NavigationBar_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="TownHall" Style="{StaticResource PanelNavButtonIcon}"/>
+                                    <TextBlock Text="House Points"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
 
                         <!-- Logout -->
