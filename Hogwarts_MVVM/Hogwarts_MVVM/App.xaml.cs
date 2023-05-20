@@ -15,12 +15,12 @@ namespace Hogwarts_MVVM
 {
     public partial class App : Application
     {
-        private bool isFirstLoad = true;
+        private bool isFirstLoadFlag = true;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            StaticServiceProvidor.DbContext.Database.EnsureCreated();
+            StaticServiceProvidor.dbContext.Database.EnsureCreated();
 
             // Register the first admin
             const string ADMIN_DTO_PATH = "admin.json";
@@ -45,14 +45,16 @@ namespace Hogwarts_MVVM
         {
             base.OnLoadCompleted(e);
 
-            if (isFirstLoad)
+            if (isFirstLoadFlag)
             {
                 string startupSoundFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "StaticResources/Shared/StartupChime.mp3");
                 MediaPlayer player = new ();
                 player.Open(new Uri(startupSoundFilePath));
-                player.Play();
 
-                isFirstLoad = false;
+                Activated += (sender, args) => player.Play();
+                Deactivated += (sender, args) => player.Pause();
+
+                isFirstLoadFlag = false;
             }
         }
 

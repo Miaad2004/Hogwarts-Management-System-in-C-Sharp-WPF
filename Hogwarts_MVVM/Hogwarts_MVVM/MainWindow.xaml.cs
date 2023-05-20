@@ -23,9 +23,31 @@ namespace Hogwarts_MVVM
             }
         }
 
+        private void Window_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = System.Windows.WindowState.Normal;
+            this.Width = (double)1200;
+            this.Height = (double)740;
+        }
+
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void Resize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+            {
+                this.WindowState = System.Windows.WindowState.Normal;
+                this.Width = (double)1200;
+                this.Height = (double)740;
+            }
+
+            else
+            {
+                this.WindowState = System.Windows.WindowState.Maximized;
+            }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

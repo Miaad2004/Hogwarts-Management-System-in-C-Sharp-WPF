@@ -117,7 +117,7 @@ namespace Hogwarts.Views.AdminViews.Popups {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;component/adminviews/popups/adddormitorypopup.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;V1.0.0.0;component/adminviews/popups/adddormitorypopup.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\AdminViews\Popups\AddDormitoryPopup.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

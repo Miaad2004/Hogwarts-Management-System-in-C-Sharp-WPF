@@ -5,9 +5,11 @@ FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hog
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\ForestView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\HogwartsExpressView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\HomeView.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\HousesView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\StaffView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Pages\StudentsView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Popups\AddDormitoryPopup.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Popups\AddHousePopup.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Popups\AddPlantPopup.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Popups\AddTeacherPopup.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\AdminViews\Popups\AddTrainPopup.xaml;;
@@ -17,6 +19,12 @@ FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hog
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\MainView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Pages\AssignmentsView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Pages\CoursesView.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Pages\HomeView.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Pages\HousesView.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Popups\AddAssignmentPopup.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Popups\AddCoursePopup.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Popups\AddCourseScoresPopup.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\SignupView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\MainView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Pages\AssignmentsView.xaml;;
@@ -25,4 +33,6 @@ FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hog
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Pages\HogwartsExpressView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Pages\HomeView.xaml;;
 FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Pages\MyCoursesView.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Popups\UploadAssignmentAnswerPopup.xaml;;
+FD:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\StudentViews\Popups\ViewAssignmentDescriptionPopup.xaml;;
 

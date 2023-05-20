@@ -2,6 +2,7 @@
 using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.Authentication.Services;
 using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
+using Hogwarts.Core.Models.HouseManagement.Exceptions;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.SharedServices;
 using Microsoft.Win32;
@@ -69,7 +70,8 @@ namespace Hogwarts.Views
             catch (Exception ex)
             {
                 if (ex is ArgumentException ||
-                    ex is DormitoryException)
+                    ex is DormitoryException ||
+                    ex is HouseException)
                 {
                     MessageBox.Show(ex.Message, "Signup error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }

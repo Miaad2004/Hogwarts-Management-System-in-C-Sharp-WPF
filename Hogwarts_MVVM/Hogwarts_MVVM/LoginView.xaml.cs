@@ -23,6 +23,12 @@ namespace Hogwarts.Views
             InitializeComponent();
             _authenticationService = StaticServiceProvidor.authenticationService;
         }
+        private void backgroundVideo_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            backgroundVideo.Position = TimeSpan.FromSeconds(9.04);
+            backgroundVideo.Play();
+        }
+       
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             try

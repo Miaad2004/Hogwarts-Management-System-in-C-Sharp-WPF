@@ -7,10 +7,22 @@
         xmlns:views="clr-namespace:Hogwarts.Views"
         mc:Ignorable="d"
         Title="Hogwarts Management System" Height="740" Width="1200"
+        MinWidth="800" MinHeight="700"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
+        MouseDoubleClick="Window_MouseDoubleClick"
         Style="{StaticResource BorderTheme}"
-        AllowsTransparency="False">
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome     
+        CaptionHeight="1"  
+        CornerRadius ="0"
+        ResizeBorderThickness="4"         
+        GlassFrameThickness="0">
+        </WindowChrome>
+    </WindowChrome.WindowChrome>
 
     <Border CornerRadius="25">
         <Grid>
@@ -28,6 +40,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
 
@@ -37,9 +50,15 @@
                         Style="{StaticResource MinimizeButtonStyle}"
                         Click="Minimize_Click" />
 
-                <Button x:Name="Close"
+                <Button x:Name="Resize"
                         Panel.ZIndex="2"
                         Grid.Column="2"
+                        Style="{StaticResource MaximizeButtonStyle}"
+                        Click="Resize_Click" />
+
+                <Button x:Name="Close"
+                        Panel.ZIndex="2"
+                        Grid.Column="3"
                         Style="{StaticResource CloseButtonStyle}"
                         Click="Close_Click" />
             </Grid>

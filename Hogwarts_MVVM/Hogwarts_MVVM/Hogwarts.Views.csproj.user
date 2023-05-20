@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
@@ -22,6 +24,9 @@
     <Compile Update="AdminViews\Pages\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="AdminViews\Pages\HousesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AdminViews\Pages\StaffView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +34,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminViews\Popups\AddDormitoryPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminViews\Popups\AddHousePopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="AdminViews\Popups\AddPlantPopup.xaml.cs">
@@ -55,6 +63,24 @@
     <Compile Update="ProfessorViews\Pages\CoursesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProfessorViews\Pages\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Pages\HousesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Popups\AddAssignmentPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Popups\AddCoursePopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Popups\AddCourseScoresPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SignupView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +105,12 @@
     <Compile Update="StudentViews\Pages\MyCoursesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="StudentViews\Popups\UploadAssignmentAnswerPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="StudentViews\Popups\ViewAssignmentDescriptionPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AdminViews\MainView.xaml">
@@ -96,6 +128,9 @@
     <Page Update="AdminViews\Pages\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="AdminViews\Pages\HousesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="AdminViews\Pages\StaffView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -103,6 +138,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Popups\AddDormitoryPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminViews\Popups\AddHousePopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AdminViews\Popups\AddPlantPopup.xaml">
@@ -132,6 +170,24 @@
     <Page Update="ProfessorViews\Pages\CoursesView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ProfessorViews\Pages\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Pages\HousesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Popups\AddAssignmentPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Popups\AddCoursePopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Popups\AddCourseScoresPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SignupView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -154,6 +210,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StudentViews\Pages\MyCoursesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Popups\UploadAssignmentAnswerPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="StudentViews\Popups\ViewAssignmentDescriptionPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Themes\LoginThemes.xaml">

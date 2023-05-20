@@ -111,6 +111,7 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-w
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\Hogwarts.Views.exe
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\appsettings.json
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\admin.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\StaticResources\LoginWindow\bg-video.mp4
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\StaticResources\Shared\StartupChime.mp3
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\Hogwarts.Views.deps.json
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Debug\net6.0-windows\Hogwarts.Views.runtimeconfig.json
@@ -193,9 +194,11 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ForestView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HogwartsExpressView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HomeView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HousesView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\StaffView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\StudentsView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddDormitoryPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddHousePopup.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddPlantPopup.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddTeacherPopup.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddTrainPopup.g.cs
@@ -205,6 +208,9 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\MainView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\AssignmentsView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\CoursesView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\HomeView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\HousesView.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddCoursePopup.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\SignupView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\MainView.g.cs
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\AssignmentsView.g.cs
@@ -223,9 +229,11 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\ForestView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HogwartsExpressView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HomeView.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\HousesView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\StaffView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Pages\StudentsView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddDormitoryPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddHousePopup.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddPlantPopup.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddTeacherPopup.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\AdminViews\Popups\AddTrainPopup.baml
@@ -235,6 +243,9 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\MainView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\AssignmentsView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\CoursesView.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\HomeView.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Pages\HousesView.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddCoursePopup.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\SignupView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\MainView.baml
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Pages\AssignmentsView.baml
@@ -254,3 +265,13 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Hogwarts.Views.pdb
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\Hogwarts.Views.genruntimeconfig.cache
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ref\Hogwarts.Views.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddAssignmentPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddAssignmentPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\ViewAssignmentDescriptionPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Popups\ViewAssignmentDescriptionPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\ViewAssignmentDescriptionPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Popups\ViewAssignmentDescriptionPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Popups\UploadAssignmentAnswerPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\StudentViews\Popups\UploadAssignmentAnswerPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddCourseScoresPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Debug\net6.0-windows\ProfessorViews\Popups\AddCourseScoresPopup.baml

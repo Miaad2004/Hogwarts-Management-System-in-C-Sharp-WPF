@@ -8,26 +8,38 @@
       d:DesignHeight="740" d:DesignWidth="1000"
       Title="LoginView">
 
-    <Border CornerRadius="28">
-        <!--BACKGROUND IMAGE-->
-        <Border.Background>
-            <ImageBrush ImageSource="/StaticResources/LoginWindow/bg.jpg"/>
-        </Border.Background>
+    <Grid>
+        <Border CornerRadius="28" Panel.ZIndex="0">
+            <!--Background IMAGE-->
+            <Border.Background>
+                <ImageBrush ImageSource="/StaticResources/LoginWindow/bg.jpg"/>
+            </Border.Background>
+        </Border>
 
-        <Border Opacity="0.75"
-                CornerRadius="25">
-            
+        <!-- Background Video -->
+        <MediaElement x:Name="backgroundVideo"
+                        Margin="5"
+                        Source="StaticResources/LoginWindow/bg-video.mp4"
+                        MediaEnded="backgroundVideo_MediaEnded"
+                        LoadedBehavior="Play"
+                        UnloadedBehavior="Manual"
+                        IsMuted="True"
+                        Stretch="UniformToFill"
+                        Panel.ZIndex="1" />
+
+            <Border CornerRadius="28" Panel.ZIndex="2">
+
             <!-- Load Animation -->
             <Border.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:4" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:7" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
-            
+
             <!--BACKGROUND OVERLAY-->
             <Border.Background>
                 <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
@@ -43,7 +55,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                 
+
                 <!--LOGO & TITLE-->
                 <StackPanel Grid.Row="1"
                             Width="auto"
@@ -53,7 +65,7 @@
                     <Image Source="/StaticResources/LoginWindow/logo.png"
                            Width="220" Height="220">
                     </Image>
-                    
+
                     <TextBlock Text="Hogwarts Mangement System"
                                Foreground="White"
                                FontSize="40"
@@ -67,13 +79,13 @@
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions >
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="300"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
                     <StackPanel Grid.Column="1">
-                    
+
                         <!--Username-->
                         <TextBlock Text="Username:"
                                    Style="{StaticResource LoginInputLabelTheme}"
@@ -161,5 +173,5 @@
                 </Grid>
             </Grid>
         </Border>
-    </Border>
+    </Grid>
 </Page>

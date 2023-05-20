@@ -71,7 +71,7 @@ namespace Hogwarts.Views.AdminViews.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;component/adminviews/pages/dormitoryview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;V1.0.0.0;component/adminviews/pages/dormitoryview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\AdminViews\Pages\DormitoryView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("staticresources/shared/icon.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("staticresources/loginwindow/bg-video.mp4")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("staticresources/shared/startupchime.mp3")]
 
 

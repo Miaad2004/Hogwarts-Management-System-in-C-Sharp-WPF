@@ -1,0 +1,13 @@
+C:\Users\Miaad\Desktop\New folder (4)\Hogwarts.Views.pdb
+C:\Users\Miaad\Desktop\New folder (4)\appsettings.json
+C:\Users\Miaad\Desktop\New folder (4)\admin.json
+C:\Users\Miaad\Desktop\New folder (4)\StaticResources\LoginWindow\bg-video.mp4
+C:\Users\Miaad\Desktop\New folder (4)\StaticResources\Shared\StartupChime.mp3
+C:\Users\Miaad\Desktop\New folder (4)\D3DCompiler_47_cor3.dll
+C:\Users\Miaad\Desktop\New folder (4)\PenImc_cor3.dll
+C:\Users\Miaad\Desktop\New folder (4)\PresentationNative_cor3.dll
+C:\Users\Miaad\Desktop\New folder (4)\vcruntime140_cor3.dll
+C:\Users\Miaad\Desktop\New folder (4)\wpfgfx_cor3.dll
+C:\Users\Miaad\Desktop\New folder (4)\e_sqlite3.dll
+C:\Users\Miaad\Desktop\New folder (4)\Hogwarts.Core.pdb
+C:\Users\Miaad\Desktop\New folder (4)\Hogwarts.Views.exe

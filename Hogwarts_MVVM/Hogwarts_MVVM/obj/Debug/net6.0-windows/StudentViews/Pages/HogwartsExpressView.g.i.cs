@@ -63,7 +63,7 @@ namespace Hogwarts.Views.StudentViews.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;component/studentviews/pages/hogwartsexpressview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Hogwarts.Views;V1.0.0.0;component/studentviews/pages/hogwartsexpressview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\StudentViews\Pages\HogwartsExpressView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
