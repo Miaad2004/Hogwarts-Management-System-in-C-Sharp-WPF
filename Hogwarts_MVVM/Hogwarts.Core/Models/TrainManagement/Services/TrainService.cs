@@ -78,7 +78,7 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
                             t.Origin == origin.ToLower() &&
                             t.Destination == destination.ToLower())
                 .OrderBy(t => t.DepartureTime)
-                .FirstOrDefault();
+                .SingleOrDefault();
 
             if (train == null)
             {
@@ -115,7 +115,7 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
                             t.Origin == origin.ToLower() &&
                             t.Destination == destination.ToLower())
                 .OrderBy(t => t.DepartureTime)
-                .FirstOrDefault();
+                .SingleOrDefault();
 
             if (train == null)
             {
