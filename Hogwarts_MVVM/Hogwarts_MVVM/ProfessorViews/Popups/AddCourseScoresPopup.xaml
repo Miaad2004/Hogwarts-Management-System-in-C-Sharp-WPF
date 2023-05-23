@@ -6,19 +6,21 @@
         xmlns:local="clr-namespace:Hogwarts.Views.ProfessorViews.Popups"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Add a Course" Height="600" Width="800"
+        Title="Add a Course" Height="600" Width="1000"
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
         Style="{StaticResource BorderTheme}">
 
-    <Border CornerRadius="28">
+    <Border CornerRadius="26"
+            Opacity="0.92">
         
         <!-- Load Animation -->
         <Border.Triggers>
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.92" Duration="0:0:0.5" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.1" To="0.92" Duration="0:0:0.5" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -63,7 +65,7 @@
             <!-- Bottom Section -->
 
             <!--Data Grid-->
-            <DataGrid x:Name="scoresDataGrid"
+            <DataGrid x:Name="gradesDataGrid"
                       Grid.Row="1"
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
@@ -91,13 +93,13 @@
 
                                         <Ellipse>
                                             <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding FullProfileImagePath}"/>
+                                                <ImageBrush ImageSource="{Binding Student.FullProfileImagePath}"/>
                                             </Ellipse.Fill>
                                         </Ellipse>
 
                                     </Border>
 
-                                    <TextBlock Text="{Binding FullName}" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Student.FullName}" VerticalAlignment="Center"/>
 
                                 </StackPanel>
 
@@ -107,35 +109,26 @@
 
                     <!-- Username -->
                     <DataGridTextColumn Header="Username"
-                                        Binding="{Binding Username}" IsReadOnly="True" Width="*"/>
+                                        Binding="{Binding Student.Username}" IsReadOnly="True" Width="*"/>
 
                     <!-- Email Address -->
                     <DataGridTextColumn Header="Email Address"
-                                        Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
+                                        Binding="{Binding Student.Email}" IsReadOnly="True" Width="*"/>
 
                     <!-- House -->
-                    <DataGridTextColumn Header="House" Binding="{Binding HouseType}"
+                    <DataGridTextColumn Header="House" Binding="{Binding Student.HouseType}"
                                         IsReadOnly="True" Width="*"/>
-                    
+
                     <!-- Score -->
-                    <DataGridComboBoxColumn Header="Score" x:Name="scoreComboBox">
-                        <DataGridComboBoxColumn.ElementStyle>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="ItemsSource">
-                                    <Setter.Value>
-                                        <x:Array Type="{x:Type sys:String}">
-                                            <sys:String>A</sys:String>
-                                            <sys:String>B</sys:String>
-                                            <sys:String>C</sys:String>
-                                            <sys:String>D</sys:String>
-                                            <sys:String>E</sys:String>
-                                            <sys:String>F</sys:String>
-                                        </x:Array>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </DataGridComboBoxColumn.ElementStyle>
-                    </DataGridComboBoxColumn>
+                    <DataGridTemplateColumn Header="Score">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{x:Static local:GradeTypeValues.Values}"
+                                          SelectedItem="{Binding GradeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                 </DataGrid.Columns>
 
             </DataGrid>

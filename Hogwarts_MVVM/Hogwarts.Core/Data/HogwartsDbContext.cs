@@ -9,6 +9,7 @@ using Hogwarts.Core.Models.TrainManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Linq.Expressions;
 
 namespace Hogwarts.Core.Data
@@ -19,7 +20,7 @@ namespace Hogwarts.Core.Data
         public DbSet<Professor> Professors { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Course> Courses { get; set; }
-        public DbSet<Grade> Grades { get; set; }    
+        public DbSet<Grade> Grades { get; set; }
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<StudentAssignment> StudentAssignments { get; set; }
         public DbSet<Dormitory> Dormitories { get; set; }
@@ -28,7 +29,7 @@ namespace Hogwarts.Core.Data
         public DbSet<Plant> Plants { get; set; }
         public DbSet<StudentPlant> StudentPlants { get; set; }
         public DbSet<Train> Trains { get; set; }
-        public DbSet<TrainTicket> Tickets { get; set; } 
+        public DbSet<TrainTicket> Tickets { get; set; }
         public DbSet<House> Houses { get; set; }
 
 
@@ -38,8 +39,9 @@ namespace Hogwarts.Core.Data
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            return config.GetConnectionString("DefaultConnection");
+            return config.GetConnectionString("DefaultConnection") ?? throw new ConfigurationErrorsException("Invalid Configuration");
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             _ = optionsBuilder.UseSqlite(GetConnectionString());
@@ -113,7 +115,7 @@ namespace Hogwarts.Core.Data
                 .HasForeignKey(sa => sa.AssignmentId);
         }
 
-        public ObservableCollection<T> GetList<T>(
+        public async Task<ObservableCollection<T>> GetListAsync<T>(
             Func<T, object> orderBy,
             Expression<Func<T, bool>> whereClause = null,
             params Expression<Func<T, object>>[] includeProperties
@@ -131,9 +133,9 @@ namespace Hogwarts.Core.Data
                 query = query.Where(whereClause);
             }
 
-            var list = query.OrderBy(orderBy).ToList();
+            var list = await Task.Run(() => query.OrderBy(orderBy).ToList());
 
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count(); i++)
             {
                 var item = list[i];
                 var prop = item.GetType().GetProperty("SequentialIndex");
@@ -142,6 +144,7 @@ namespace Hogwarts.Core.Data
 
             return new ObservableCollection<T>(list);
         }
+
 
 
     }

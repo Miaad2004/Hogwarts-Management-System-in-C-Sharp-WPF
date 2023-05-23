@@ -3,72 +3,81 @@ using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
 using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hogwarts.Core.Models.DormitoryManagement.Services
 {
     public class DormitoryService : IDormitoryService
     {
-        private readonly HogwartsDbContext _context;
-        public DormitoryService(HogwartsDbContext context)
+        private readonly HogwartsDbContext _dbContext;
+        public DormitoryService(HogwartsDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
-        public Dormitory AddDormitory(string title, HouseType house, int floorsCount, int roomsPerFloor, int bedsPerRoom)
+        public async Task<Dormitory> AddDormitoryAsync(string title, HouseType house, int floorsCount, int roomsPerFloor, int bedsPerRoom)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
             Dormitory dorm = new(title, house, floorsCount, roomsPerFloor, bedsPerRoom);
-            _context.Dormitories.Add(dorm);
-            _context.SaveChanges();
+            await _dbContext.Dormitories.AddAsync(dorm);
+            await _dbContext.SaveChangesAsync();
 
             return dorm;
         }
 
-        public DormitoryRoom GetRoom(Dormitory dormitory, Student owner)
+        public async Task<DormitoryRoom> ReserveRoomAsync(Dormitory dormitory, Student owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
             if (owner == null)
             {
                 throw new ArgumentNullException(nameof(owner));
             }
 
             var room = dormitory.ReserveRoom(owner);
-            _context.Rooms.Add(room);
-            _context.SaveChanges();
+            await _dbContext.Rooms.AddAsync(room);
+            await _dbContext.SaveChangesAsync();
 
             return room;
         }
 
-        public DormitoryRoom GetRoom(Guid dormitoryId, Student owner)
+        public async Task<DormitoryRoom> ReserveRoomAsync(Guid dormitoryId, Student owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
             if (owner == null)
             {
                 throw new ArgumentNullException(nameof(owner));
             }
 
-            var dorm = _context.Dormitories.First(d => d.Id == dormitoryId);
-            var room = dorm.ReserveRoom(owner);
+            var dorm = await _dbContext.Dormitories.FirstAsync(d => d.Id == dormitoryId);
 
-            _context.Rooms.Add(room);
-            _context.SaveChanges();
+            var room = dorm.ReserveRoom(owner);
+            await _dbContext.Rooms.AddAsync(room);
+            await _dbContext.SaveChangesAsync();
 
             return room;
         }
 
-        public DormitoryRoom GetRoomForNewStudent(Student owner)
+        public async Task<DormitoryRoom> GetRoomForNewStudentAsync(Student owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
             if (owner == null)
             {
                 throw new ArgumentNullException(nameof(owner));
             }
 
-            var dorm = _context.Dormitories.Where(d => d.House == owner.HouseType).OrderBy(d => d.OccupiedBedsCount).SingleOrDefault();
-            if (dorm is null)
-            {
-                throw new NoDormitoryFoundException($"No dormitories were found for the house {owner.HouseType}");
-            }
+            var dorm = await _dbContext.Dormitories.
+                Where(d => d.House == owner.HouseType).
+                OrderByDescending(d => d.OccupiedBedsCount).
+                FirstOrDefaultAsync()
+                ?? throw new NoDormitoryFoundException(owner.HouseType);
 
             var room = dorm.ReserveRoom(owner);
-            _context.Rooms.Add(room);
-            _context.SaveChanges();
+            await _dbContext.Rooms.AddAsync(room);
+            await _dbContext.SaveChangesAsync();
 
             return room;
         }

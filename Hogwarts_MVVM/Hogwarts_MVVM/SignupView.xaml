@@ -1,4 +1,6 @@
-﻿<Page x:Class="Hogwarts.Views.SignupView"
+﻿<!-- Signup form code inspired by a YouTube video By "C# WPF UI Academy" available at "https://www.youtube.com/watch?v=zhYB_P3yjuc" -->
+    
+<Page x:Class="Hogwarts.Views.SignupView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,21 +11,22 @@
       d:DesignHeight="740" d:DesignWidth="1200"
       Title="SignupView">
 
-    <Border CornerRadius="28">
+    <Border CornerRadius="26">
         <!--Background IMAGE-->
         <Border.Background>
             <ImageBrush ImageSource="/StaticResources/SignupWindow/bg.png"/>
         </Border.Background>
 
         <Border Opacity="0.75"
-                CornerRadius="27">
+                CornerRadius="26">
 
             <!-- Load Animation -->
             <Border.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0.1" To="0.75" Duration="0:0:1" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -288,7 +291,7 @@
                                     FontFamily="Montserrat"
                                     Cursor="Hand"
                                     Margin="0,0,0,0"
-                                    Click="btnSignup_Click">
+                                    Click="BtnSignup_Click">
 
                                 <Button.Style>
                                     <Style TargetType="Button">

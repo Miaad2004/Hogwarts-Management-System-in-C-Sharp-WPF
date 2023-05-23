@@ -1,4 +1,5 @@
-﻿using Hogwarts.Core.SharedServices;
+﻿using Hogwarts.Core.Models.Authentication.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -10,11 +11,19 @@ namespace Hogwarts_MVVM
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IAuthenticationService authenticationService;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            authenticationService = serviceProvider.GetRequiredService<IAuthenticationService>();
+
             _ = MainFrame.NavigationService.Navigate(new Uri("LoginView.xaml", UriKind.Relative));
         }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -52,7 +61,7 @@ namespace Hogwarts_MVVM
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            StaticServiceProvidor.authenticationService.Logout();
+            authenticationService.Logout();
             Application.Current.Shutdown();
         }
     }

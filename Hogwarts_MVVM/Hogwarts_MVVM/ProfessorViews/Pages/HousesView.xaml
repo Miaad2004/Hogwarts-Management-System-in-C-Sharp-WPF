@@ -15,7 +15,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -38,7 +39,7 @@
         <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
         <!--Title-->
-        <TextBlock Text="Houses Are Sorted Based On Their Type." Grid.Row="4"
+        <TextBlock Text="Houses Are Sorted Based On Their Points." Grid.Row="4"
                    FontSize="18" FontWeight="SemiBold"
                    Foreground="#121518"
                    HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -122,8 +123,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-
 
             </DataGrid.Columns>
 

@@ -14,7 +14,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -221,6 +222,19 @@
                                        Text="Forest Collectable Plant Count:" FontSize="18" />
 
                             <TextBlock x:Name="txtForestPlantsCount"
+                                       Style="{StaticResource LoginInputLabelTheme}"
+                                       Padding="10, 0, 0, 0"
+                                       Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
+                        </StackPanel>
+
+                        <!-- Major -->
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="2" Grid.Row="3">
+
+                            <TextBlock Style="{StaticResource LoginInputLabelTheme}"
+                                       Text="Major:" FontSize="18" />
+
+                            <TextBlock x:Name="txtMajor"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
                                        Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>

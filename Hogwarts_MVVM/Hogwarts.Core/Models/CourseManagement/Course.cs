@@ -9,7 +9,7 @@ namespace Hogwarts.Core.Models.CourseManagement
         private string _title;
         private int _capacity;
         private string _classroom;
-        private int _occupiedSeats;
+        private int _occupiedSeats = 0;
         private DateOnly _endDate;
 
         public string Title
@@ -24,6 +24,7 @@ namespace Hogwarts.Core.Models.CourseManagement
                 _title = value;
             }
         }
+
         public DateOnly EndDate
         {
             get => _endDate;
@@ -36,6 +37,7 @@ namespace Hogwarts.Core.Models.CourseManagement
                 _endDate = value;
             }
         }
+
         public DayOfWeek Schedule { get; private set; }
         public TimeOnly ClassStartTime { get; private set; }
         public TimeOnly ClassEndTime { get; private set; }
@@ -52,6 +54,7 @@ namespace Hogwarts.Core.Models.CourseManagement
                 _capacity = value;
             }
         }
+
         public string Classroom
         {
             get => _classroom;
@@ -64,6 +67,7 @@ namespace Hogwarts.Core.Models.CourseManagement
                 _classroom = value;
             }
         }
+
         public int OccuipiedSeats
         {
             get => _occupiedSeats;
@@ -76,14 +80,13 @@ namespace Hogwarts.Core.Models.CourseManagement
                 _occupiedSeats = value;
             }
         }
-        
+
         public ICollection<Grade> Grades { get; private set; } = new List<Grade>();
         public ICollection<Student> Students { get; private set; } = new List<Student>();
         public ICollection<Assignment> Assignments { get; private set; } = new List<Assignment>();
         public bool HasFinished => DateOnly.FromDateTime(DateTime.Now) > EndDate;
         public int SeatsLeft => Capacity - OccuipiedSeats;
-
-        public int ActiveAssignmentsCount => Assignments.Where(a => !a.HasEnded).ToList().Count;
+        public int ActiveAssignmentsCount => Assignments.Where(a => !a.HasEnded).ToList().Count();
 
         public Course()
             : base()
@@ -111,10 +114,10 @@ namespace Hogwarts.Core.Models.CourseManagement
             Professor = professor;
             Capacity = int.Parse(capacity);
             Classroom = classroom;
-            OccuipiedSeats = 0;
         }
 
         public Course(CourseDTO DTO, Professor professor)
+            : base()
         {
             if (!int.TryParse(DTO.Capacity, out var _))
             {
@@ -133,10 +136,15 @@ namespace Hogwarts.Core.Models.CourseManagement
             Professor = professor;
             Capacity = int.Parse(DTO.Capacity);
             Classroom = DTO.Classroom;
-            OccuipiedSeats = 0;
         }
+
         public bool ConflictsWith(Course otherCourse)
         {
+            if (otherCourse.Schedule != this.Schedule)
+            {
+                return false;
+            }
+
             if ((ClassEndTime > otherCourse.ClassStartTime && ClassStartTime < otherCourse.ClassEndTime) ||
                 (ClassStartTime < otherCourse.ClassStartTime && ClassEndTime > otherCourse.ClassStartTime))
             {
@@ -153,8 +161,8 @@ namespace Hogwarts.Core.Models.CourseManagement
 
             return false;
         }
-        public void OnSeatReserved()
 
+        public void OnSeatReserved()
         {
             OccuipiedSeats++;
         }

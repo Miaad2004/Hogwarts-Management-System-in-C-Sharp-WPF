@@ -8,7 +8,7 @@ namespace Hogwarts.Core.Models.TrainManagement.Exceptions
         {
         }
 
-        public TrainFullException(string? message) : base(message)
+        public TrainFullException(string trainTitle) : base($"Train with Title \"{trainTitle}\" is full. Create a new train and try again.")
         {
         }
 

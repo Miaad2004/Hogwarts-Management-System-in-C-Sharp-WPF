@@ -2,11 +2,11 @@
 {
     public interface IHouseService
     {
-        void AddHouse(HouseType houseType, string? profileImagePath);
-        public House Sort();
-        void UpdatePoints(Guid houseId, int dPoint);
-        HouseType GetHouseType(Guid studentId);
-        int GetHousePoints(Guid studentOrHouseId);
-        int GetAvgHousePoints();
+        Task AddHouseAsync(HouseType houseType, string? profileImagePath);
+        public Task<House> SortAsync();
+        Task UpdatePointsAsync(Guid houseId, int dPoint);
+        Task<HouseType> GetHouseTypeAsync(Guid studentId);
+        Task<int> GetHousePointsAsync(Guid studentOrHouseId);
+        Task<int> GetAvgHousePointsAsync();
     }
 }

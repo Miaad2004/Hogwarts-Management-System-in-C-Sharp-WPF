@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\App.xaml
-39-1465183978
+41491599708
 32054241541
-39-179460933
+42-1368061168
 225142486354
-AdminViews\MainView.xaml;AdminViews\Pages\DormitoryView.xaml;AdminViews\Pages\ForestView.xaml;AdminViews\Pages\HogwartsExpressView.xaml;AdminViews\Pages\HomeView.xaml;AdminViews\Pages\HousesView.xaml;AdminViews\Pages\StaffView.xaml;AdminViews\Pages\StudentsView.xaml;AdminViews\Popups\AddDormitoryPopup.xaml;AdminViews\Popups\AddHousePopup.xaml;AdminViews\Popups\AddPlantPopup.xaml;AdminViews\Popups\AddTeacherPopup.xaml;AdminViews\Popups\AddTrainPopup.xaml;AdminViews\Popups\InviteStudentPopup.xaml;LoginView.xaml;MainWindow.xaml;ProfessorViews\MainView.xaml;ProfessorViews\Pages\AssignmentsView.xaml;ProfessorViews\Pages\CoursesView.xaml;ProfessorViews\Pages\HomeView.xaml;ProfessorViews\Pages\HousesView.xaml;ProfessorViews\Popups\AddAssignmentPopup.xaml;ProfessorViews\Popups\AddCoursePopup.xaml;ProfessorViews\Popups\AddCourseScoresPopup.xaml;ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml;SignupView.xaml;StudentViews\MainView.xaml;StudentViews\Pages\AssignmentsView.xaml;StudentViews\Pages\CourseCatalogView.xaml;StudentViews\Pages\ForestView.xaml;StudentViews\Pages\HogwartsExpressView.xaml;StudentViews\Pages\HomeView.xaml;StudentViews\Pages\MyCoursesView.xaml;StudentViews\Popups\UploadAssignmentAnswerPopup.xaml;StudentViews\Popups\ViewAssignmentDescriptionPopup.xaml;Themes\LoginThemes.xaml;Themes\MainWindowThemes.xaml;Themes\PanelThemes.xaml;Themes\SignupThemes.xaml;
+AdminViews\MainView.xaml;AdminViews\Pages\DormitoryView.xaml;AdminViews\Pages\ForestView.xaml;AdminViews\Pages\HogwartsExpressView.xaml;AdminViews\Pages\HomeView.xaml;AdminViews\Pages\HousesView.xaml;AdminViews\Pages\StaffView.xaml;AdminViews\Pages\StudentsView.xaml;AdminViews\Popups\AddDormitoryPopup.xaml;AdminViews\Popups\AddHousePopup.xaml;AdminViews\Popups\AddPlantPopup.xaml;AdminViews\Popups\AddTeacherPopup.xaml;AdminViews\Popups\AddTrainPopup.xaml;AdminViews\Popups\InviteStudentPopup.xaml;LoginView.xaml;MainWindow.xaml;ProfessorViews\MainView.xaml;ProfessorViews\Pages\AssignmentsView.xaml;ProfessorViews\Pages\CoursesView.xaml;ProfessorViews\Pages\HomeView.xaml;ProfessorViews\Pages\HousesView.xaml;ProfessorViews\Popups\AddAssignmentPopup.xaml;ProfessorViews\Popups\AddAssignmentScoresPopup.xaml;ProfessorViews\Popups\AddCoursePopup.xaml;ProfessorViews\Popups\AddCourseScoresPopup.xaml;ProfessorViews\Popups\ViewAssignmentAnswerPopup.xaml;ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml;SignupView.xaml;StudentViews\MainView.xaml;StudentViews\Pages\AssignmentsView.xaml;StudentViews\Pages\CourseCatalogView.xaml;StudentViews\Pages\ForestView.xaml;StudentViews\Pages\HogwartsExpressView.xaml;StudentViews\Pages\HomeView.xaml;StudentViews\Pages\MyCoursesView.xaml;StudentViews\Popups\UploadAssignmentAnswerPopup.xaml;StudentViews\Popups\ViewAssignmentDescriptionPopup.xaml;Themes\LoginThemes.xaml;Themes\MainWindowThemes.xaml;Themes\PanelThemes.xaml;Themes\SignupThemes.xaml;
 
-False
+True
 

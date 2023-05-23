@@ -7,8 +7,8 @@ using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.HouseManagement.Services;
 using Hogwarts.Core.Models.StudentManagement;
 using Hogwarts.Core.SharedServices;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Authentication;
-using System.Text.RegularExpressions;
 
 namespace Hogwarts.Core.Models.Authentication.Services
 {
@@ -33,25 +33,27 @@ namespace Hogwarts.Core.Models.Authentication.Services
             _houseService = houseService;
         }
 
-        private bool IsUsernameTaken(string username)
+        private async Task<bool> IsUsernameTakenAsync(string username)
         {
             username = username.ToLower();
-            return _dbContext.Students.Any(u => u.Username == username) ||
-                   _dbContext.Professors.Any(u => u.Username == username) ||
-                   _dbContext.Admins.Any(u => u.Username == username);
+            return await _dbContext.Students.AnyAsync(u => u.Username == username) ||
+                   await _dbContext.Professors.AnyAsync(u => u.Username == username) ||
+                   await _dbContext.Admins.AnyAsync(u => u.Username == username);
         }
 
-        private bool IsActivationCodeVaild(string username, string enteredCode)
+        private async Task<bool> IsActivationCodeVaildAsync(string username, string enteredCode)
         {
             username = username.ToLower();
-            return _dbContext.ActivationCodes.Any(ac => ac.Username == username && ac.Code == enteredCode);
+            return await _dbContext.ActivationCodes.AnyAsync(ac => ac.Username == username && ac.Code == enteredCode);
         }
 
-        public void SignUpStudent(StudentRegistrationDTO DTO)
+        public async Task SignUpStudentAsync(StudentRegistrationDTO DTO)
         {
-            if (IsUsernameTaken(DTO.Username))
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
+            if (await IsUsernameTakenAsync(DTO.Username))
             {
-                throw new UserExistsException("Username already taken.");
+                throw new UserExistsException(DTO.Username);
             }
 
             if (!_passwordService.IsValid(DTO.Password, DTO.PasswordRepeat))
@@ -64,26 +66,28 @@ namespace Hogwarts.Core.Models.Authentication.Services
                 throw new ArgumentException("Password must be at least 8 characters and contain upper and lower letters.");
             }
 
-            if (!IsActivationCodeVaild(DTO.Username, DTO.EnteredActivationCode))
+            if (!await IsActivationCodeVaildAsync(DTO.Username, DTO.EnteredActivationCode))
             {
                 throw new ArgumentException("Invalid activation code.");
             }
 
             string passwordHash = _passwordService.GetHash(DTO.Password);
-            House house = _houseService.Sort();
+            House house = await _houseService.SortAsync();
 
             Student student = new(DTO, passwordHash, house);
-            student.DormitoryRoom = _dormitoryService.GetRoomForNewStudent(student);
+            student.DormitoryRoom = await _dormitoryService.GetRoomForNewStudentAsync(student);
 
-            _dbContext.Students.Add(student);
-            _dbContext.SaveChanges();
+            await _dbContext.Students.AddAsync(student);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void SignUpProfessor(ProfessorRegistrationDTO DTO)
+        public async Task SignUpProfessorAsync(ProfessorRegistrationDTO DTO)
         {
-            if (IsUsernameTaken(DTO.Username))
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            if (await IsUsernameTakenAsync(DTO.Username))
             {
-                throw new UserExistsException("Username already taken.");
+                throw new UserExistsException(DTO.Username);
             }
 
             if (!_passwordService.IsValid(DTO.Password, DTO.PasswordRepeat))
@@ -99,15 +103,17 @@ namespace Hogwarts.Core.Models.Authentication.Services
             string passwordHash = _passwordService.GetHash(DTO.Password);
 
             Professor professor = new(DTO, passwordHash);
-            _dbContext.Professors.Add(professor);
-            _dbContext.SaveChanges();
+            await _dbContext.Professors.AddAsync(professor);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void SignUpAdmin(AdminRegistrationDTO DTO)
+        public async Task SignUpAdminAsync(AdminRegistrationDTO DTO)
         {
-            if (IsUsernameTaken(DTO.Username))
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
+            if (await IsUsernameTakenAsync(DTO.Username))
             {
-                throw new UserExistsException("Username already taken.");
+                throw new UserExistsException(DTO.Username);
             }
 
             if (!_passwordService.IsValid(DTO.Password, DTO.PasswordRepeat))
@@ -123,12 +129,14 @@ namespace Hogwarts.Core.Models.Authentication.Services
             string passwordHash = _passwordService.GetHash(DTO.Password);
 
             Admin admin = new(DTO, passwordHash);
-            _dbContext.Admins.Add(admin);
-            _dbContext.SaveChanges();
+            await _dbContext.Admins.AddAsync(admin);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void Login(string username, string password)
+        public async Task LoginAsync(string username, string password)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
             username = username.ToLower();
 
             string passwordHash = _passwordService.GetHash(password);
@@ -139,45 +147,39 @@ namespace Hogwarts.Core.Models.Authentication.Services
                 throw new InvalidOperationException("There is an active session. Please logout first.");
             }
 
-            User? student = _dbContext.Students.SingleOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
-            User? professor = _dbContext.Professors.SingleOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
-            User? admin = _dbContext.Admins.FirstOrDefault(u => u.Username == username && u.PasswordHash == passwordHash);
+            User? student = await _dbContext.Students.SingleOrDefaultAsync(u => u.Username == username && u.PasswordHash == passwordHash);
+            User? professor = await _dbContext.Professors.SingleOrDefaultAsync(u => u.Username == username && u.PasswordHash == passwordHash);
+            User? admin = await _dbContext.Admins.FirstOrDefaultAsync(u => u.Username == username && u.PasswordHash == passwordHash);
 
-            User? loggedInUser = student ?? professor ?? admin;
+            User loggedInUser = student ?? professor ?? admin ?? throw new InvalidCredentialException("Wrong username or password!");
 
-            SessionManager.CurrentSession = loggedInUser == null ? throw new InvalidCredentialException("Wrong username or password!") : new Session(loggedInUser);
-        }
-        public void Logout()
-        {
-            SessionManager.CurrentSession?.Revoke();
+
+            SessionManager.CurrentSession = new Session(loggedInUser);
         }
 
-        public void EnrollStudent(string firstName, string lastName, string username, string emailAddress)
+        public async Task EnrollStudentAsync(string firstName, string lastName, string username, string emailAddress)
         {
-            if (SessionManager.CurrentSession == null ||
-                SessionManager.CurrentSession.User.AccessLevel != AccessLevels.Admin)
-            {
-                throw new UnauthorizedAccessException();
-            }
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
 
             if (string.IsNullOrEmpty(firstName))
             {
-                throw new ArgumentNullException(nameof(firstName), "First name can not be null or empty.");
+                throw new ArgumentNullException("First name can not be null or empty.");
             }
 
             if (string.IsNullOrEmpty(lastName))
             {
-                throw new ArgumentNullException(nameof(lastName), "Last name can not be null or empty.");
+                throw new ArgumentNullException("Last name can not be null or empty.");
             }
 
             if (string.IsNullOrEmpty(username))
             {
-                throw new ArgumentNullException(nameof(username), "User name can not be null or empty.");
+                throw new ArgumentNullException("User name can not be null or empty.");
             }
 
-            if (string.IsNullOrEmpty(emailAddress))
+            if (string.IsNullOrEmpty(emailAddress) ||
+                !StaticMailService.IsValidEmail(emailAddress))
             {
-                throw new ArgumentNullException(nameof(emailAddress), "Email Address can not be null or empty.");
+                throw new ArgumentNullException("Invalid email Address.");
             }
 
             if (username.Length < 6)
@@ -185,18 +187,19 @@ namespace Hogwarts.Core.Models.Authentication.Services
                 throw new ArgumentOutOfRangeException("Username must be at least 6 characters");
             }
 
-            if (!Regex.IsMatch(emailAddress, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))      // <username>@<HOGWARTS_API_DOMAIN>.<tld>
-            {
-                throw new ArgumentException("Invalid Email");
-            }
-
-
             ActivationCode activationCode = new(username);
-            _dbContext.ActivationCodes.Add(activationCode);
-            _dbContext.SaveChanges();
 
-            _letterService.SendInvitationMail(sender: SessionManager.CurrentSession.User, firstName, lastName,
-                                              emailAddress, activationCode);
+            await _dbContext.ActivationCodes.AddAsync(activationCode);
+            await _dbContext.SaveChangesAsync();
+
+            await _letterService.SendInvitationMailAsync(sender: SessionManager.CurrentSession.User, firstName, lastName,
+                                                         emailAddress, activationCode);
+
+        }
+
+        public void Logout()
+        {
+            SessionManager.CurrentSession?.Revoke();
         }
 
     }

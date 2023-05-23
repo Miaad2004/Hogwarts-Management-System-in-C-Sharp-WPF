@@ -1,7 +1,5 @@
-﻿using Hogwarts.Core.Models.Authentication;
-using Hogwarts.Core.Models.HouseManagement;
+﻿using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
@@ -9,7 +7,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
     {
         public HouseType House { get; private set; }
         public Dormitory Dormitory { get; private set; }
-        public Guid DormitoryId { get; private set; } 
+        public Guid DormitoryId { get; private set; }
         public Guid OwnerId { get; private set; }
         public int FloorNumber { get; private set; }
         public int RoomNumber { get; private set; }
@@ -34,7 +32,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
         public override string ToString()
         {
-            return $"{House}-Floor{FloorNumber}-Room{RoomNumber}-Bed{BedNumber}";
+            return $"{Dormitory.Title}-Floor{FloorNumber}\nRoom{RoomNumber}-Bed{BedNumber}";
         }
     }
 }

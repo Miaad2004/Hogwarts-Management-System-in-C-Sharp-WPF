@@ -5,11 +5,11 @@ namespace Hogwarts.Core.Models.Authentication.Services
 {
     public class PasswordService : IPasswordService
     {
-        public string GetHash(string password)
+        public string GetHash(string? password)
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentException($"'{nameof(password)}' cannot be null or whitespace.", nameof(password));
+                throw new ArgumentNullException(nameof(password));
             }
 
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
@@ -20,22 +20,23 @@ namespace Hogwarts.Core.Models.Authentication.Services
             return BitConverter.ToString(hashBytes).Replace("-", "");
         }
 
-        public bool IsStrong(string password)
+        public bool IsStrong(string? password)
         {
             return string.IsNullOrWhiteSpace(password)
-                ? throw new ArgumentException($"'{nameof(password)}' cannot be null or whitespace.", nameof(password))
+                ? throw new ArgumentNullException(nameof(password))
                 : password.Length >= 8 &&
-                   password.Any(char.IsUpper) &&
-                   password.Any(char.IsLower) &&
-                   password.Any(char.IsDigit);
+                  password.Any(char.IsUpper) &&
+                  password.Any(char.IsLower) &&
+                  password.Any(char.IsDigit);
         }
 
-        public bool IsValid(string password,
-                            string passwordRepeat)
+        public bool IsValid(string? password,
+                            string? passwordRepeat)
         {
-            return string.IsNullOrEmpty(passwordRepeat)
-                ? throw new ArgumentException($"'{nameof(passwordRepeat)}' cannot be null or empty.", nameof(passwordRepeat))
-                : password == passwordRepeat;
+            if (password is null) throw new ArgumentNullException(nameof(password));
+            if (passwordRepeat is null) throw new ArgumentNullException(nameof(passwordRepeat));
+
+            return password == passwordRepeat;
         }
     }
 }

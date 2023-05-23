@@ -1,58 +1,42 @@
-﻿using Hogwarts.Core.Models.CourseManagement;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.CourseManagement;
 using Hogwarts.Core.Models.CourseManagement.Exceptions;
-using Hogwarts.Core.Models.StudentManagement;
-using Hogwarts.Core.SharedServices;
+using Hogwarts.Core.Models.CourseManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.StudentViews.Popups
 {
     /// <summary>
     /// Interaction logic for UploadAssignmentAnswerPopup.xaml
     /// </summary>
-    public partial class UploadAssignmentAnswerPopup : Window
+    public partial class UploadAssignmentAnswerPopup : Window, IPopup
     {
+        private readonly IAssignmentService assignmentService;
         private StudentAssignment StudentAssignment { get; set; }
+
         public UploadAssignmentAnswerPopup(StudentAssignment studentAssignment)
         {
             InitializeComponent();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            assignmentService = serviceProvider.GetRequiredService<IAssignmentService>();
+
             StudentAssignment = studentAssignment;
         }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void UploadAnswer_Click(object sender, RoutedEventArgs e)
+        private async void UploadAnswer_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 string assignmentAnswer = new TextRange(txtDescription.Document.ContentStart, txtDescription.Document.ContentEnd).Text;
-                StaticServiceProvidor.assignmentService.UploadStudentAssignmentAnswer(assignmentAnswer, StudentAssignment.Id);
+                await assignmentService.SubmitAssignmentAnswerAsync(assignmentAnswer, StudentAssignment.Id);
 
                 MessageBox.Show($"Answer Sent.",
                                 "Success!",
@@ -63,16 +47,39 @@ namespace Hogwarts.Views.StudentViews.Popups
 
             catch (Exception ex)
             {
-                if (ex is ArgumentException)
+                if (ex is AssignmentException)
+                {
+                    MessageBox.Show(ex.Message, "Warning!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
+                else if (ex is ArgumentException)
                 {
                     MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
+        }
+
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

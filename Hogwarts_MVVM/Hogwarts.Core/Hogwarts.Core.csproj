@@ -47,7 +47,8 @@
 
   <ItemGroup>
     <Folder Include="Data\DataBase\" />
-    <Folder Include="Models\FacultyManagement\Data\" />
+    <Folder Include="Models\StudentManagement\Exceptions\" />
+    <Folder Include="Models\StudentManagement\Services\" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,8 @@ using Hogwarts.Core.Models.Authentication.Services;
 using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
 using Hogwarts.Core.Models.HouseManagement.Exceptions;
 using Hogwarts.Core.Models.StudentManagement;
-using Hogwarts.Core.SharedServices;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -19,14 +20,17 @@ namespace Hogwarts.Views
     /// </summary>
     public partial class SignupView : Page
     {
-        // Dependencies
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationService authenticationService;
+        private string SelectedProfileImagePath = "";
 
-        private string SelectedProfileImagePath;
         public SignupView()
         {
             InitializeComponent();
-            _authenticationService = StaticServiceProvidor.authenticationService;
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            authenticationService = serviceProvider.GetRequiredService<IAuthenticationService>();
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
@@ -42,7 +46,7 @@ namespace Hogwarts.Views
             SelectedProfileImagePath = openFileDialog.FileName;
         }
 
-        private void btnSignup_Click(object sender, RoutedEventArgs e)
+        private async void BtnSignup_Click(object sender, RoutedEventArgs e)
         {
             StudentRegistrationDTO DTO = new()
             {
@@ -52,10 +56,10 @@ namespace Hogwarts.Views
                 FirstName = txtFirstName.Text,
                 LastName = txtLastName.Text,
                 Email = txtEmail.Text,
-                BirthDate = DateOnly.FromDateTime((DateTime)birthdayPicker.SelectedDate),
+                BirthDate = DateOnly.FromDateTime((DateTime)(birthdayPicker.SelectedDate ?? throw new ArgumentNullException())),
                 BloodType = (BloodType)comboBloodStatus.SelectedIndex,
                 AccessLevel = AccessLevels.Student,
-                HasLuggage = (bool)radioLuggageYes.IsChecked,
+                HasLuggage = (bool)(radioLuggageYes.IsChecked ?? throw new ArgumentNullException(nameof(radioLuggageYes.IsChecked))),
                 Pet = (PetType)comboPet.SelectedIndex,
                 EnteredActivationCode = txtActivationCode.Text,
                 ProfileImagePath = SelectedProfileImagePath
@@ -63,10 +67,11 @@ namespace Hogwarts.Views
 
             try
             {
-                _authenticationService.SignUpStudent(DTO);
+                await authenticationService.SignUpStudentAsync(DTO);
                 MessageBox.Show("Welcome to Hogwarts, Please login.", "Signup Successful", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.Navigate(new Uri("/LoginView.xaml", UriKind.Relative));
             }
+
             catch (Exception ex)
             {
                 if (ex is ArgumentException ||
@@ -78,7 +83,7 @@ namespace Hogwarts.Views
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
         }

@@ -5,6 +5,6 @@ namespace Hogwarts.Core.Models.Authentication.DTOs
     public class ProfessorRegistrationDTO : BaseRegistrationDTO
     {
         public ProfessorMajors Major { get; set; }
-        public bool HasTimeTurner;
+        public bool HasTimeTurner { get; set; }
     }
 }

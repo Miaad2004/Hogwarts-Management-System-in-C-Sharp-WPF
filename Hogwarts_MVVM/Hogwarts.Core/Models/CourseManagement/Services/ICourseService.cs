@@ -4,12 +4,11 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
 {
     public interface ICourseService
     {
-        Course GetCourseById(Guid courseId);
-        void AddCourse(CourseDTO DTO);
-        public GradeType GetStudentGrade(Guid studentId, Guid courseId);
-        void EnrollStudentInCourse(Guid studentId, Guid courseId);
-        void AddGradeToStudentInCourse(Guid studentId, Guid courseId, Grade grade);
-        int GetActiveCourseCount(Guid studentId);
+        Task AddCourseAsync(CourseDTO DTO);
+        public Task<GradeType> GetStudentGradeAsync(Guid studentId, Guid courseId);
+        Task EnrollStudentInCourseAsync(Guid studentId, Guid courseId);
+        Task SetStudentGradeAsync(Guid studentId, Guid courseId, GradeType gradeType);
+        Task<int> GetActiveCourseCountAsync(Guid studentId);
 
 
     }

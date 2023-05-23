@@ -1,5 +1,4 @@
 ﻿using Hogwarts.Core.Data;
-using System.Collections.ObjectModel;
 
 namespace Hogwarts.Core.Models.FacultyManagement.Services
 {

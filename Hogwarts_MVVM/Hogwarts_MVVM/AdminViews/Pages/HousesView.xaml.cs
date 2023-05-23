@@ -1,25 +1,16 @@
-﻿using Hogwarts.Core.Models.Authentication;
-using Hogwarts.Core.Models.ForestManagement.Exceptions;
-using Hogwarts.Core.Models.ForestManagement;
-using Hogwarts.Core.SharedServices;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.HouseManagement;
+using Hogwarts.Core.Models.HouseManagement.Exceptions;
+using Hogwarts.Core.Models.HouseManagement.Services;
+using Hogwarts.Views.AdminViews.Popups;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hogwarts.Core.Models.HouseManagement;
-using Hogwarts.Core.Models.HouseManagement.Exceptions;
-using Hogwarts.Views.AdminViews.Popups;
 
 namespace Hogwarts.Views.AdminViews.Pages
 {
@@ -28,30 +19,30 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class HousesView : Page
     {
-        private static ObservableCollection<House> Houses =>
-            StaticServiceProvidor.dbContext.GetList<House>(orderBy: h => h.HouseType);
+        private readonly HogwartsDbContext dbContext;
+        private readonly IHouseService houseService;
 
         public HousesView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+            houseService = serviceProvider.GetRequiredService<IHouseService>();
+
+            Loaded += OnLoaded;
         }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            housesDataGrid.ItemsSource = Houses;
-            housesDataGrid.Items.Refresh();
-        }   
 
-
-
-        private void AddPoint_Click(object sender, RoutedEventArgs e)
+        private async void AddPoint_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Button? button = sender as Button;
-                House? house = button.DataContext as House;
+                House house = button?.DataContext as House ?? throw new ArgumentNullException(nameof(house));
 
-                StaticServiceProvidor.houseService.UpdatePoints(house.Id, dPoint: +5);
+                await houseService.UpdatePointsAsync(house.Id, dPoint: +5);
                 MessageBox.Show($"5 Points Added To {house.HouseType}.",
                                 "Success!",
                                 MessageBoxButton.OK,
@@ -68,22 +59,22 @@ namespace Hogwarts.Views.AdminViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
         }
 
-        private void DeductPoint_Click(object sender, RoutedEventArgs e)
+        private async void DeductPoint_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Button? button = sender as Button;
-                House? house = button.DataContext as House;
+                House house = button?.DataContext as House ?? throw new ArgumentNullException(nameof(house));
 
-                StaticServiceProvidor.houseService.UpdatePoints(house.Id, dPoint: -5);
+                await houseService.UpdatePointsAsync(house.Id, dPoint: -5);
                 MessageBox.Show($"5 Points Deducted From {house.HouseType}.",
                                 "Success!",
                                 MessageBoxButton.OK,
@@ -100,15 +91,15 @@ namespace Hogwarts.Views.AdminViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
         }
 
-        private void AddHouse_Click(object sender, RoutedEventArgs e)
+        private async void AddHouse_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
@@ -117,10 +108,21 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            ObservableCollection<House> houses = await dbContext.GetListAsync<House>(orderBy: h => h.Points);
+            housesDataGrid.ItemsSource = houses;
         }
     }
 }

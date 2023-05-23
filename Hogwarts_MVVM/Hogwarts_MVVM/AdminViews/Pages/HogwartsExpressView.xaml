@@ -15,7 +15,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -32,7 +33,8 @@
 
 
         <!--Page Title-->
-        <TextBlock Text="Trains" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+        <TextBlock Text="Trains" Grid.Row="1" FontSize="32" FontWeight="SemiBold"
+                   Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
         <!--Seprator-->
         <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
@@ -73,6 +75,10 @@
                                     CanUserResize="False" Width="auto"
                                     Binding="{Binding SequentialIndex}"/>
 
+                <!-- Title -->
+                <DataGridTextColumn Header="Title"
+                                    Binding="{Binding Title}" IsReadOnly="True" Width="*"/>
+                
                 <!-- Origin -->
                 <DataGridTextColumn Header="Origin"
                                     Binding="{Binding Origin}" IsReadOnly="True" Width="*"/>

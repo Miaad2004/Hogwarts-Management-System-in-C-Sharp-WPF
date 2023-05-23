@@ -1,49 +1,55 @@
-﻿using Hogwarts.Core.Models.ForestManagement;
+﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.ForestManagement.DTOs;
-using Hogwarts.Core.SharedServices;
+using Hogwarts.Core.Models.ForestManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.AdminViews.Popups
 {
     /// <summary>
     /// Interaction logic for AddPlantPopup.xaml
     /// </summary>
-    public partial class AddPlantPopup : Window
+    public partial class AddPlantPopup : Window, IPopup
     {
+        private readonly IForestService forestService;
         private string SelectedImagePath = "";
+
         public AddPlantPopup()
         {
             InitializeComponent();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            forestService = serviceProvider.GetRequiredService<IForestService>();
         }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private async void AddPlant_Click(object sender, RoutedEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            PlantDTO DTO = new()
             {
-                DragMove();
+                Name = txtName.Text,
+                Description = txtDescription.Text,
+                Quantity = txtQuantity.Text,
+                GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1),
+                ImagePath = SelectedImagePath
+            };
+
+            try
+            {
+                await forestService.AddPlantAsync(DTO);
+
+                MessageBox.Show("Plant Added successfully.", "Operation Successful!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
@@ -59,28 +65,22 @@ namespace Hogwarts.Views.AdminViews.Popups
             SelectedImagePath = openFileDialog.FileName;
         }
 
-        private void AddPlant_Click(object sender, RoutedEventArgs e)
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            PlantDTO DTO = new()
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Name = txtName.Text,
-                Description = txtDescription.Text,
-                Quantity = txtQuantity.Text,
-                GrowthTimeSpan = TimeSpan.FromMinutes(growthRateComboBox.SelectedIndex + 1),
-                ImagePath = SelectedImagePath
-            };
-
-            try
-            {
-                StaticServiceProvidor.forestService.AddPlant(DTO);
-
-                MessageBox.Show("Plant Added successfully.", "Operation Successful!", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                DragMove();
             }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

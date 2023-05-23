@@ -8,7 +8,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement.Exceptions
         {
         }
 
-        public DormitoryFullException(string? message) : base(message)
+        public DormitoryFullException(string dormTitle) : base($"{dormTitle} dormitory is full.")
         {
         }
 

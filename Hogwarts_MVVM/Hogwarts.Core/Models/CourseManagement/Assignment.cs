@@ -1,6 +1,5 @@
 ﻿using Hogwarts.Core.Models.CourseManagement.DTOs;
 using Hogwarts.Core.Models.FacultyManagement;
-using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.CourseManagement
 {
@@ -8,9 +7,8 @@ namespace Hogwarts.Core.Models.CourseManagement
     {
         private string _title;
         private string _description;
-        private DateTime _startDate;
         private DateTime _dueDate;
-        
+
         public string Title
         {
             get => _title;
@@ -36,18 +34,7 @@ namespace Hogwarts.Core.Models.CourseManagement
             }
         }
 
-        public DateTime StartDate
-        {
-            get => _startDate;
-            private set
-            {
-                if (value < DateTime.Now)
-                {
-                    throw new ArgumentException($"{nameof(StartDate)} can't be in the past.");
-                }
-                _startDate = value;
-            }
-        }
+        public DateTime StartDate { get; private set; }
         public DateTime DueDate
         {
             get => _dueDate;
@@ -65,8 +52,9 @@ namespace Hogwarts.Core.Models.CourseManagement
         public Guid ProfessorId { get; private set; }
         public Course Course { get; private set; }
         public Guid CourseId { get; private set; }
-        public ICollection<StudentAssignment> StudentAssignments { get; private set; } = new List<StudentAssignment>(); 
-        public bool HasEnded => DueDate > DateTime.Now;
+        public ICollection<StudentAssignment> StudentAssignments { get; private set; } = new List<StudentAssignment>();
+        public bool HasStarted => StartDate < DateTime.Now;
+        public bool HasEnded => DueDate < DateTime.Now;
 
         public Assignment()
             : base()

@@ -1,6 +1,5 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement.Exceptions;
-using Hogwarts.Core.SharedServices;
 
 namespace Hogwarts.Core.Models.TrainManagement
 {
@@ -13,7 +12,7 @@ namespace Hogwarts.Core.Models.TrainManagement
         private int _nCompartments;
         private int _nSeatsPerCompartment;
         private DateTime _departureTime;
-        private int _nOccupiedSeats;
+        private int _nOccupiedSeats = 0;
 
         public string Title
         {
@@ -22,12 +21,13 @@ namespace Hogwarts.Core.Models.TrainManagement
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Title cannot be null or empty.");
+                    throw new ArgumentException($"{nameof(Title)} cannot be null or empty.");
                 }
 
                 _title = value;
             }
         }
+
         public string Origin
         {
             get => _origin;
@@ -35,10 +35,10 @@ namespace Hogwarts.Core.Models.TrainManagement
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Origin cannot be null or empty.");
+                    throw new ArgumentException($"{nameof(Origin)} cannot be null or empty.");
                 }
 
-                _origin = value;
+                _origin = char.ToUpper(value[0]) + value[1..];
             }
         }
 
@@ -49,10 +49,10 @@ namespace Hogwarts.Core.Models.TrainManagement
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Destination cannot be null or empty.");
+                    throw new ArgumentException($"{nameof(Destination)} cannot be null or empty.");
                 }
 
-                _destination = value;
+                _destination = char.ToUpper(value[0]) + value[1..];
             }
         }
 
@@ -63,10 +63,10 @@ namespace Hogwarts.Core.Models.TrainManagement
             {
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Platform cannot be null or empty.");
+                    throw new ArgumentException($"{nameof(Platform)} cannot be null or empty.");
                 }
 
-                _platform = value;
+                _platform = value.ToLower();
             }
         }
 
@@ -103,7 +103,7 @@ namespace Hogwarts.Core.Models.TrainManagement
             get => _departureTime;
             set
             {
-                if (value < DateTime.UtcNow)
+                if (value < DateTime.Now)
                 {
                     throw new ArgumentException("Departure time cannot be in the past.");
                 }
@@ -128,12 +128,19 @@ namespace Hogwarts.Core.Models.TrainManagement
 
         public int TotalCapacity => NCompartments * NSeatsPerCompartment;
 
-        public ICollection<TrainTicket> Tickets { get; private set; }
+        public ICollection<TrainTicket> Tickets { get; private set; } = new List<TrainTicket>();
         public Train() : base()
         {
-            Tickets = new List<TrainTicket>();
+
         }
-        public Train(DateTime departureTime, string title, string origin, string destination, string platform, int nCompartments, int nSeatsPerCompartment) : base()
+
+        public Train(DateTime departureTime,
+                     string title,
+                     string origin,
+                     string destination,
+                     string platform,
+                     int nCompartments,
+                     int nSeatsPerCompartment) : base()
         {
             DepartureTime = departureTime;
             Title = title;
@@ -142,15 +149,13 @@ namespace Hogwarts.Core.Models.TrainManagement
             Platform = platform.ToLower();
             NCompartments = nCompartments;
             NSeatsPerCompartment = nSeatsPerCompartment;
-            NOccupiedSeats = 0;
-
-            Tickets = new List<TrainTicket>();
         }
+
         public TrainTicket ReserveSeat(User owner)
         {
             if (TotalCapacity == NOccupiedSeats)
             {
-                throw new TrainFullException($"Train with ID {Id} is full. Create a new train and try again.");
+                throw new TrainFullException(this.Title);
             }
 
             int compartmentNumber = (NOccupiedSeats / NSeatsPerCompartment) + 1;
@@ -167,7 +172,7 @@ namespace Hogwarts.Core.Models.TrainManagement
         {
             if (TotalCapacity == NOccupiedSeats)
             {
-                throw new TrainFullException($"Train with ID {Id} is full. Create a new train and try again.");
+                throw new TrainFullException(this.Title);
             }
 
             int compartmentNumber = (NOccupiedSeats / NSeatsPerCompartment) + 1;
@@ -177,7 +182,7 @@ namespace Hogwarts.Core.Models.TrainManagement
 
             TrainTicket ticket = new(this, activationCode, DepartureTime, Origin, Destination, Platform,
                                          compartmentNumber, seatNumber);
-           
+
             return ticket;
         }
 
@@ -185,6 +190,7 @@ namespace Hogwarts.Core.Models.TrainManagement
         {
             return $"Train - Origin: {Origin} - DepartureTime: {DepartureTime} - TotalCapacity: {TotalCapacity} - OccupiedSeats: {NOccupiedSeats}";
         }
+
         public override int GetHashCode()
         {
             return HashCode.Combine(Origin, DepartureTime, NCompartments, NSeatsPerCompartment, NOccupiedSeats,

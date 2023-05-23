@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Hogwarts.Core.Models.ForestManagement.Exceptions
 {
@@ -13,7 +8,7 @@ namespace Hogwarts.Core.Models.ForestManagement.Exceptions
         {
         }
 
-        public PlantNotCollectableException(string? message) : base(message)
+        public PlantNotCollectableException(DateTime harvestTime) : base($"Plant will be collectable in {(harvestTime - DateTime.Now).TotalMinutes:F3} minute(s)")
         {
         }
 

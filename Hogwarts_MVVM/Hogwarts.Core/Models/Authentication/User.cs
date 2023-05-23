@@ -1,14 +1,17 @@
 ﻿using Hogwarts.Core.Models.Authentication.DTOs;
 using Hogwarts.Core.Models.StudentManagement;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Xaml;
+using Hogwarts.Core.SharedServices;
 
 namespace Hogwarts.Core.Models.Authentication
 {
     public abstract class User : Entity
     {
         private string _username;
+        private string _firstName;
+        private string _lastName;
+        private string _email;
+        private DateOnly _birthdate;
+
         public string Username
         {
             get => _username;
@@ -23,7 +26,6 @@ namespace Hogwarts.Core.Models.Authentication
             }
         }
 
-        private string _firstName;
         public string FirstName
         {
             get => _firstName;
@@ -34,11 +36,11 @@ namespace Hogwarts.Core.Models.Authentication
                     throw new ArgumentException("First name can not be null.");
                 }
 
-                _firstName = value;
+                value = value.ToLower();
+                _firstName = char.ToUpper(value[0]) + value[1..];
             }
         }
 
-        private string _lastName;
         public string LastName
         {
             get => _lastName;
@@ -49,60 +51,65 @@ namespace Hogwarts.Core.Models.Authentication
                     throw new ArgumentException("Last name can not be null.");
                 }
 
-                _lastName = value;
+                value = value.ToLower();
+                _lastName = char.ToUpper(value[0]) + value[1..];
             }
         }
 
-        public string FullName => $"{FirstName}, {LastName}";
-
-        private string _email;
         public string Email
         {
             get => _email;
             protected set
             {
-                if (!Regex.IsMatch(value, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))      // <username>@<HOGWARTS_API_DOMAIN>.<tld>
+                if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException("Invalid Email");
+                    throw new ArgumentNullException($"{nameof(Email)} can not be empty.");
+                }
+
+                if (!StaticMailService.IsValidEmail(value))
+                {
+                    throw new ArgumentException("Invalid Email!");
                 }
                 _email = value;
             }
         }
 
-        private DateOnly _birthDate;
-        public DateOnly BirthDate
+        public DateOnly Birthdate
         {
-            get => _birthDate;
+            get => _birthdate;
             protected set
             {
                 if (value > DateOnly.FromDateTime(DateTime.Now))
                 {
-                    throw new ArgumentException("BirthDay can not be in the future.");
+                    throw new ArgumentException("Birthdate can not be in the future.");
                 }
 
-                _birthDate = value;
+                _birthdate = value;
             }
         }
 
-
-        public int Age => DateTime.Now.Year - BirthDate.Year;
         public BloodType BloodType { get; protected set; }
         public AccessLevels AccessLevel { get; protected set; }
         public string PasswordHash { get; protected set; }
         public string FullProfileImagePath { get; private set; }
+        public int Age => DateTime.Now.Year - Birthdate.Year;
+        public string FullName => $"{FirstName}, {LastName}";
 
         protected User()
+            : base()
         {
 
         }
+
         protected User(string username, string firstName, string lastName, string email, DateOnly birthDay,
                        BloodType bloodType, AccessLevels accessLevel, string passwordHash, string profileImagePath)
+            : base()
         {
             Username = username ?? throw new ArgumentNullException(nameof(username));
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             Email = email ?? throw new ArgumentNullException(nameof(email));
-            BirthDate = birthDay;
+            Birthdate = birthDay;
             BloodType = bloodType;
             AccessLevel = accessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
@@ -111,21 +118,18 @@ namespace Hogwarts.Core.Models.Authentication
         }
 
         protected User(BaseRegistrationDTO DTO, string passwordHash)
+            : base()
         {
             Username = DTO.Username ?? throw new ArgumentNullException(nameof(DTO.Username));
             FirstName = DTO.FirstName ?? throw new ArgumentNullException(nameof(DTO.FirstName));
             LastName = DTO.LastName ?? throw new ArgumentNullException(nameof(DTO.LastName));
-            Email = DTO.Email ?? throw new ArgumentNullException(nameof(DTO.Email));
-            BirthDate = DTO.BirthDate;
+            Email = DTO.Email ?? throw new ArgumentNullException("Email can't be empty.");
+            Birthdate = DTO.BirthDate;
             BloodType = DTO.BloodType;
             AccessLevel = DTO.AccessLevel;
             PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
 
             SetProfileImagePath(DTO.ProfileImagePath);
-        }
-        public override string ToString()
-        {
-            return $"User {Username} - Full name: {FullName} - AccessLevel: {AccessLevel} - Email: {Email}";
         }
 
         private void SetProfileImagePath(string? profileImagePath)
@@ -146,9 +150,18 @@ namespace Hogwarts.Core.Models.Authentication
 
             string fullImagePath = Path.Combine(subfolderPath, this.Id.ToString() + Path.GetExtension(profileImagePath));
 
-            File.Copy(profileImagePath, fullImagePath, overwrite:true);
+            File.Copy(profileImagePath, fullImagePath, overwrite: true);
             File.SetAttributes(fullImagePath, FileAttributes.ReadOnly);
             this.FullProfileImagePath = fullImagePath;
+        }
+
+        public override string ToString()
+        {
+            return $"User {Username} - Full name: {FullName} - AccessLevel: {AccessLevel} - Email: {Email}";
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Username, Email);
         }
     }
 }

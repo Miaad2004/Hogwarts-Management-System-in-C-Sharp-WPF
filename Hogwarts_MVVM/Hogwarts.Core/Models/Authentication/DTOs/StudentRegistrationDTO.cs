@@ -1,5 +1,4 @@
-﻿using Hogwarts.Core.Models.DormitoryManagement;
-using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.Authentication.DTOs
 {
@@ -7,6 +6,6 @@ namespace Hogwarts.Core.Models.Authentication.DTOs
     {
         public bool HasLuggage { get; set; }
         public PetType Pet { get; set; }
-        public string? EnteredActivationCode { get; set; }
+        public string EnteredActivationCode { get; set; } = "";
     }
 }

@@ -1,9 +1,11 @@
-﻿using Hogwarts.Core.Models.DormitoryManagement;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.ForestManagement;
-using Hogwarts.Core.Models.TrainManagement;
-using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
-using System.Collections.ObjectModel;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,22 +16,21 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class ForestView : Page
     {
-        private static ObservableCollection<Plant> Plants =>
-            StaticServiceProvidor.dbContext.GetList<Plant>(orderBy: p => p.HarvestTime);
+        private readonly HogwartsDbContext dbContext;
 
         public ForestView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+
+            Loaded += OnLoaded;
         }
 
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            plantsDataGrid.ItemsSource = Plants;
-            plantsDataGrid.Items.Refresh();
-        }
-
-        private void AddPlant_Click(object sender, RoutedEventArgs e)
+        private async void AddPlant_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
@@ -38,10 +39,21 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            var plants = await dbContext.GetListAsync<Plant>(orderBy: p => p.HarvestTime);
+            plantsDataGrid.ItemsSource = plants;
         }
     }
 }

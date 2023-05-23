@@ -6,7 +6,7 @@ namespace Hogwarts.Core.Models.TrainManagement
     {
         private DateTime _depaurtureTime;
 
-        public Train Train { get; set; } 
+        public Train Train { get; set; }
         public Guid TrainId { get; private set; }
         public Guid OwnerId { get; private set; }
         public DateTime DepartureTime

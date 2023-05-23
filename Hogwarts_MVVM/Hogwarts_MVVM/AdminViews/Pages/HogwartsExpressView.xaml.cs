@@ -1,10 +1,12 @@
-﻿using Hogwarts.Core.Models.DormitoryManagement;
-using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement;
-using Hogwarts.Core.SharedServices;
 using Hogwarts.Views.AdminViews.Popups;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,22 +17,21 @@ namespace Hogwarts.Views.AdminViews.Pages
     /// </summary>
     public partial class HogwartsExpressView : Page
     {
-
-        private static ObservableCollection<Train> Trains =>
-            StaticServiceProvidor.dbContext.GetList<Train>(orderBy: t => t.DepartureTime);
+        private readonly HogwartsDbContext dbContext;
 
         public HogwartsExpressView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
-        }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            trainsDataGrid.ItemsSource = Trains;
-            trainsDataGrid.Items.Refresh();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+
+            Loaded += OnLoaded;
         }
 
-        private void AddTrain_Click(object sender, RoutedEventArgs e)
+        private async void AddTrain_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
@@ -39,10 +40,21 @@ namespace Hogwarts.Views.AdminViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            ObservableCollection<Train> trains = await dbContext.GetListAsync<Train>(orderBy: t => t.DepartureTime);
+            trainsDataGrid.ItemsSource = trains;
         }
     }
 }

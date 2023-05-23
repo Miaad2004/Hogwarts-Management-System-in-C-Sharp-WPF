@@ -2,7 +2,7 @@
 
 namespace Hogwarts.Core.Models
 {
-    public class Entity
+    public abstract class Entity
     {
         [Key]
         public Guid Id { get; protected set; }

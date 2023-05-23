@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.Data;
 using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hogwarts.Core.Models.TrainManagement.Services
 {
@@ -13,18 +14,22 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
             _dbContext = dbContext;
         }
 
-        public Train AddTrain(
+        public async Task<Train> AddTrainAsync(
             DateTime departureTime, string title, string origin, string destination, string platform,
             int nCompartments, int nSeatsPerCompartment)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
             Train train = new(departureTime, title, origin, destination, platform, nCompartments, nSeatsPerCompartment);
-            _ = _dbContext.Trains.Add(train);
-            _ = _dbContext.SaveChanges();
+            await _dbContext.Trains.AddAsync(train);
+            await _dbContext.SaveChangesAsync();
             return train;
         }
 
-        public TrainTicket GetTrainTicket(Train train, User owner)
+        public async Task<TrainTicket> GetTrainTicketAsync(Train train, User owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
             if (train is null)
             {
                 throw new ArgumentNullException(nameof(train));
@@ -37,27 +42,31 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
 
             TrainTicket ticket = train.ReserveSeat(owner);
 
-            _dbContext.Tickets.Add(ticket);
-            _dbContext.SaveChanges();
+            await _dbContext.Tickets.AddAsync(ticket);
+            await _dbContext.SaveChangesAsync();
             return ticket;
         }
 
-        public TrainTicket GetTrainTicket(Guid trainId, User owner)
+        public async Task<TrainTicket> GetTrainTicketAsync(Guid trainId, User owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
             if (owner is null)
             {
                 throw new ArgumentNullException(nameof(owner));
             }
 
-            TrainTicket ticket = _dbContext.Trains.Where(t => t.Id == trainId).First().ReserveSeat(owner);
+            TrainTicket ticket = (await _dbContext.Trains.Where(t => t.Id == trainId).FirstAsync()).ReserveSeat(owner);
 
-            _dbContext.Tickets.Add(ticket);
-            _dbContext.SaveChanges();
+            await _dbContext.Tickets.AddAsync(ticket);
+            await _dbContext.SaveChangesAsync();
             return ticket;
         }
 
-        public TrainTicket GetNearestTrainTicket(DateTime depaurtureTime, User owner, string origin, string destination)
+        public async Task<TrainTicket> GetNearestTrainTicketAsync(DateTime depaurtureTime, User owner, string origin, string destination)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
             if (owner is null)
             {
                 throw new ArgumentNullException(nameof(owner));
@@ -73,28 +82,28 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
                 throw new ArgumentException($"'{nameof(destination)}' cannot be null or empty.", nameof(destination));
             }
 
-            Train? train = _dbContext.Trains
+            Train train = await _dbContext.Trains
                 .Where(t => t.DepartureTime >= depaurtureTime &&
-                            t.Origin == origin.ToLower() &&
-                            t.Destination == destination.ToLower())
+                            t.Origin.ToLower() == origin.ToLower() &&
+                            t.Destination.ToLower() == destination.ToLower())
                 .OrderBy(t => t.DepartureTime)
-                .SingleOrDefault();
-
-            if (train == null)
-            {
-                throw new TrainNotFoundException($"No train found departing from {origin} after {depaurtureTime}.");
-            }
+                .SingleOrDefaultAsync()
+                ?? throw new NoTrainAvailableException(origin, destination, depaurtureTime);
 
             TrainTicket ticket = train.ReserveSeat(owner);
-
-            _dbContext.Tickets.Add(ticket);
-            _dbContext.SaveChanges();
+            await _dbContext.Tickets.AddAsync(ticket);
+            await _dbContext.SaveChangesAsync();
 
             return ticket;
         }
 
-        public TrainTicket GetNearestTrainTicket(DateTime depaurtureTime, ActivationCode activationCode, string origin, string destination)
+        public async Task<TrainTicket> GetNearestTrainTicketAsync(DateTime depaurtureTime, ActivationCode activationCode, string origin, string destination)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            origin = origin.ToLower();
+            destination = destination.ToLower();
+
             if (activationCode is null)
             {
                 throw new ArgumentNullException(nameof(activationCode));
@@ -110,29 +119,26 @@ namespace Hogwarts.Core.Models.TrainManagement.Services
                 throw new ArgumentException($"'{nameof(destination)}' cannot be null or empty.", nameof(destination));
             }
 
-            Train? train = _dbContext.Trains
+            Train train = await _dbContext.Trains
                 .Where(t => t.DepartureTime >= depaurtureTime &&
-                            t.Origin == origin.ToLower() &&
-                            t.Destination == destination.ToLower())
+                            t.Origin.ToLower() == origin.ToLower() &&
+                            t.Destination.ToLower() == destination.ToLower())
                 .OrderBy(t => t.DepartureTime)
-                .SingleOrDefault();
-
-            if (train == null)
-            {
-                throw new TrainNotFoundException($"No train found departing from {origin} to {destination} after {depaurtureTime}.");
-            }
+                .FirstOrDefaultAsync()
+                ?? throw new NoTrainAvailableException(origin, destination, depaurtureTime);
 
             TrainTicket ticket = train.ReserveSeat(activationCode);
+            await _dbContext.Tickets.AddAsync(ticket);
+            await _dbContext.SaveChangesAsync();
 
-            _dbContext.Tickets.Add(ticket);
-            _dbContext.SaveChanges();
             return ticket;
         }
 
-        public TrainTicket GetTicketForNewStudent(ActivationCode activationCode)
+        public async Task<TrainTicket> GetTicketForNewStudentAsync(ActivationCode activationCode)
         {
-            return GetNearestTrainTicket(DateTime.Now, activationCode, origin: "London",
-                                         destination: "Hogwarts");
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            return await GetNearestTrainTicketAsync(DateTime.Now, activationCode, origin: "london", destination: "hogwarts");
         }
     }
 }

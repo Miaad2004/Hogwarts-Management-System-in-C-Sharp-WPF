@@ -1,17 +1,14 @@
 ﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.CourseManagement.DTOs;
 using Hogwarts.Core.Models.CourseManagement.Exceptions;
 using Hogwarts.Core.Models.FacultyManagement;
+using Hogwarts.Core.Models.StudentManagement;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogwarts.Core.Models.CourseManagement.Services
 {
-    public class AssignmentService: IAssignmentService
+    public class AssignmentService : IAssignmentService
     {
         private readonly HogwartsDbContext _dbContext;
 
@@ -20,99 +17,67 @@ namespace Hogwarts.Core.Models.CourseManagement.Services
             _dbContext = dbContext;
         }
 
-        public void AddAssignment(AssignmentDTO DTO, Guid courseId, Guid professorId)
+        public async Task AddAssignmentAsync(AssignmentDTO DTO, Guid courseId, Guid professorId)
         {
-            Course course = _dbContext.Courses.Include(c => c.Students).SingleOrDefault(c => c.Id == courseId) ?? throw new ArgumentException("Invalid course ID.");
-            Professor professor = _dbContext.Professors.SingleOrDefault(p => p.Id == professorId) ?? throw new ArgumentException("Invalid professor Id");
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            Course course = await _dbContext.Courses.Include(c => c.Students).SingleOrDefaultAsync(c => c.Id == courseId) ?? throw new ArgumentException("Invalid course ID.");
+            Professor professor = await _dbContext.Professors.SingleOrDefaultAsync(p => p.Id == professorId) ?? throw new ArgumentException("Invalid professor Id");
 
             Assignment assignment = new(DTO, professor, course);
-            _dbContext.Assignments.Add(assignment);
+            await _dbContext.Assignments.AddAsync(assignment);
 
             foreach (var student in course.Students)
             {
                 var studentAssignment = new StudentAssignment(student, assignment);
-                _dbContext.StudentAssignments.Add(studentAssignment);
+                await _dbContext.StudentAssignments.AddAsync(studentAssignment);
             }
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public GradeType GetStudentAssignmentScore(Guid StudentAssignmentId)
+        public async Task<GradeType> GetAssignmentScoreAsync(Guid studentAssignmentId)
         {
-            var StudentAssignment = _dbContext.StudentAssignments.SingleOrDefault(sa => sa.Id == StudentAssignmentId) ?? throw new ArgumentException("Invalid ID.");
-            var score = StudentAssignment.Score ?? throw new GradeNotRegisteredException("Your grade has not been registered yet.");
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
 
-            return score.Value;
+            var StudentAssignment = await _dbContext.StudentAssignments.SingleOrDefaultAsync(sa => sa.Id == studentAssignmentId) ?? throw new ArgumentException("Invalid Assignment Id.");
+            var score = StudentAssignment.Score;
+            if (score == GradeType.NotSpecified)
+            {
+                throw new GradeNotRegisteredException("Your grade has not been registered yet.");
+            }
+
+            return score;
         }
 
-        public void UploadStudentAssignmentAnswer(string answer, Guid studentAssignmentId)
-        {
-            if (string.IsNullOrWhiteSpace(answer)) throw new ArgumentException($"{nameof(answer)} can't be null.");
-            var studentAssignment = _dbContext.StudentAssignments.SingleOrDefault(sa =>sa.Id == studentAssignmentId) ?? throw new ArgumentException("Invalid ID");
 
+        public async Task SetAssignmentScoreAsync(Guid studentAssignmentId, GradeType gradeType)
+        {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            var StudentAssignment = await _dbContext.StudentAssignments.SingleOrDefaultAsync(sa => sa.Id == studentAssignmentId) ?? throw new ArgumentException("Invalid Assignment Id.");
+            StudentAssignment.Score = gradeType;
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SubmitAssignmentAnswerAsync(string answer, Guid studentAssignmentId)
+        {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            var studentAssignment = await _dbContext.StudentAssignments.SingleOrDefaultAsync(sa => sa.Id == studentAssignmentId) ?? throw new ArgumentException("Invalid Assignment ID");
             studentAssignment.Answer = answer;
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
-
-        /*
-        public void AddAssignmentToCourse(Guid courseId, Assignment assignment)
+        public async Task<int> GetActiveAssignmentCountAsync(Guid studentId)
         {
-            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
 
-            if (course == null)
-            {
-                throw new ArgumentException("Invalid course id");
-            }
+            Student? student = await _dbContext.Students
+                .Include(s => s.StudentAssignments)
+                .SingleOrDefaultAsync(s => s.Id == studentId)
+                ?? throw new ArgumentException("Invalid student id");
 
-            course.Assignments.Add(assignment);
-            _ = _dbContext.SaveChanges();
+            return student.StudentAssignments.Count();
         }
-
-        public List<Assignment> GetAllAssignmentsForCourse(Guid courseId)
-        {
-            Course? course = _dbContext.Courses.FirstOrDefault(c => c.Id == courseId);
-
-            return course == null ? throw new ArgumentException("Invalid course id") : course.Assignments.ToList();
-        }
-        public void SubmitAssignment(Guid assignmentId, string answer)
-        {
-            Assignment? assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
-
-            if (assignment == null)
-            {
-                throw new ArgumentException("Invalid assignment id");
-            }
-
-            if (DateTime.Today > assignment.DueDate)
-            {
-                throw new ArgumentException("Assignment submission is past due");
-            }
-
-            assignment.Answer = answer;
-            _ = _dbContext.SaveChanges();
-        }
-
-        public void CheckAssignment(Guid assignmentId, Grade grade)
-        {
-            Assignment? assignment = _dbContext.Assignments.FirstOrDefault(a => a.Id == assignmentId);
-
-            if (assignment == null)
-            {
-                throw new ArgumentException("Invalid assignment id");
-            }
-
-            if (assignment.HasBeenCheckedByTeacher)
-            {
-                throw new ArgumentException("Assignment has already been checked");
-            }
-
-            if (!assignment.HasBeenAnswered)
-            {
-                throw new ArgumentException("Assignment has not been answered yet");
-            }
-
-            assignment.Grade = grade;
-            _ = _dbContext.SaveChanges();
-        }*/
     }
 }

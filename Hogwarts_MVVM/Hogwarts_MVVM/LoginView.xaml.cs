@@ -1,6 +1,7 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.Authentication.Services;
-using Hogwarts.Core.SharedServices;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Security.Authentication;
 using System.Windows;
@@ -16,30 +17,38 @@ namespace Hogwarts.Views
     public partial class LoginView : Page
     {
         // Dependencies
-        private readonly IAuthenticationService _authenticationService;
+        private readonly IAuthenticationService authenticationService;
 
         public LoginView()
         {
             InitializeComponent();
-            _authenticationService = StaticServiceProvidor.authenticationService;
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            authenticationService = serviceProvider.GetRequiredService<IAuthenticationService>();
+
         }
-        private void backgroundVideo_MediaEnded(object sender, RoutedEventArgs e)
+
+        private void BackgroundVideo_MediaEnded(object sender, RoutedEventArgs e)
         {
             backgroundVideo.Position = TimeSpan.FromSeconds(9.04);
             backgroundVideo.Play();
         }
-       
-        private void Login_Click(object sender, RoutedEventArgs e)
+
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                _authenticationService.Login(txtUsername.Text, txtPassword.Password);
-                _ = MessageBox.Show("Logged in Successfully",
+                await authenticationService.LoginAsync(txtUsername.Text, txtPassword.Password);
+                MessageBox.Show("Logged in Successfully",
                                 "Login Successful",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
 
-                switch (SessionManager.CurrentSession.User.AccessLevel)
+                var currentSession = SessionManager.CurrentSession ?? throw new ArgumentException(nameof(SessionManager.CurrentSession));
+
+                switch (currentSession.User.AccessLevel)
                 {
                     case AccessLevels.Admin:
                         _ = NavigationService.Navigate(new Uri("/AdminViews/MainView.xaml", UriKind.Relative));

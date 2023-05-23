@@ -1,0 +1,13 @@
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\Hogwarts.Views.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\appsettings.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\admin.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\StaticResources\LoginWindow\bg-video.mp4
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\StaticResources\Shared\StartupChime.mp3
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\D3DCompiler_47_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\PenImc_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\PresentationNative_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\vcruntime140_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\wpfgfx_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\e_sqlite3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\publish\v1.0\Hogwarts.Views.exe

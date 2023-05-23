@@ -2,65 +2,39 @@
 using Hogwarts.Core.Models.CourseManagement;
 using Hogwarts.Core.Models.CourseManagement.DTOs;
 using Hogwarts.Core.Models.CourseManagement.Exceptions;
-using Hogwarts.Core.SharedServices;
+using Hogwarts.Core.Models.CourseManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.ProfessorViews.Popups
 {
     /// <summary>
     /// Interaction logic for AddAssignmentPopup.xaml
     /// </summary>
-    public partial class AddAssignmentPopup : Window
+    public partial class AddAssignmentPopup : Window, IPopup
     {
-        private Guid CurrentProfessorId => SessionManager.CurrentSession.User.Id;
+        private readonly IAssignmentService assignmentService;
+        private static Guid CurrentProfessorId => SessionManager.CurrentSession?.User.Id ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
         private Course Course { get; set; }
+
         public AddAssignmentPopup(Course course)
         {
             InitializeComponent();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            assignmentService = serviceProvider.GetRequiredService<IAssignmentService>();
+
             Course = course;
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private static DateTime DateTimeCombo2DateTime(DatePicker datePicker, ComboBox hourCombo, ComboBox amPmCombo)
-        {
-            int selectedHour = hourCombo.SelectedIndex + 1;
-            string selectedAmPm = amPmCombo.SelectedIndex == 0 ? "am" : "pm";
-
-            string dateString = datePicker.SelectedDate.Value.ToString("MM/dd/yyyy");
-            string timeString = $"{selectedHour} {selectedAmPm}";
-            string dateTimeString = $"{dateString} {timeString}";
-
-            return DateTime.Parse(dateTimeString);
-        }
-        private void AddAssignment_Click(object sender, RoutedEventArgs e)
+        private async void AddAssignment_Click(object sender, RoutedEventArgs e)
         {
             string description = new TextRange(txtDescription.Document.ContentStart, txtDescription.Document.ContentEnd).Text;
 
@@ -70,12 +44,12 @@ namespace Hogwarts.Views.ProfessorViews.Popups
                 Description = description,
                 StartDate = DateTimeCombo2DateTime(startDatePicker, startHourComboBox, startAmPmComboBox),
                 DueDate = DateTimeCombo2DateTime(dueDatePicker, dueHourComboBox, dueAmPmComboBox),
-                RequireForestAccess = (bool)forestAccessCheckBox.IsChecked,
+                RequireForestAccess = (bool)(forestAccessCheckBox?.IsChecked ?? throw new ArgumentNullException(nameof(forestAccessCheckBox.IsChecked))),
             };
 
             try
             {
-                StaticServiceProvidor.assignmentService.AddAssignment(DTO, Course.Id, CurrentProfessorId);
+                await assignmentService.AddAssignmentAsync(DTO, Course.Id, CurrentProfessorId);
                 MessageBox.Show("Assignment Added.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
@@ -90,9 +64,39 @@ namespace Hogwarts.Views.ProfessorViews.Popups
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
+        }
+
+        private static DateTime DateTimeCombo2DateTime(DatePicker datePicker, ComboBox hourCombo, ComboBox amPmCombo)
+        {
+            int selectedHour = hourCombo.SelectedIndex + 1;
+            string selectedAmPm = amPmCombo.SelectedIndex == 0 ? "am" : "pm";
+
+            string dateString = datePicker.SelectedDate.Value.ToString("MM/dd/yyyy");
+            string timeString = $"{selectedHour} {selectedAmPm}";
+            string dateTimeString = $"{dateString} {timeString}";
+
+            return DateTime.Parse(dateTimeString);
+        }
+
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

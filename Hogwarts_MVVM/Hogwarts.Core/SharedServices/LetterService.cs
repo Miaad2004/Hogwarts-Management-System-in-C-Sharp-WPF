@@ -1,11 +1,9 @@
 ﻿using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.Models.TrainManagement.Services;
-using Hogwarts.Core.SharedServices.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Configuration;
-using System.Net.Mail;
 using System.Text;
 
 namespace Hogwarts.Core.SharedServices
@@ -28,8 +26,11 @@ namespace Hogwarts.Core.SharedServices
 
             return configuration["appSettings:LetterServiceDomain"] ?? throw new ConfigurationErrorsException("Invalid Configuration");
         }
+
         public string GenerateTrainTicketLink(string firstName, string lastName, TrainTicket trainTicket)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
             var ticketInfo = new
             {
                 FirstName = firstName,
@@ -54,6 +55,8 @@ namespace Hogwarts.Core.SharedServices
         public string GenerateAcceptLetterLink(string firstName, string lastName, string headmasterName,
                                                ActivationCode activationCode)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
             var letterInfo = new
             {
                 FirstName = firstName,
@@ -71,11 +74,16 @@ namespace Hogwarts.Core.SharedServices
             return html;
         }
 
-        public void SendInvitationMail(User sender, string firstName, string lastName, string emailAddress,
+        public async Task SendInvitationMailAsync(User sender, string firstName, string lastName, string emailAddress,
                                        ActivationCode activationCode)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            firstName = char.ToUpper(firstName[0]) + firstName[1..];
+            lastName = char.ToUpper(lastName[0]) + lastName[1..];
+
             string acceptLetterLink = GenerateAcceptLetterLink(firstName, lastName, sender.FullName, activationCode);
-            TrainTicket trainTicket = _trainService.GetTicketForNewStudent(activationCode);
+            TrainTicket trainTicket = await _trainService.GetTicketForNewStudentAsync(activationCode);
             string trainTicketLink = GenerateTrainTicketLink(firstName, lastName, trainTicket);
 
             string emailSubject = $"Hogwarts Acceptance Letter for {firstName} {lastName}";
@@ -99,30 +107,18 @@ namespace Hogwarts.Core.SharedServices
 
                 "</body></html>";
 
-            try
-            {
-                StaticMailService.SendEmail(recipient: emailAddress, subject: emailSubject, body: fullEmail);
-            }
-            catch (NetworkConnectionException ex)
-            {
-                throw ex;
-            }
 
+            await StaticMailService.SendEmailAsync(recipient: emailAddress, subject: emailSubject, body: fullEmail);
         }
 
-        public void SendTrainTicket(TrainTicket trainTicket, User owner)
+        public async Task SendTrainTicketAsync(TrainTicket trainTicket, User owner)
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
             string emailSubject = $"Hogwarts Express Ticket for {owner.FirstName} {owner.LastName}";
             string emailBody = GenerateTrainTicketLink(owner.FirstName, owner.LastName, trainTicket);
 
-            try
-            {
-                StaticMailService.SendEmail(recipient: owner.Email, subject: emailSubject, body: emailBody);
-            }
-            catch (NetworkConnectionException ex)
-            {
-                throw ex;
-            }
-        }   
+            await StaticMailService.SendEmailAsync(recipient: owner.Email, subject: emailSubject, body: emailBody);
+        }
     }
 }

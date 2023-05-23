@@ -1,35 +1,37 @@
 ﻿using Hogwarts.Core.Models.StudentManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogwarts.Core.Models.ForestManagement
 {
-    public class StudentPlant: Entity
+    public class StudentPlant : Entity
     {
-        private int _quantity = 0;
+        private int _numOwnedPlants = 0;
 
-        public Guid PlantId { get; private set; }
-        public Guid StudentId { get; private set; }
         public Plant Plant { get; private set; }
+        public Guid PlantId { get; private set; }
         public Student Student { get; private set; }
-        public int Quantity
+        public Guid StudentId { get; private set; }
+
+        public int NumOwnedPlants
         {
-            get => _quantity;
+            get => _numOwnedPlants;
             private set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Plant quantity can not be negative");
                 }
-                _quantity = value;
+                _numOwnedPlants = value;
             }
         }
 
-        public StudentPlant() { }
+        public StudentPlant()
+            : base()
+        {
+
+        }
+
         public StudentPlant(Plant plant, Student student)
+            : base()
         {
             Plant = plant;
             Student = student;
@@ -40,7 +42,7 @@ namespace Hogwarts.Core.Models.ForestManagement
         public void CollectPlant()
         {
             Plant.CollectPlant();
-            Quantity += 1;
+            NumOwnedPlants += 1;
         }
     }
 }

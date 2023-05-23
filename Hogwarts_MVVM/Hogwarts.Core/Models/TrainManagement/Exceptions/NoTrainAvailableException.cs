@@ -8,7 +8,8 @@ namespace Hogwarts.Core.Models.TrainManagement.Exceptions
         {
         }
 
-        public NoTrainAvailableException(string? message) : base(message)
+        public NoTrainAvailableException(string origin, string destination, DateTime depaurtureTime)
+            : base($"No train avialable from {origin} to {destination} after {depaurtureTime}")
         {
         }
 

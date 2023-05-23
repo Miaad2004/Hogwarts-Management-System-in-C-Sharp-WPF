@@ -1,65 +1,41 @@
-﻿using Hogwarts.Core.Models.CourseManagement.DTOs;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.CourseManagement.DTOs;
 using Hogwarts.Core.Models.CourseManagement.Exceptions;
-using Hogwarts.Core.SharedServices;
+using Hogwarts.Core.Models.CourseManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.ProfessorViews.Popups
 {
     /// <summary>
     /// Interaction logic for AddCoursePopup.xaml
     /// </summary>
-    public partial class AddCoursePopup : Window
+    public partial class AddCoursePopup : Window, IPopup
     {
+        private readonly ICourseService courseService;
+
         public AddCoursePopup()
         {
             InitializeComponent();
-        }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            courseService = serviceProvider.GetRequiredService<ICourseService>();
         }
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
+        private async void AddCourse_Click(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
-        }
+            var selectedDate = endDatePicker.SelectedDate ?? throw new ArgumentNullException(nameof(endDatePicker.SelectedDate));
 
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private static TimeOnly Combo2TimeOnly(ComboBox hourCombo, ComboBox amPmCombo)
-        {
-            int selectedHour = hourCombo.SelectedIndex + 1;
-            string selectedAmPm = amPmCombo.SelectedIndex == 0 ? "am" : "pm";
-
-            string timeString = $"{selectedHour.ToString("00")}:00 {selectedAmPm}";
-            DateTime dateTime = DateTime.ParseExact(timeString, "hh:mm tt", null);
-
-            return TimeOnly.FromDateTime(dateTime);
-        }
-        private void AddCourse_Click(object sender, RoutedEventArgs e)
-        {
             CourseDTO DTO = new()
             {
                 Title = txtTitle.Text,
-                EndDate = DateOnly.FromDateTime((DateTime)endDatePicker.SelectedDate),
+                EndDate = DateOnly.FromDateTime((DateTime)selectedDate),
                 Schedule = (DayOfWeek)scheduleComboBox.SelectedIndex,
                 ClassStartTime = Combo2TimeOnly(startHourComboBox, startAmPmComboBox),
                 ClassEndTime = Combo2TimeOnly(endHourComboBox, endAmPmComboBox),
@@ -69,7 +45,7 @@ namespace Hogwarts.Views.ProfessorViews.Popups
 
             try
             {
-                StaticServiceProvidor.courseService.AddCourse(DTO);
+                await courseService.AddCourseAsync(DTO);
                 MessageBox.Show("Course Added.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
@@ -83,9 +59,38 @@ namespace Hogwarts.Views.ProfessorViews.Popups
                 }
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
+        }
+
+        private static TimeOnly Combo2TimeOnly(ComboBox hourCombo, ComboBox amPmCombo)
+        {
+            int selectedHour = hourCombo.SelectedIndex + 1;
+            string selectedAmPm = amPmCombo.SelectedIndex == 0 ? "am" : "pm";
+
+            string timeString = $"{selectedHour:00}:00 {selectedAmPm}";
+            DateTime dateTime = DateTime.ParseExact(timeString, "hh:mm tt", null);
+
+            return TimeOnly.FromDateTime(dateTime);
+        }
+
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

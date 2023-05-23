@@ -14,13 +14,14 @@
         Style="{StaticResource BorderTheme}"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
-    
+
+   <!-- For resize -->
     <WindowChrome.WindowChrome>
         <WindowChrome     
-        CaptionHeight="1"  
-        CornerRadius ="0"
-        ResizeBorderThickness="4"         
-        GlassFrameThickness="0">
+            CaptionHeight="1"  
+            CornerRadius ="0"
+            ResizeBorderThickness="4"         
+            GlassFrameThickness="0">
         </WindowChrome>
     </WindowChrome.WindowChrome>
 
@@ -32,7 +33,8 @@
             </Grid.RowDefinitions>
 
             <!-- FRAME -->
-            <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="0, -30, 0, 0" Panel.ZIndex="0"/>
+            <Frame Grid.Row="1" x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden" Margin="0, -30, 0, 0" Panel.ZIndex="0"/>
 
             <!-- TOP BAR -->
             <Grid Grid.Row="0">

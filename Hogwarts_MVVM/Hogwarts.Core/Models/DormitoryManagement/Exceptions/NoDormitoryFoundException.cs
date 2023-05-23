@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Hogwarts.Core.Models.HouseManagement;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogwarts.Core.Models.DormitoryManagement.Exceptions
 {
@@ -13,7 +9,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement.Exceptions
         {
         }
 
-        public NoDormitoryFoundException(string? message) : base(message)
+        public NoDormitoryFoundException(HouseType houseType) : base($"No dormitories were found for the house {houseType}")
         {
         }
 

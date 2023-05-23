@@ -1,9 +1,6 @@
-﻿using Hogwarts.Core.Models.Authentication;
-using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
+﻿using Hogwarts.Core.Models.DormitoryManagement.Exceptions;
 using Hogwarts.Core.Models.HouseManagement;
 using Hogwarts.Core.Models.StudentManagement;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Hogwarts.Core.Models.DormitoryManagement
 {
@@ -53,6 +50,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
                 _roomsPerFloor = value;
             }
         }
+
         public int BedsPerRoom
         {
             get => _bedsPerRoom;
@@ -60,14 +58,15 @@ namespace Hogwarts.Core.Models.DormitoryManagement
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentOutOfRangeException("Rooms per floor must be positive");
+                    throw new ArgumentOutOfRangeException("Beds per floor must be positive");
                 }
                 _bedsPerRoom = value;
             }
         }
-        public int OccupiedBedsCount { get; private set; }
 
-        public ICollection<DormitoryRoom> Rooms { get; private set; }
+        public int OccupiedBedsCount { get; private set; } = 0;
+
+        public ICollection<DormitoryRoom> Rooms { get; private set; } = new List<DormitoryRoom>();
 
         public int FloorCapacity => RoomsPerFloor * BedsPerRoom;
 
@@ -77,9 +76,9 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
         public int RemainingCapacity => TotalCapacity - OccupiedBedsCount;
 
-        public Dormitory(): base()
+        public Dormitory() : base()
         {
-            Rooms = new List<DormitoryRoom>();
+
         }
 
         public Dormitory(string title, HouseType house, int floorsCount, int roomsPerFloor, int bedsPerRoom)
@@ -90,8 +89,6 @@ namespace Hogwarts.Core.Models.DormitoryManagement
             FloorCount = floorsCount;
             RoomsPerFloor = roomsPerFloor;
             BedsPerRoom = bedsPerRoom;
-            OccupiedBedsCount = 0;
-            Rooms = new List<DormitoryRoom>();
         }
 
         public DormitoryRoom ReserveRoom(Student owner)
@@ -103,7 +100,7 @@ namespace Hogwarts.Core.Models.DormitoryManagement
 
             if (OccupiedBedsCount == TotalCapacity)
             {
-                throw new DormitoryFullException($"[{House}-{Title}] dormitory is full.");
+                throw new DormitoryFullException(this.Title);
             }
 
             int floorNumber = (OccupiedBedsCount / FloorCapacity) + 1;

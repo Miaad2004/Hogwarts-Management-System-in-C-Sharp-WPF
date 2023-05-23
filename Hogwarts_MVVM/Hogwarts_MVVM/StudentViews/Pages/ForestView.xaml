@@ -15,7 +15,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -71,7 +72,7 @@
 
                                     <Ellipse>
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding FullImagePath}"/>
+                                            <ImageBrush ImageSource="{Binding FullProfileImagePath}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
 

@@ -1,57 +1,41 @@
-﻿using Hogwarts.Core.Models.HouseManagement;
-using Hogwarts.Core.SharedServices;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.DormitoryManagement.Services;
+using Hogwarts.Core.Models.HouseManagement;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.AdminViews.Popups
 {
     /// <summary>
     /// Interaction logic for AddDormitoryPopup.xaml
     /// </summary>
-    public partial class AddDormitoryPopup : Window
+    public partial class AddDormitoryPopup : Window, IPopup
     {
+        private readonly IDormitoryService dormitoryService;
+
         public AddDormitoryPopup()
         {
             InitializeComponent();
-        }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dormitoryService = serviceProvider.GetRequiredService<IDormitoryService>();
 
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void AddDormitory_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                StaticServiceProvidor.dormitoryService.AddDormitory(title: txtTitle.Text,
-                                                                    house: (HouseType)houseCombo.SelectedIndex,
-                                                                    floorsCount: floorsCountCombo.SelectedIndex + 1,
-                                                                    roomsPerFloor: roomsPerFloorCombo.SelectedIndex + 1,
-                                                                    bedsPerRoom: bedsPerRoomCombo.SelectedIndex + 1);
+                dormitoryService.AddDormitoryAsync(title: txtTitle.Text,
+                                                   house: (HouseType)houseCombo.SelectedIndex,
+                                                   floorsCount: floorsCountCombo.SelectedIndex + 1,
+                                                   roomsPerFloor: roomsPerFloorCombo.SelectedIndex + 1,
+                                                   bedsPerRoom: bedsPerRoomCombo.SelectedIndex + 1);
 
                 MessageBox.Show("Dormitory Added.", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
@@ -59,8 +43,26 @@ namespace Hogwarts.Views.AdminViews.Popups
 
             catch (ArgumentException ex)
             {
-                _ = MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Hogwarts.Core.SharedServices
         string GenerateTrainTicketLink(string firstName, string lastName, TrainTicket trainTicket);
         string GenerateAcceptLetterLink(string firstName, string lastName, string headmasterName,
                                         ActivationCode activationCode);
-        void SendInvitationMail(User sender, string firstName, string lastName, string emailAddress,
-                                ActivationCode activationCode);
-        void SendTrainTicket(TrainTicket trainTicket, User owner);
+        Task SendInvitationMailAsync(User sender, string firstName, string lastName, string emailAddress,
+                                     ActivationCode activationCode);
+        Task SendTrainTicketAsync(TrainTicket trainTicket, User owner);
     }
 }

@@ -1,26 +1,16 @@
-﻿using Hogwarts.Core.Models.CourseManagement;
-using Hogwarts.Core.Models.DormitoryManagement;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.CourseManagement;
 using Hogwarts.Core.Models.FacultyManagement;
-using Hogwarts.Core.Models.HouseManagement.Exceptions;
-using Hogwarts.Core.Models.HouseManagement;
-using Hogwarts.Core.SharedServices;
-using Hogwarts.Views.AdminViews.Popups;
 using Hogwarts.Views.ProfessorViews.Popups;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.ProfessorViews.Pages
 {
@@ -29,31 +19,21 @@ namespace Hogwarts.Views.ProfessorViews.Pages
     /// </summary>
     public partial class CoursesView : Page
     {
-        private static ObservableCollection<Course> Courses
-        {
-            get
-            {
-                var courses = StaticServiceProvidor.dbContext.GetList<Course>(
-                    orderBy: c => c.Title,
-                    includeProperties: c => c.Professor
-                ).ToList().Where(c => !c.HasFinished);
-
-                return new ObservableCollection<Course>(courses);
-            }
-        }
+        private readonly HogwartsDbContext dbContext;
 
         public CoursesView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
-        }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            coursessDataGrid.ItemsSource = Courses;
-            coursessDataGrid.Items.Refresh();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+
+            Loaded += OnLoaded;
         }
 
-        private void AddCourse_Click(object sender, RoutedEventArgs e)
+        private async void AddCourse_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
@@ -62,42 +42,58 @@ namespace Hogwarts.Views.ProfessorViews.Pages
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
         }
 
-        private void SubmitScores_Click(object sender, RoutedEventArgs e)
-        {
-            // Deactivate this window
-            IsEnabled = false;
-
-            AddCourseScoresPopup popup = new();
-            _ = popup.ShowDialog();
-
-            // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
-
-            // Reactivate this window
-            IsEnabled = true;
-        }
-
-        private void AddAssignment_Click(object sender, RoutedEventArgs e)
+        private async void SubmitScores_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
 
             Button? button = sender as Button;
-            Course? course = button.DataContext as Course;
+            Course course = button?.DataContext as Course ?? throw new NullReferenceException(nameof(button.DataContext));
+            AddCourseScoresPopup popup = new(course);
+            _ = popup.ShowDialog();
+
+            // Refresh the page
+            await PopulateDataGridAsync();
+
+            // Reactivate this window
+            IsEnabled = true;
+        }
+
+        private async void AddAssignment_Click(object sender, RoutedEventArgs e)
+        {
+            // Deactivate this window
+            IsEnabled = false;
+
+            Button? button = sender as Button;
+            Course course = button?.DataContext as Course ?? throw new NullReferenceException(nameof(button.DataContext));
             AddAssignmentPopup popup = new(course);
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            var currentUser = SessionManager.CurrentSession?.User as Professor ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
+            var courses = new ObservableCollection<Course>(await dbContext.GetListAsync<Course>(orderBy: c => c.Title,
+                                                                                                includeProperties: c => c.Professor)).ToList()
+                                                                                                                                     .Where(c => !c.HasFinished && c.Professor.Id == currentUser.Id);
+            coursessDataGrid.ItemsSource = courses;
         }
     }
 }

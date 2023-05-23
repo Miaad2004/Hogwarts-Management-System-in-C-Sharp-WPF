@@ -1,10 +1,9 @@
 ﻿using Hogwarts.Core.Models.ForestManagement.DTOs;
 using Hogwarts.Core.Models.ForestManagement.Exceptions;
-using System.ComponentModel.DataAnnotations;
 
 namespace Hogwarts.Core.Models.ForestManagement
 {
-    public class Plant: Entity
+    public class Plant : Entity
     {
         private string _name;
         private string _description;
@@ -51,6 +50,7 @@ namespace Hogwarts.Core.Models.ForestManagement
                 _groethTimeSpan = value;
             }
         }
+
         public int Quantity
         {
             get => _quantity;
@@ -64,11 +64,11 @@ namespace Hogwarts.Core.Models.ForestManagement
             }
         }
 
+        public ICollection<StudentPlant> StudentPlants { get; private set; } = new List<StudentPlant>();
         public DateTime HarvestTime => PlantingTime + GrowthTimeSpan;
         public bool IsCollectable => DateTime.Now >= HarvestTime;
-        public string FullImagePath { get; private set; }
+        public string FullProfileImagePath { get; private set; }
 
-        public ICollection<StudentPlant> StudentPlants { get; private set; } = new List<StudentPlant>();
 
         public Plant()
             : base()
@@ -91,16 +91,6 @@ namespace Hogwarts.Core.Models.ForestManagement
             PlantingTime = DateTime.Now;
 
             SetImagePath(imagePath);
-        }
-
-        public void CollectPlant()
-        {
-            if (!IsCollectable)
-            {
-                throw new PlantNotCollectableException($"Plant will be collectable in {(HarvestTime - DateTime.Now).TotalMinutes:F3} minute(s)");
-            }
-
-            Quantity -= 1;
         }
 
         public Plant(PlantDTO DTO)
@@ -140,7 +130,17 @@ namespace Hogwarts.Core.Models.ForestManagement
 
             File.Copy(imagePath, fullImagePath, overwrite: true);
             File.SetAttributes(fullImagePath, FileAttributes.ReadOnly);
-            this.FullImagePath = fullImagePath;
+            this.FullProfileImagePath = fullImagePath;
+        }
+
+        public void CollectPlant()
+        {
+            if (!IsCollectable)
+            {
+                throw new PlantNotCollectableException(HarvestTime);
+            }
+
+            Quantity -= 1;
         }
     }
 }

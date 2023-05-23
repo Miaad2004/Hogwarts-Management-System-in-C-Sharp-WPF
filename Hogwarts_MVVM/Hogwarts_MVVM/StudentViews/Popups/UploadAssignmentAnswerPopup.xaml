@@ -11,9 +11,9 @@
         MouseDown="Window_MouseDown"
         Style="{StaticResource BorderTheme}">
 
-    <Border CornerRadius="28">
+    <Border CornerRadius="26">
 
-        <Border Opacity="0.73"
+        <Border Opacity="0.85"
                 CornerRadius="25">
 
             <!-- Load Animation -->
@@ -21,7 +21,8 @@
                 <EventTrigger RoutedEvent="Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.1" To="0.75" Duration="0:0:0.5" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             From="0.1" To="0.85" Duration="0:0:0.5" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

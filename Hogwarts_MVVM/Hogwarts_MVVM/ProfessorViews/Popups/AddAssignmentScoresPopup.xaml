@@ -1,0 +1,195 @@
+﻿<Window x:Class="Hogwarts.Views.ProfessorViews.Popups.AddAssignmentScoresPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hogwarts.Views.ProfessorViews.Popups"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        Title="Add a Course" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Style="{StaticResource BorderTheme}">
+
+    <Border CornerRadius="26"
+            Opacity="0.92">
+
+        <!-- Load Animation -->
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.1" To="0.92" Duration="0:0:0.5" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>
+
+        <!-- Background Overlay -->
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1, 1" EndPoint="0, 0">
+                <GradientStop Color="#060531" Offset="0"/>
+                <GradientStop Color="#1B1448" Offset="0.8"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Section -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="Minimize"
+                        Grid.Column="1"
+                        Style="{StaticResource MinimizeButtonStyle}"
+                        Click="Minimize_Click" />
+
+                <Button x:Name="Close"
+                        Grid.Column="2"
+                        Style="{StaticResource CloseButtonStyle}"
+                        Click="Close_Click" />
+
+            </Grid>
+
+            <!-- Bottom Section -->
+
+            <!--Data Grid-->
+            <DataGrid x:Name="gradesDataGrid"
+                      Grid.Row="1"
+                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      Style="{DynamicResource DataGridStyle1}"
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      MaxHeight="510">
+
+                <DataGrid.Columns>
+                    <!-- Index -->
+                    <DataGridTextColumn Header="#" IsReadOnly="True"
+                                        CanUserResize="False" Width="auto"
+                                        Binding="{Binding SequentialIndex}"/>
+
+                    <!-- Name and profile picture -->
+                    <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="65" Height="65" Background="White"
+                                            CornerRadius="100" VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" Margin="5 0 10 0">
+
+                                        <Ellipse>
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding Student.FullProfileImagePath}"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+
+                                    </Border>
+
+                                    <TextBlock Text="{Binding Student.FullName}" VerticalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Username -->
+                    <DataGridTextColumn Header="Username"
+                                        Binding="{Binding Student.Username}" IsReadOnly="True" Width="*"/>
+
+                    <!-- Email Address -->
+                    <DataGridTextColumn Header="Email Address"
+                                        Binding="{Binding Student.Email}" IsReadOnly="True" Width="*"/>
+
+                    <!-- House -->
+                    <DataGridTextColumn Header="House" Binding="{Binding Student.HouseType}"
+                                        IsReadOnly="True" Width="*"/>
+
+                    <!-- Score -->
+                    <DataGridTemplateColumn Header="Score">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox IsEnabled="{Binding HasBeenAnswered}"
+                                          ItemsSource="{x:Static local:GradeTypeValues.Values}"
+                                          SelectedItem="{Binding Score, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Operations -->
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- View Student's Answer -->
+                                    <Button x:Name="ViewAnswer"
+                                            IsEnabled="{Binding HasBeenAnswered}"
+                                            ToolTip="View Student's Answer"
+                                            Click="ViewAnswer_Click"
+                                            Margin="5 0 0 0"
+                                            Style="{StaticResource gridEditButton}">
+                                        <Icon:PackIconMaterial Kind="CardSearch" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+            <!-- Submit Button -->
+            <Button x:Name="SubmitScores" Foreground="White" BorderThickness="0"
+                    Content="Submit" FontSize="12" FontFamily="Montserrat"
+                    Cursor="Hand" Grid.Row="2"
+                    Click="SubmitScores_Click" >
+
+                <Button.Style>
+                    <Style TargetType="Button">
+
+                        <Setter Property="Background" Value="#FF135B80"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF318CBB"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+
+                        <Border Width="150" Height="40"
+                                                CornerRadius="20"
+                                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"   HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+        </Grid>
+
+    </Border>
+</Window>

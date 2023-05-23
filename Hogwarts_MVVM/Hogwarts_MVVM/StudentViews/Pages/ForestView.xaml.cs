@@ -1,25 +1,15 @@
-﻿using Hogwarts.Core.Models.CourseManagement.Exceptions;
-using Hogwarts.Core.Models.CourseManagement;
-using Hogwarts.Core.Models.StudentManagement;
-using Hogwarts.Core.SharedServices;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.ForestManagement;
+using Hogwarts.Core.Models.ForestManagement.Exceptions;
+using Hogwarts.Core.Models.ForestManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hogwarts.Core.Models.ForestManagement;
-using Hogwarts.Core.Models.Authentication;
-using System.Collections.ObjectModel;
-using Hogwarts.Core.Models.ForestManagement.Exceptions;
 
 namespace Hogwarts.Views.StudentViews.Pages
 {
@@ -28,30 +18,32 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class ForestView : Page
     {
-        private static Guid CurrentStudentId => SessionManager.CurrentSession.User.Id;
-        private static ObservableCollection<Plant> Plants =>
-                    StaticServiceProvidor.dbContext.GetList<Plant>(orderBy: p => p.HarvestTime);
+        private readonly HogwartsDbContext dbContext;
+        private readonly IForestService forestService;
 
         public ForestView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+            forestService = serviceProvider.GetRequiredService<IForestService>();
+
+            Loaded += OnLoaded;
         }
 
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
+        private async void CollectPlant_Click(object sender, RoutedEventArgs e)
         {
-            plantsDataGrid.ItemsSource = Plants;
-            plantsDataGrid.Items.Refresh();
-        }
+            var currentSession = SessionManager.CurrentSession ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
 
-        private void CollectPlant_Click(object sender, RoutedEventArgs e)
-        {
             try
             {
                 Button? button = sender as Button;
-                Plant? plant = button.DataContext as Plant;
+                Plant plant = button?.DataContext as Plant ?? throw new ArgumentNullException(nameof(button));
 
-                StaticServiceProvidor.forestService.CollectPlant(plant.Id, CurrentStudentId);
+                await forestService.CollectPlantAsync(plant.Id, currentSession.User.Id);
                 MessageBox.Show($"Plant collected.",
                                 "Success!",
                                 MessageBoxButton.OK,
@@ -73,24 +65,37 @@ namespace Hogwarts.Views.StudentViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
         }
 
-        private void GetQuantity_Click(object sender, RoutedEventArgs e)
+        private async void GetQuantity_Click(object sender, RoutedEventArgs e)
         {
-            Button? button = sender as Button;
-            Plant? plant = button.DataContext as Plant;
+            var currentSession = SessionManager.CurrentSession ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
 
-            int quantity = StaticServiceProvidor.forestService.GetStudentPlantQuantity(plant.Id, CurrentStudentId);
+            Button? button = sender as Button;
+            Plant plant = button?.DataContext as Plant ?? throw new ArgumentException(nameof(button.DataContext));
+
+            int quantity = await forestService.GetStudentPlantQuantityAsync(plant.Id, currentSession.User.Id);
             MessageBox.Show($"You have {quantity} of this plant.",
                             "Success!",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            var courses = new ObservableCollection<Plant>(await dbContext.GetListAsync<Plant>(orderBy: p => p.HarvestTime));
+            plantsDataGrid.ItemsSource = courses;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_LastSelectedProfileId>D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\Properties\PublishProfiles\FolderProfile1.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
@@ -72,10 +72,16 @@
     <Compile Update="ProfessorViews\Popups\AddAssignmentPopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ProfessorViews\Popups\AddAssignmentScoresPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ProfessorViews\Popups\AddCoursePopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ProfessorViews\Popups\AddCourseScoresPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ProfessorViews\Popups\ViewAssignmentAnswerPopup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml.cs">
@@ -179,10 +185,16 @@
     <Page Update="ProfessorViews\Popups\AddAssignmentPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ProfessorViews\Popups\AddAssignmentScoresPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ProfessorViews\Popups\AddCoursePopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ProfessorViews\Popups\AddCourseScoresPopup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ProfessorViews\Popups\ViewAssignmentAnswerPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ProfessorViews\Popups\ViewAssignmentDescriptionPopup.xaml">

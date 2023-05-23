@@ -1,48 +1,31 @@
-﻿using Hogwarts.Core.Models.CourseManagement;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hogwarts.Core.Models.Authentication;
+using Hogwarts.Core.Models.CourseManagement;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.ProfessorViews.Popups
 {
     /// <summary>
     /// Interaction logic for ViewAssingmentDescription.xaml
     /// </summary>
-    public partial class ViewAssignmentDescriptionPopup : Window
+    public partial class ViewAssignmentDescriptionPopup : Window, IPopup
     {
         private Assignment Assignment { get; set; }
+
         public ViewAssignmentDescriptionPopup(Assignment assignment)
         {
             InitializeComponent();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
             Assignment = assignment;
+
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
             UpdateTextBox();
-        }
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void UpdateTextBox()
@@ -52,6 +35,24 @@ namespace Hogwarts.Views.ProfessorViews.Popups
             {
                 txtDescription.Document.Blocks.Add(new Paragraph(new Run(line)));
             }
+        }
+
+        public void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        public void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        public void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

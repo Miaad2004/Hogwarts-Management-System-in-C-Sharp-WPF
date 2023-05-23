@@ -1,26 +1,16 @@
-﻿using Hogwarts.Core.Models.Authentication;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.CourseManagement;
-using Hogwarts.Core.Models.TrainManagement.Exceptions;
-using Hogwarts.Core.Models.TrainManagement;
-using Hogwarts.Core.SharedServices;
-using Hogwarts.Core.SharedServices.Exceptions;
-using Hogwarts.Views.ProfessorViews.Popups;
+using Hogwarts.Core.Models.CourseManagement.Exceptions;
+using Hogwarts.Core.Models.CourseManagement.Services;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Hogwarts.Core.Models.CourseManagement.Exceptions;
 
 namespace Hogwarts.Views.StudentViews.Pages
 {
@@ -29,37 +19,30 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class CourseCatalogView : Page
     {
-        private static Guid CurrentStudentId => SessionManager.CurrentSession.User.Id;
-        private static ObservableCollection<Course> Courses
-        {
-            get
-            {
-                var courses = StaticServiceProvidor.dbContext.GetList<Course>(
-                    orderBy: c => c.Title,
-                    includeProperties: c => c.Professor
-                ).ToList().Where(c => !c.HasFinished);
-
-                return new ObservableCollection<Course>(courses);
-            }
-        }
+        private readonly HogwartsDbContext dbContext;
+        private readonly ICourseService courseService;
 
         public CourseCatalogView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
-        }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            coursessDataGrid.ItemsSource = Courses;
-            coursessDataGrid.Items.Refresh();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+            courseService = serviceProvider.GetRequiredService<ICourseService>();
+
+            Loaded += OnLoaded;
         }
 
-        private void AddCourse_Click(object sender, RoutedEventArgs e)
+        private async void AddCourse_Click(object sender, RoutedEventArgs e)
         {
+            var currentSession = SessionManager.CurrentSession ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
+
             try
             {
-                Button button = sender as Button;
-                Course selectedCourse = button.DataContext as Course;
+                Button? button = sender as Button;
+                Course selectedCourse = button?.DataContext as Course ?? throw new ArgumentNullException();
 
                 MessageBoxResult choice = MessageBox.Show("Are you certain about enrolling in the course?",
                                                           "Question!",
@@ -67,7 +50,7 @@ namespace Hogwarts.Views.StudentViews.Pages
                                                           MessageBoxImage.Question);
                 if (choice == MessageBoxResult.Yes)
                 {
-                    StaticServiceProvidor.courseService.EnrollStudentInCourse(CurrentStudentId, selectedCourse.Id);
+                    await courseService.EnrollStudentInCourseAsync(currentSession.User.Id, selectedCourse.Id);
                     MessageBox.Show("Course added successfully.",
                                     "Success!",
                                     MessageBoxButton.OK,
@@ -85,12 +68,24 @@ namespace Hogwarts.Views.StudentViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            var courses = new ObservableCollection<Course>(await dbContext.GetListAsync<Course>(orderBy: c => c.Title,
+                                                                                                includeProperties: c => c.Professor)).ToList().Where(c => !c.HasFinished);
+            coursessDataGrid.ItemsSource = courses;
         }
     }
 }

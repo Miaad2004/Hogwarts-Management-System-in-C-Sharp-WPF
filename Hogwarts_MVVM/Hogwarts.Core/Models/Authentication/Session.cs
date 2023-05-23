@@ -1,21 +1,25 @@
-﻿namespace Hogwarts.Core.Models.Authentication
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Hogwarts.Core.Models.Authentication
 {
     public sealed class Session
     {
         private static readonly TimeSpan EXPIRE_TIME_SPAN = TimeSpan.FromMinutes(60);
-        private readonly DateTime _loginTime;
+        private readonly DateTime _creationDate;
 
+        [Key]
         public readonly int Id;
         public User User { get; private set; }
-        public DateTime ExpireDate => _loginTime + EXPIRE_TIME_SPAN;
+        public DateTime ExpireDate => _creationDate + EXPIRE_TIME_SPAN;
 
         private bool _hasBeenRevoked = false;
         public bool HasExpired => DateTime.UtcNow >= ExpireDate || _hasBeenRevoked;
 
         public Session(User user)
+            : base()
         {
             User = user;
-            _loginTime = DateTime.UtcNow;
+            _creationDate = DateTime.UtcNow;
             Id = GetHashCode();
         }
 
@@ -30,7 +34,7 @@
         }
         public override int GetHashCode()
         {
-            return HashCode.Combine(_loginTime, User, ExpireDate, _hasBeenRevoked, HasExpired);
+            return HashCode.Combine(_creationDate, User, ExpireDate, _hasBeenRevoked, HasExpired);
         }
     }
 }

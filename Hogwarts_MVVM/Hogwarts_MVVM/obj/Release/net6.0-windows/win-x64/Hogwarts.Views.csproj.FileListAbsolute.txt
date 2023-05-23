@@ -619,3 +619,17 @@ D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogw
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\Hogwarts.Views.genruntimeconfig.cache
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ref\Hogwarts.Views.dll
 D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\bin\Release\net6.0-windows\win-x64\StaticResources\LoginWindow\bg-video.mp4
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddAssignmentPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddAssignmentScoresPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddCourseScoresPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\ViewAssignmentAnswerPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\ViewAssignmentDescriptionPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\StudentViews\Popups\UploadAssignmentAnswerPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\StudentViews\Popups\ViewAssignmentDescriptionPopup.g.cs
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddAssignmentPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddAssignmentScoresPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\AddCourseScoresPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\ViewAssignmentAnswerPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\ProfessorViews\Popups\ViewAssignmentDescriptionPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\StudentViews\Popups\UploadAssignmentAnswerPopup.baml
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\Hogwarts_MVVM\Hogwarts_MVVM\obj\Release\net6.0-windows\win-x64\StudentViews\Popups\ViewAssignmentDescriptionPopup.baml

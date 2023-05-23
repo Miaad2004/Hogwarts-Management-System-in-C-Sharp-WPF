@@ -15,7 +15,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -91,6 +92,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <!-- Submit Answer -->
                                 <Button x:Name="SubmitAnswer"
+                                        IsEnabled="{Binding CanStudentAnswer}"
                                         ToolTip="Submit Answer"
                                         Click="SubmitAnswer_Click"
                                         Margin="5 0 0 0"
@@ -106,7 +108,7 @@
                                         Style="{StaticResource gridEditButton}">
                                     <Icon:PackIconMaterial Kind="Counter" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                
+
                                 <!-- View Description -->
                                 <Button x:Name="ViewDescription"
                                         ToolTip="View Assignment's Description"
@@ -120,8 +122,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-
 
             </DataGrid.Columns>
 

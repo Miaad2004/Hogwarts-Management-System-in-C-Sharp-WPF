@@ -1,5 +1,4 @@
-﻿using Hogwarts.Core.Models.FacultyManagement;
-using Hogwarts.Core.Models.StudentManagement;
+﻿using Hogwarts.Core.Models.StudentManagement;
 
 namespace Hogwarts.Core.Models.HouseManagement
 {
@@ -24,18 +23,20 @@ namespace Hogwarts.Core.Models.HouseManagement
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException("No points left :(");
+                    throw new ArgumentException("No points left :(");
                 }
                 _points = value;
             }
         }
 
-        public int StudentsCount => Students.Count;
-
         public string FullProfileImagePath { get; private set; }
         public ICollection<Student> Students { get; private set; } = new List<Student>();
+        public int StudentsCount => Students.Count();
 
-        public House(): base() { }
+        public House() : base()
+        {
+
+        }
 
         public House(HouseType houseType, string? profileImagePath)
             : base()

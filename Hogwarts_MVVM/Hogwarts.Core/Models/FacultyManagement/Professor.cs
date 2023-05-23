@@ -10,9 +10,11 @@ namespace Hogwarts.Core.Models.FacultyManagement
         public bool HasTimeTurner { get; set; }
 
         public Professor()
+            : base()
         {
 
         }
+
         public Professor(string username, string firstName, string lastName, string email, DateOnly birthDay,
                      BloodType bloodType, AccessLevels accessLeve, string passwordHash, string profileImagePath,
                      ProfessorMajors major, bool hasTimeTurner)

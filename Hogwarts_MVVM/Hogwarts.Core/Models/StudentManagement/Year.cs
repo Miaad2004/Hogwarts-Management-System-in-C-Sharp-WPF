@@ -1,6 +1,6 @@
 ﻿namespace Hogwarts.Core.Models.StudentManagement
 {
-    public enum Year
+    public enum SchoolYear
     {
         First,
         Second,

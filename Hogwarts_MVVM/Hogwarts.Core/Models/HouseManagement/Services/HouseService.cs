@@ -1,58 +1,80 @@
 ﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.HouseManagement.Exceptions;
 using Hogwarts.Core.Models.StudentManagement;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hogwarts.Core.Models.HouseManagement.Services
 {
-    public class HouseService: IHouseService
+    public class HouseService : IHouseService
     {
-        private readonly HogwartsDbContext _context;
+        private readonly HogwartsDbContext _dbContext;
         public HouseService(HogwartsDbContext dbContext)
         {
-            _context = dbContext;
+            _dbContext = dbContext;
         }
 
-        public void AddHouse(HouseType houseType, string? profileImagePath)
+        public async Task AddHouseAsync(HouseType houseType, string? profileImagePath)
         {
-            if (_context.Houses.SingleOrDefault(h => h.HouseType == houseType) != null)
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Admin);
+
+            if (await _dbContext.Houses.SingleOrDefaultAsync(h => h.HouseType == houseType) != null)
             {
                 throw new HouseAlreadyExistsException($"House with type {houseType} already exists.");
             }
 
             var house = new House(houseType, profileImagePath);
 
-            _context.Houses.Add(house);
-            _context.SaveChanges();
+            await _dbContext.Houses.AddAsync(house);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public House Sort()
+        public async Task<House> SortAsync()
         {
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Unauthorized);
+
             Random random = new();
             HouseType houseType = (HouseType)random.Next(0, Enum.GetValues(typeof(HouseType)).Length);
 
-            var house = _context.Houses.Include(h => h.Students).SingleOrDefault(h => h.HouseType == houseType) ?? throw new HouseException($"House with type {houseType} does not exist. Contact the adminstrator.");
+            var house = await _dbContext.Houses
+                .Include(h => h.Students)
+                .SingleOrDefaultAsync(h => h.HouseType == houseType)
+                ?? throw new HouseException($"House with type {houseType} does not exist. Contact the adminstrator.");
 
             return house;
         }
 
-        public void UpdatePoints(Guid houseId, int dPoint)
+        public async Task UpdatePointsAsync(Guid houseId, int dPoint)
         {
-            var house = _context.Houses.SingleOrDefault(h => h.Id == houseId) ?? throw new HouseException($"Invalid house ID.");
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            var house = await _dbContext.Houses
+                .SingleOrDefaultAsync(h => h.Id == houseId)
+                ?? throw new HouseException($"Invalid house ID.");
+
             house.UpdatePoints(dPoint);
-            _context.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public HouseType GetHouseType(Guid studentId)
+        public async Task<HouseType> GetHouseTypeAsync(Guid studentId)
         {
-            Student? student = _context.Students.SingleOrDefault(s => s.Id == studentId) ?? throw new ArgumentException("Invalid student id");
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            Student? student = await _dbContext.Students
+                .SingleOrDefaultAsync(s => s.Id == studentId)
+                ?? throw new ArgumentException("Invalid student id");
+
             return student.HouseType;
         }
 
-        public int GetHousePoints(Guid studentOrHouseId)
+        public async Task<int> GetHousePointsAsync(Guid studentOrHouseId)
         {
-            var house = _context.Houses.SingleOrDefault(h => h.Id == studentOrHouseId);
-            var student = _context.Students.Include(s => s.House).SingleOrDefault(s => s.Id == studentOrHouseId);
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            var house = await _dbContext.Houses.SingleOrDefaultAsync(h => h.Id == studentOrHouseId);
+            var student = await _dbContext.Students
+                .Include(s => s.House)
+                .SingleOrDefaultAsync(s => s.Id == studentOrHouseId);
 
             if (house == null && student == null)
             {
@@ -62,9 +84,11 @@ namespace Hogwarts.Core.Models.HouseManagement.Services
             return (house ?? student.House).Points;
         }
 
-        public int GetAvgHousePoints()
+        public async Task<int> GetAvgHousePointsAsync()
         {
-            return (int)_context.Houses.Average(h => h.Points);
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Professor);
+
+            return !_dbContext.Houses.Any() ? 0 : (int)(await _dbContext.Houses.AverageAsync(h => h.Points));
         }
 
     }

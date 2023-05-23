@@ -1,23 +1,17 @@
-﻿using Hogwarts.Core.Models.Authentication;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.TrainManagement;
 using Hogwarts.Core.Models.TrainManagement.Exceptions;
+using Hogwarts.Core.Models.TrainManagement.Services;
 using Hogwarts.Core.SharedServices;
 using Hogwarts.Core.SharedServices.Exceptions;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.StudentViews.Pages
 {
@@ -26,28 +20,33 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class HogwartsExpressView : Page
     {
-        private static ObservableCollection<Train> Trains =>
-            StaticServiceProvidor.dbContext.GetList<Train>(orderBy:t => t.DepartureTime);
+        private readonly HogwartsDbContext dbContext;
+        private readonly ITrainService trainService;
+        private readonly ILetterService letterService;
 
         public HogwartsExpressView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
-        }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            trainsDataGrid.ItemsSource = Trains;
-            trainsDataGrid.Items.Refresh();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+            trainService = serviceProvider.GetRequiredService<ITrainService>();
+            letterService = serviceProvider.GetRequiredService<ILetterService>();
+
+            Loaded += OnLoaded;
         }
 
-        private void ReserveSeat_Click(object sender, RoutedEventArgs e)
+        private async void ReserveSeat_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                User? ticketOwner = SessionManager.CurrentSession.User;
-                Button button = sender as Button;
-                Train selectedTrain = button.DataContext as Train;
-                TrainTicket trainTicket = StaticServiceProvidor.trainService.GetTrainTicket(selectedTrain, ticketOwner);
+                User? ticketOwner = SessionManager.CurrentSession?.User ?? throw new ArgumentNullException(nameof(SessionManager.CurrentSession));
+                Button? button = sender as Button;
+                Train selectedTrain = button?.DataContext as Train ?? throw new ArgumentNullException();
+
+                TrainTicket trainTicket = await trainService.GetTrainTicketAsync(selectedTrain.Id, ticketOwner);
 
                 MessageBox.Show("Seat Reserved Successfully.",
                                 "Success!",
@@ -60,12 +59,14 @@ namespace Hogwarts.Views.StudentViews.Pages
                                                           MessageBoxImage.Question);
                 if (choice == MessageBoxResult.Yes)
                 {
-                    StaticServiceProvidor.letterService.SendTrainTicket(trainTicket, ticketOwner);
+                    await letterService.SendTrainTicketAsync(trainTicket, ticketOwner);
                     MessageBox.Show("Ticket sent successfully",
                                     "Success!",
                                     MessageBoxButton.OK,
                                     MessageBoxImage.Information);
                 }
+
+                await PopulateDataGrid();
             }
 
             catch (Exception ex)
@@ -79,12 +80,20 @@ namespace Hogwarts.Views.StudentViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
+        }
 
-            // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGrid();
+        }
+
+        private async Task PopulateDataGrid()
+        {
+            ObservableCollection<Train> trains = await dbContext.GetListAsync<Train>(orderBy: t => t.DepartureTime);
+            trainsDataGrid.ItemsSource = trains;
         }
     }
 }

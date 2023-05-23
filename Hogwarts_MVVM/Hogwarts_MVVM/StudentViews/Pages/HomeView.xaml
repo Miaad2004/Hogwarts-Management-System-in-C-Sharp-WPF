@@ -14,7 +14,8 @@
             <EventTrigger RoutedEvent="Loaded">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0.3" To="1" Duration="0:0:0.3" />
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                         From="0.3" To="1" Duration="0:0:0.3" />
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
@@ -200,27 +201,27 @@
 
                         <!-- Right Section -->
 
-                        <!-- Courses Count -->
-                        <StackPanel Orientation="Horizontal"
-                                    Grid.Column="2" Grid.Row="1">
-
-                            <TextBlock Style="{StaticResource LoginInputLabelTheme}"
-                                       Text="Active Course Count:" FontSize="18" />
-
-                            <TextBlock x:Name="txtActiveCourses"
-                                       Style="{StaticResource LoginInputLabelTheme}"
-                                       Padding="10, 0, 0, 0"
-                                       Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
-                        </StackPanel>
-
                         <!-- Assignments Count -->
                         <StackPanel Orientation="Horizontal"
-                                    Grid.Column="2" Grid.Row="2">
+                                    Grid.Column="2" Grid.Row="1">
 
                             <TextBlock Style="{StaticResource LoginInputLabelTheme}"
                                        Text="Active Assignment Count:" FontSize="18" />
 
                             <TextBlock x:Name="txtActiveAssignments"
+                                       Style="{StaticResource LoginInputLabelTheme}"
+                                       Padding="10, 0, 0, 0"
+                                       Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>
+                        </StackPanel>
+
+                        <!-- Dormitory -->
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="2" Grid.Row="2">
+
+                            <TextBlock Style="{StaticResource LoginInputLabelTheme}"
+                                       Text="Dormitory:" FontSize="18" />
+
+                            <TextBlock x:Name="txtDormitoryRoom"
                                        Style="{StaticResource LoginInputLabelTheme}"
                                        Padding="10, 0, 0, 0"
                                        Text="COUNT" FontSize="20" Foreground="#FFF69C43"/>

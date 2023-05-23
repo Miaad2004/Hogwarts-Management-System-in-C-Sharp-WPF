@@ -1,24 +1,16 @@
-﻿using Hogwarts.Core.Models.Authentication;
+﻿using Hogwarts.Core.Data;
+using Hogwarts.Core.Models.Authentication;
 using Hogwarts.Core.Models.CourseManagement;
 using Hogwarts.Core.Models.CourseManagement.Exceptions;
-using Hogwarts.Core.Models.StudentManagement;
-using Hogwarts.Core.SharedServices;
+using Hogwarts.Core.Models.CourseManagement.Services;
 using Hogwarts.Views.StudentViews.Popups;
+using Hogwarts_MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Hogwarts.Views.StudentViews.Pages
 {
@@ -27,67 +19,66 @@ namespace Hogwarts.Views.StudentViews.Pages
     /// </summary>
     public partial class AssignmentsView : Page
     {
-        private static Guid CurrentStudentId => SessionManager.CurrentSession.User.Id;
-        private static ObservableCollection<StudentAssignment> StudentAssignments =>
-            StaticServiceProvidor.dbContext.GetList<StudentAssignment>(orderBy: sa => sa.Assignment.DueDate,
-                                                                       whereClause: sa => sa.StudentId == CurrentStudentId,
-                                                                       sa => sa.Assignment, sa => sa.Assignment.Professor);
+        private readonly HogwartsDbContext dbContext;
+        private readonly IAssignmentService assignmentService;
 
         public AssignmentsView()
         {
             InitializeComponent();
-            Loaded += OnDataGridChanged;
-        }
-        private void OnDataGridChanged(object sender, RoutedEventArgs e)
-        {
-            assignmentsDataGrid.ItemsSource = StudentAssignments;
-            assignmentsDataGrid.Items.Refresh();
+            SessionManager.AuthorizeMethodAccess(AccessLevels.Student);
+
+            // Dependency Injection
+            var serviceProvider = (Application.Current as App ?? throw new ArgumentNullException(nameof(Application))).ServiceProvider;
+            dbContext = serviceProvider.GetRequiredService<HogwartsDbContext>();
+            assignmentService = serviceProvider.GetRequiredService<IAssignmentService>();
+
+            Loaded += OnLoaded;
         }
 
-        private void SubmitAnswer_Click(object sender, RoutedEventArgs e)
+        private async void SubmitAnswer_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
 
             Button? button = sender as Button;
-            StudentAssignment? studentAssignment = button.DataContext as StudentAssignment;
+            StudentAssignment studentAssignment = button?.DataContext as StudentAssignment ?? throw new ArgumentNullException(nameof(button.DataContext));
 
             UploadAssignmentAnswerPopup popup = new(studentAssignment);
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
         }
 
-        private void ViewDescription_Click(object sender, RoutedEventArgs e)
+        private async void ViewDescription_Click(object sender, RoutedEventArgs e)
         {
             // Deactivate this window
             IsEnabled = false;
 
             Button? button = sender as Button;
-            StudentAssignment? studentAssignment = button.DataContext as StudentAssignment;
+            StudentAssignment studentAssignment = button?.DataContext as StudentAssignment ?? throw new ArgumentNullException(nameof(button.DataContext));
 
             ViewAssignmentDescriptionPopup popup = new(studentAssignment);
             _ = popup.ShowDialog();
 
             // Refresh the page
-            OnDataGridChanged(this, new RoutedEventArgs());
+            await PopulateDataGridAsync();
 
             // Reactivate this window
             IsEnabled = true;
         }
 
-        private void ViewScore_Click(object sender, RoutedEventArgs e)
+        private async void ViewScore_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Button? button = sender as Button;
-                StudentAssignment? studentAssignment = button.DataContext as StudentAssignment;
+                StudentAssignment studentAssignment = button?.DataContext as StudentAssignment ?? throw new ArgumentNullException(nameof(button.DataContext));
 
-                GradeType grade = StaticServiceProvidor.assignmentService.GetStudentAssignmentScore(studentAssignment.Id);
+                GradeType grade = await assignmentService.GetAssignmentScoreAsync(studentAssignment.Id);
                 MessageBox.Show($"You'r grade is {grade}",
                                 "Success!",
                                 MessageBoxButton.OK,
@@ -109,9 +100,24 @@ namespace Hogwarts.Views.StudentViews.Pages
 
                 else
                 {
-                    throw ex;
+                    throw;
                 }
             }
+        }
+
+        private async void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            await PopulateDataGridAsync();
+        }
+
+        private async Task PopulateDataGridAsync()
+        {
+            var currentUser = SessionManager.CurrentSession?.User ?? throw new ArgumentException(nameof(SessionManager.CurrentSession));
+            var studentAssignments = new ObservableCollection<StudentAssignment>(await dbContext.GetListAsync<StudentAssignment>(orderBy: sa => sa.Assignment.DueDate,
+                                                                                                                                 whereClause: sa => sa.StudentId == currentUser.Id,
+                                                                                                                                 sa => sa.Assignment,
+                                                                                                                                 sa => sa.Assignment.Professor));
+            assignmentsDataGrid.ItemsSource = studentAssignments;
         }
     }
 }
