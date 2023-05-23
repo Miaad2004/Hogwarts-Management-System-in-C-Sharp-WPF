@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4ZOkgFz3N6vfn1xxg6Nlr18uTdEuZMX072uix6z4tlqpI0qwlk+qOizoo4gSIX30rtB7Z/X3B/xjQRpGPqpgkg==",
+  "dgSpecHash": "g5Ha+opvkjCLSzOgj42ucdpyj+ThjZx3Q7uR0anQQ6ApKrVzhBpGcqYRANUBJ8X1rovMtuFTYCo/fpzqfMf0eg==",
   "success": true,
   "projectFilePath": "D:\\Uni\\Term_2\\Advance_Programming\\Hogwarts-Management-System-in-C-Sharp-WPF\\Hogwarts_MVVM\\Hogwarts.Core\\Hogwarts.Core.csproj",
   "expectedPackageFiles": [
@@ -48,7 +48,11 @@
     "C:\\Users\\Miaad\\.nuget\\packages\\system.security.permissions\\7.0.0\\system.security.permissions.7.0.0.nupkg.sha512",
     "C:\\Users\\Miaad\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Miaad\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\Miaad\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\Miaad\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Miaad\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.16\\microsoft.netcore.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\Miaad\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.16\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\Miaad\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.16\\microsoft.aspnetcore.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\Miaad\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.16\\microsoft.netcore.app.crossgen2.win-x64.6.0.16.nupkg.sha512"
   ],
   "logs": []
 }

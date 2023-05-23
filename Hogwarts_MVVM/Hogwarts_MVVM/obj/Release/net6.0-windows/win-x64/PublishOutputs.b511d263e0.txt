@@ -1,0 +1,13 @@
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\Hogwarts.Views.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\appsettings.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\admin.json
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\StaticResources\LoginWindow\bg-video.mp4
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\StaticResources\Shared\StartupChime.mp3
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\D3DCompiler_47_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\PenImc_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\PresentationNative_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\vcruntime140_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\wpfgfx_cor3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\e_sqlite3.dll
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\Hogwarts.Core.pdb
+D:\Uni\Term_2\Advance_Programming\Hogwarts-Management-System-in-C-Sharp-WPF\publish\Hogwarts.Views.exe
