@@ -10,24 +10,18 @@
 > Upon receiving an invitation from the admin, the student is emailed an acceptance letter with an activation code and a train ticket. The activation code enables the student to sign up and join the school
 
 # Admin's Panel
-> In the admin's panel, the administrator can invite students, add teachers, include a new train, create houses (like in Harry Potter), add dormitories, and plant flowers or plants in the forest.
+> The administrator can invite students, add teachers, include a new train, create houses (like in Harry Potter), add dormitories, and plant flowers or plants in the forest.
 
-## Student Management Page
+# Professor's Panel
+> Professors have the ability to incorporate a new course, create assignments, allocate or deduct points from houses, and assign scores to both courses and assignments. 
 
-## Staff Management Page
-
-## Forest Management Page
-
-## Professor's Panel
-
-## Student's Panel
-
-## Popups
+# Student's Panel
+> Students have the ability to answer assignmetns, enroll in courses, get a train ticket, and collect plants from the forest.
 
 
 <p align="center">
-  <img src="https://github.com/Miaad2004/Sliding-Puzzle/blob/main/screenshots/title.jpg" />
+  <img src="ahttps://github.com/Miaad2004/Sliding-Puzzle/blob/main/screenshots/title.jpg" />
 </p>
 
-![Gameplay](https://github.com/Miaad2004/Sliding-Puzzle/blob/main/screenshots/gameplay.gif)
+![Gameplay](ahttps://github.com/Miaad2004/Sliding-Puzzle/blob/main/screenshots/gameplay.gif)
 
