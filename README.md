@@ -3,6 +3,7 @@
 
 # Login & Signup Views
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/1.png)
+![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/3.png)
 
 # Hogwarts API
 > Hogwarts API is a JavaScript script API hosted on Cloudflare Workers. It allows users to generate a Hogwarts acceptance letter and a train ticket. The API accepts input fields in JSON format (Base64 encoded),. The API returns a webpage containing the generated documents.
