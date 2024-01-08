@@ -22,7 +22,6 @@
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/2.png)
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/4.png)
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/5.png)
-![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/6.png)
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/7.png)
 ![Large Table](https://github.com/Miaad2004/Hogwarts-Management-System-in-C-Sharp-WPF/blob/main/ScreenRecoards/16.png)
 
